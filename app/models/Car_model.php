@@ -1,8 +1,8 @@
 <?php
 
-class Students_model
+class Car_model
 {
-    private $table_name = 'students';
+    private $table_name = 'cars';
     private $db;
 
     public function __construct()
@@ -10,13 +10,13 @@ class Students_model
         $this->db = new Database;
     }
 
-    public function getAllStudents()
+    public function getAllCars()
     {
         $this->db->query('SELECT * FROM ' . $this->table_name);
         return $this->db->resultSet();
     }
 
-    public function getStudentById($id)
+    public function getCarById($id)
     {
         $this->db->query('SELECT * FROM ' . $this->table_name . ' WHERE id=:id');
         // untuk menghindari sql injection
@@ -24,7 +24,7 @@ class Students_model
         return $this->db->single();
     }
 
-    public function createNewStudent($data)
+    public function createNewCar($data)
     {
         $query = "INSERT INTO students VALUES 
                   ('',:name,:npm,:email,:major)";
@@ -39,7 +39,7 @@ class Students_model
         return $this->db->affectedRowCount();
     }
 
-    public function deleteStudentById($id)
+    public function deleteCarById($id)
     {
         $query = "DELETE FROM students WHERE id = :id";
         $this->db->query($query);
@@ -50,7 +50,7 @@ class Students_model
         return $this->db->affectedRowCount();
     }
 
-    public function editStudentById($data)
+    public function editCarById($data)
     {
         $query = "UPDATE students SET 
                   name = :name, 
@@ -70,7 +70,7 @@ class Students_model
         return $this->db->affectedRowCount();
     }
 
-    public function getStudentsByKeyword()
+    public function getCarsByKeyword()
     {
         $keyword = $_POST['keyword'];
 

@@ -2,7 +2,7 @@
 
 class Home extends Controller
 {
-    public $activePage = 0;
+    private $activePage = 0;
     public function index()
     {
         $data['activePage'] = $this->activePage;

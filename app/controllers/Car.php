@@ -1,13 +1,13 @@
 <?php
 
-class Students extends Controller
+class Car extends Controller
 {
-    public $activePage = 2;
+    private $activePage = 2;
     public function index()
     {
         $data['activePage'] = $this->activePage;
-        $data['title'] = 'Students-list-';
-        $data['students'] = $this->model('Students_model')->getAllStudents();
+        $data['title'] = 'Car List';
+        $data['students'] = $this->model('Students_model')->getAllCars();
         $this->view('templates/header', $data);
         $this->view('students/index', $data);
         $this->view('templates/footer');
@@ -17,7 +17,7 @@ class Students extends Controller
     {
         $data['activePage'] = $this->activePage;
         $data['title'] = 'Student-details-';
-        $data['students'] = $this->model('Students_model')->getStudentById($id);
+        $data['students'] = $this->model('Students_model')->getCarById($id);
         $this->view('templates/header', $data);
         $this->view('students/details', $data);
         $this->view('templates/footer');
@@ -25,7 +25,7 @@ class Students extends Controller
 
     public function create()
     {
-        if ($this->model('Students_model')->createNewStudent($_POST) > 0) {
+        if ($this->model('Students_model')->createNewCar($_POST) > 0) {
             FlashMsg::setFlash('Succesfully', 'Created', 'success');
             header('Location: ' . BASEURL . '/students');
             exit;
@@ -38,7 +38,7 @@ class Students extends Controller
 
     public function delete($id)
     {
-        if ($this->model('Students_model')->deleteStudentById($id) > 0) {
+        if ($this->model('Students_model')->deleteCarById($id) > 0) {
             FlashMsg::setFlash('Succesfully', 'Deleted', 'success');
             header('Location: ' . BASEURL . '/students');
             exit;
@@ -51,7 +51,7 @@ class Students extends Controller
 
     public function edit()
     {
-        if ($this->model('Students_model')->editStudentById($_POST) > 0) {
+        if ($this->model('Students_model')->editCarById($_POST) > 0) {
             FlashMsg::setFlash('Succesfully', 'Edited', 'success');
             header('Location: ' . BASEURL . '/students');
             exit;
@@ -66,7 +66,7 @@ class Students extends Controller
     {
         $data['activePage'] = $this->activePage;
         $data['title'] = 'Students-list-';
-        $data['students'] = $this->model('Students_model')->getStudentsByKeyword();
+        $data['students'] = $this->model('Students_model')->getCarsByKeyword();
         $this->view('templates/header', $data);
         $this->view('students/index', $data);
         $this->view('templates/footer');

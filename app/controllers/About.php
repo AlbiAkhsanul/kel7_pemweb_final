@@ -2,7 +2,7 @@
 
 class About extends Controller
 {
-    public $activePage = 1;
+    private $activePage = 1;
     public function index($name = 'Albi', $job = 'College Student', $age = 19)
     {
         $data['activePage'] = $this->activePage;
