@@ -163,43 +163,43 @@ function update($data, $id, $oldImage)
     return mysqli_affected_rows($db);
 }
 
-function register($data)
-{
-    global $db;
+// function register($data)
+// {
+//     global $db;
 
-    $username = strtolower(stripcslashes($data["username"]));
-    $password = mysqli_real_escape_string($db, $data["password"]);
-    $passwordConfirm = mysqli_real_escape_string($db, $data["passwordConfirm"]);
+//     $username = strtolower(stripcslashes($data["username"]));
+//     $password = mysqli_real_escape_string($db, $data["password"]);
+//     $passwordConfirm = mysqli_real_escape_string($db, $data["passwordConfirm"]);
 
-    // Cek username sudah ada apa belum
-    $result = mysqli_query($db, "SELECT Username FROM users WHERE Username = '$username' ");
+//     // Cek username sudah ada apa belum
+//     $result = mysqli_query($db, "SELECT Username FROM users WHERE Username = '$username' ");
 
-    if (mysqli_fetch_assoc($result)) {
-        echo "
-            <script>
-                alert('Username Telah Dipakai, Coba Username Lain!');
+//     if (mysqli_fetch_assoc($result)) {
+//         echo "
+//             <script>
+//                 alert('Username Telah Dipakai, Coba Username Lain!');
                 
-            </script>
-        ";
-        return false;
-    }
+//             </script>
+//         ";
+//         return false;
+//     }
 
-    // cek konfirmasi pass
-    if ($password !== $passwordConfirm) {
-        echo "
-            <script>
-                alert('Konfirmasi Password Tidak Sesuai!');
+//     // cek konfirmasi pass
+//     if ($password !== $passwordConfirm) {
+//         echo "
+//             <script>
+//                 alert('Konfirmasi Password Tidak Sesuai!');
                 
-            </script>
-        ";
-        return false;
-    }
+//             </script>
+//         ";
+//         return false;
+//     }
 
-    // Enkripsi password
-    $password = password_hash($password, PASSWORD_DEFAULT);
+//     // Enkripsi password
+//     $password = password_hash($password, PASSWORD_DEFAULT);
 
-    // Memasukan kedalam database
-    mysqli_query($db, "INSERT INTO users (username, password) VALUES ('$username', '$password')");
+//     // Memasukan kedalam database
+//     mysqli_query($db, "INSERT INTO users (username, password) VALUES ('$username', '$password')");
 
-    return mysqli_affected_rows($db);
-}
+//     return mysqli_affected_rows($db);
+// }

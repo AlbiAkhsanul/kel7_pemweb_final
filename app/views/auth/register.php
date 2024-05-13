@@ -1,17 +1,17 @@
 <?php
 
-// if (isset($_POST["SignUp"])) {
-//     if (register($_POST) > 0) {
-//         echo "
-//             <script>
-//                 alert('Berhasil Menambahkan User');
+if (isset($_POST["SignUp"])) {
+    if (register($_POST) > 0) {
+        echo "
+            <script>
+                alert('Berhasil Menambahkan User');
 
-//             </script>
-//         ";
-//     } else {
-//         echo mysqli_error($db);
-//     }
-// }
+            </script>
+        ";
+    } else {
+        echo mysqli_error($db);
+    }
+}
 
 ?>
 

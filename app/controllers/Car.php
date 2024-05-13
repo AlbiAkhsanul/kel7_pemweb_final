@@ -25,6 +25,10 @@ class Car extends Controller
 
     public function create()
     {
+        if (!isset($_SESSION["login"])) {
+            header("Location: " . BASEURL . "/login/index");
+            exit;
+        }
         if ($this->model('Students_model')->createNewCar($_POST) > 0) {
             FlashMsg::setFlash('Succesfully', 'Created', 'success');
             header('Location: ' . BASEURL . '/students');
@@ -38,6 +42,10 @@ class Car extends Controller
 
     public function delete($id)
     {
+        if (!isset($_SESSION["login"])) {
+            header("Location: " . BASEURL . "/login/index");
+            exit;
+        }
         if ($this->model('Students_model')->deleteCarById($id) > 0) {
             FlashMsg::setFlash('Succesfully', 'Deleted', 'success');
             header('Location: ' . BASEURL . '/students');
@@ -51,6 +59,10 @@ class Car extends Controller
 
     public function edit()
     {
+        if (!isset($_SESSION["login"])) {
+            header("Location: " . BASEURL . "/login/index");
+            exit;
+        }
         if ($this->model('Students_model')->editCarById($_POST) > 0) {
             FlashMsg::setFlash('Succesfully', 'Edited', 'success');
             header('Location: ' . BASEURL . '/students');
