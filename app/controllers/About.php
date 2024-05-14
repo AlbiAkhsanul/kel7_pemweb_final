@@ -20,5 +20,6 @@ class About extends Controller
         $data['title'] = 'About';
         $this->view('templates/header', $data);
         $this->view('about/page');
+        $this->view('templates/footer');
     }
 }

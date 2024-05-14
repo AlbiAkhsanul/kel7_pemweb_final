@@ -24,16 +24,16 @@
     <form action="<?= BASEURL; ?>/auth/store" method="post">
         <ul>
             <li>
-                <label for="Username">Username: </label>
-                <input type="text" name="Username" id="Username" autocomplete="off" autofocus required>
+                <label for="username">Username: </label>
+                <input type="text" name="username" id="username" autocomplete="off" autofocus required>
             </li>
             <li>
-                <label for="Password">Password: </label>
-                <input type="password" name="Password" id="Password" autocomplete="off" required>
+                <label for="password">Password: </label>
+                <input type="password" name="password" id="password" autocomplete="off" required>
             </li>
             <li>
-                <label for="PasswordConfirm">Konfirmasi Password : </label>
-                <input type="password" name="PasswordConfirm" id="PasswordConfirm" autocomplete="off" required>
+                <label for="passwordConfirm">Konfirmasi Password : </label>
+                <input type="password" name="passwordConfirm" id="passwordConfirm" autocomplete="off" required>
             </li>
             <br>
             <li>

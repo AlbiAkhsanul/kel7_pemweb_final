@@ -26,7 +26,7 @@ class Car extends Controller
     public function create()
     {
         if (!isset($_SESSION["login"])) {
-            header("Location: " . BASEURL . "/login/index");
+            header("Location: " . BASEURL . "/auth/login");
             exit;
         }
         if ($this->model('Students_model')->createNewCar($_POST) > 0) {
@@ -43,7 +43,7 @@ class Car extends Controller
     public function delete($id)
     {
         if (!isset($_SESSION["login"])) {
-            header("Location: " . BASEURL . "/login/index");
+            header("Location: " . BASEURL . "/auth/login");
             exit;
         }
         if ($this->model('Students_model')->deleteCarById($id) > 0) {
@@ -60,7 +60,7 @@ class Car extends Controller
     public function edit()
     {
         if (!isset($_SESSION["login"])) {
-            header("Location: " . BASEURL . "/login/index");
+            header("Location: " . BASEURL . "/auth/login");
             exit;
         }
         if ($this->model('Students_model')->editCarById($_POST) > 0) {

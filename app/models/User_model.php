@@ -16,7 +16,7 @@ class User_model
         $password = $data['password'];
         $passwordConfirm = $data['passwordConfirm'];
         // Cek username sudah ada apa belum
-        $query = "SELECT username FROM {$this->table_name} WHERE Username = :username";
+        $query = "SELECT username FROM {$this->table_name} WHERE username = :username";
         $this->db->query($query);
         $this->db->bind('username', $username);
 
@@ -40,16 +40,15 @@ class User_model
         ";
             return false;
         }
-
         // Enkripsi password
         $password = password_hash($password, PASSWORD_DEFAULT);
 
         // Memasukan kedalam database
-        $query = "INSERT INTO {$this->table_name} VALUES 
-                  ('',:username,:password)";
+        $query = "INSERT INTO {$this->table_name} (username, password) VALUES 
+                  (:username,:password)";
         $this->db->query($query);
-        $this->db->bind('username', $data['username']);
-        $this->db->bind('password', $data['password']);
+        $this->db->bind('username', $username);
+        $this->db->bind('password', $password);
 
         $this->db->execute();
 

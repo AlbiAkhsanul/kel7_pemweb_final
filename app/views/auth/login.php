@@ -34,6 +34,10 @@
                 <label for="password">password: </label>
                 <input type="password" name="password" id="password" autocomplete="off" required>
             </li>
+            <li>
+                <input type="checkbox" name="remember">
+                <label for="remember">Ingat saya</label>
+            </li>
             <br>
             <li>
                 <button type="submit" name="login">Login</button>
