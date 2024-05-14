@@ -12,13 +12,13 @@ class Car_model
 
     public function getAllCars()
     {
-        $this->db->query('SELECT * FROM ' . $this->table_name);
+        $this->db->query("SELECT * FROM {$this->table_name}");
         return $this->db->resultSet();
     }
 
     public function getCarById($id)
     {
-        $this->db->query('SELECT * FROM ' . $this->table_name . ' WHERE id=:id');
+        $this->db->query("SELECT * FROM {$this->table_name} WHERE id=:id");
         // untuk menghindari sql injection
         $this->db->bind('id', $id);
         return $this->db->single();
@@ -26,7 +26,7 @@ class Car_model
 
     public function createNewCar($data)
     {
-        $query = "INSERT INTO students VALUES 
+        $query = "INSERT INTO {$this->table_name} VALUES 
                   ('',:name,:npm,:email,:major)";
         $this->db->query($query);
         $this->db->bind('name', $data['name']);
@@ -41,7 +41,7 @@ class Car_model
 
     public function deleteCarById($id)
     {
-        $query = "DELETE FROM students WHERE id = :id";
+        $query = "DELETE FROM {$this->table_name} WHERE id = :id";
         $this->db->query($query);
         $this->db->bind('id', $id);
 
@@ -52,7 +52,7 @@ class Car_model
 
     public function editCarById($data)
     {
-        $query = "UPDATE students SET 
+        $query = "UPDATE {$this->table_name} SET 
                   name = :name, 
                   npm = :npm, 
                   email = :email,
@@ -74,7 +74,7 @@ class Car_model
     {
         $keyword = $_POST['keyword'];
 
-        $query = "SELECT * FROM students WHERE
+        $query = "SELECT * FROM {$this->table_name} WHERE
             name LIKE :keyword OR
             npm LIKE :keyword OR
             email LIKE :keyword OR

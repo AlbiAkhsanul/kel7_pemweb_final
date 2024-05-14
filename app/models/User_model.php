@@ -10,24 +10,13 @@ class User_model
         $this->db = new Database;
     }
 
-    public function addUser($data)
+    function addUser($data)
     {
-        $query = "INSERT INTO {$this->table_name} (nama, username, password) VALUES (?, ?, ?)";
-        $data['password'] = password_hash($data['password'], PASSWORD_DEFAULT);
-        $this->db->query($query);
-        $this->db->bind($data['nama'], $data['username'], $data['password']);
-        $this->db->execute();
-
-        return $this->db->affectedRowCount();
-    }
-
-    function register($data)
-    {
-        $username = strtolower(stripcslashes($data["username"]));
-        $password = $data["password"];
-        $passwordConfirm = $data["passwordConfirm"];
+        $username = strtolower(stripcslashes($data['username']));
+        $password = $data['password'];
+        $passwordConfirm = $data['passwordConfirm'];
         // Cek username sudah ada apa belum
-        $query = "SELECT username FROM users WHERE Username = :username";
+        $query = "SELECT username FROM {$this->table_name} WHERE Username = :username";
         $this->db->query($query);
         $this->db->bind('username', $username);
 
@@ -56,7 +45,7 @@ class User_model
         $password = password_hash($password, PASSWORD_DEFAULT);
 
         // Memasukan kedalam database
-        $query = "INSERT INTO users VALUES 
+        $query = "INSERT INTO {$this->table_name} VALUES 
                   ('',:username,:password)";
         $this->db->query($query);
         $this->db->bind('username', $data['username']);

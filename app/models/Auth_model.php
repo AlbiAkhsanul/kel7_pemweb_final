@@ -12,24 +12,34 @@ class Auth_model
 
     public function verify($data)
     {
-        $username = strtolower(stripcslashes($data["username"]));
-        $query = "SELECT * FROM {$this->table_name} WHERE username = :username";
-        $this->db->query($query);
-        $this->db->bind('username', $username);
-        $result = $this->db->single();
+        if (isset($_POST['login'])) {
+            $username = strtolower(stripcslashes($data['username']));
+            $password = $_POST['password'];
+            $query = "SELECT * FROM {$this->table_name} WHERE username = :username";
 
-        //verify username
-        if (!is_null($result)) {
-            // verify password
-            if (password_verify($data['password'], $result['password'])) {
-                setcookie('id', $result['user_id'], time() + 6000000, '/');
-                if (isset($data['remember'])) {
-                    setcookie('username', $result['username'], time() + 6000000, '/');
-                    setcookie('key', hash('sha256', $result['username']), time() + 6000000, '/');
+            $this->db->query($query);
+            $this->db->bind('username', $username);
+
+            $row = $this->db->single();
+            // cek username
+            if ($row) {
+                // cek password
+                if (password_verify($password, $row['password'])) {
+                    // cek session
+                    $_SESSION['login'] = true;
+                    // cek remember me 
+                    if (isset($_POST['remember'])) {
+                        // buat cookie
+                        setcookie('num', $row['id'] + 7, time() + 3600); //samaran untuk cookie id
+                        setcookie('key', hash('sha256', $row['id'] . $row['username'] . $row['id']), time() + 3600); //samaran untuk cookie username
+                    }
+                    // Pindah ke main page
+                    header("Location:" . BASEURL . "/home/index");
+                    exit;
                 }
-                return $result;
             }
+            return false;
+            // Nanti pasang flasher
         }
-        return false;
     }
 }

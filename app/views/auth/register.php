@@ -1,20 +1,3 @@
-<?php
-
-if (isset($_POST["SignUp"])) {
-    if (register($_POST) > 0) {
-        echo "
-            <script>
-                alert('Berhasil Menambahkan User');
-
-            </script>
-        ";
-    } else {
-        echo mysqli_error($db);
-    }
-}
-
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -38,7 +21,7 @@ if (isset($_POST["SignUp"])) {
 
     <h1>Halaman Registration</h1>
 
-    <form action="" method="post">
+    <form action="<?= BASEURL; ?>/auth/store" method="post">
         <ul>
             <li>
                 <label for="Username">Username: </label>
