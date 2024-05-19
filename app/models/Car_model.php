@@ -16,27 +16,55 @@ class Car_model
         return $this->db->resultSet();
     }
 
+    public function createNewCar($data)
+    {
+        $query = "INSERT INTO {$this->table_name} (branch_id,car_brand_id,nama_mobil,jenis_mobil,tipe_transmisi,harga_sewa,foto_mobil,status_mobil) VALUES 
+                  (:branch_id,:car_brand_id,:nama_mobil,:jenis_mobil,:tipe_transmisi,:harga_sewa,:foto_mobil,:status_mobil)";
+        $this->db->query($query);
+        $this->db->bind('branch_id', $data['branch_id']);
+        $this->db->bind('car_brand_id', $data['car_brand_id']);
+        $this->db->bind('nama_mobil', $data['nama_mobil']);
+        $this->db->bind('jenis_mobil', $data['jenis_mobil']);
+        $this->db->bind('tipe_transmisi', $data['tipe_transmisi']);
+        $this->db->bind('harga_sewa', $data['harga_sewa']);
+        $this->db->bind('foto_mobil', $data['foto_mobil']);
+        $this->db->bind('status_mobil', $data['status_mobil']);
+
+        $this->db->execute();
+
+        return $this->db->affectedRowCount();
+    }
+
     public function getCarById($id)
     {
-        $this->db->query("SELECT * FROM {$this->table_name} WHERE cAR_ID=:CAR_ID");
+        $this->db->query("SELECT * FROM {$this->table_name} WHERE car_id=:car_id");
         // untuk menghindari sql injection
-        $this->db->bind('CAR_ID', $id);
+        $this->db->bind('car_id', $id);
         return $this->db->single();
     }
 
-    public function createNewCar($data)
+    public function editCarById($data, $id)
     {
-        $query = "INSERT INTO {$this->table_name} (BRANCH_ID,NAMA_MOBIL,JENIS_MOBIL,TIPE_TRANSMISI,MERK_MOBIL,STATUS_MOBIL,HARGA_SEWA,FOTO_MOBIL) VALUES 
-                  (:BRANCH_ID,:NAMA_MOBIL,:JENIS_MOBIL,:TIPE_TRANSMISI,:MERK_MOBIL,:STATUS_MOBIL,:HARGA_SEWA,:FOTO_MOBIL)";
+        $query = "UPDATE {$this->table_name} SET 
+                  branch_id = :branch_id, 
+                  car_brand_id = :car_brand_id,
+                  nama_mobil = :nama_mobil, 
+                  jenis_mobil = :jenis_mobil,
+                  tipe_transmisi = :tipe_transmisi,
+                  harga_sewa = :harga_sewa,
+                  foto_mobil = :foto_mobil,
+                  status_mobil = :status_mobil
+                  WHERE car_id = :car_id ";
         $this->db->query($query);
-        $this->db->bind('BRANCH_ID', $data['branch_id']);
-        $this->db->bind('NAMA_MOBIL', $data['nama_mobil']);
-        $this->db->bind('JENIS_MOBIL', $data['jenis_mobil']);
-        $this->db->bind('TIPE_TRANSMISI', $data['tipe_transmisi']);
-        $this->db->bind('MERK_MOBIL', $data['merk_mobil']);
-        $this->db->bind('STATUS_MOBIL', $data['status_mobil']);
-        $this->db->bind('HARGA_SEWA', $data['harga_sewa']);
-        $this->db->bind('FOTO_MOBIL', $data['foto_mobil']);
+        $this->db->bind('branch_id', $data['branch_id']);
+        $this->db->bind('car_brand_id', $data['car_brand_id']);
+        $this->db->bind('nama_mobil', $data['nama_mobil']);
+        $this->db->bind('jenis_mobil', $data['jenis_mobil']);
+        $this->db->bind('tipe_transmisi', $data['tipe_transmisi']);
+        $this->db->bind('harga_sewa', $data['harga_sewa']);
+        $this->db->bind('foto_mobil', $data['foto_mobil']);
+        $this->db->bind('status_mobil', $data['status_mobil']);
+        $this->db->bind('car_id', $id);
 
         $this->db->execute();
 
@@ -45,37 +73,9 @@ class Car_model
 
     public function deleteCarById($id)
     {
-        $query = "DELETE FROM {$this->table_name} WHERE CAR_ID = :CAR_ID";
+        $query = "DELETE FROM {$this->table_name} WHERE car_id = :car_id";
         $this->db->query($query);
-        $this->db->bind('CAR_ID', $id);
-
-        $this->db->execute();
-
-        return $this->db->affectedRowCount();
-    }
-
-    public function editCarById($data, $id)
-    {
-        $query = "UPDATE {$this->table_name} SET 
-                  BRANCH_ID = :BRANCH_ID, 
-                  NAMA_MOBIL = :NAMA_MOBIL, 
-                  JENIS_MOBIL = :JENIS_MOBIL,
-                  TIPE_TRANSMISI = :TIPE_TRANSMISI,
-                  MERK_MOBIL = :MERK_MOBIL, 
-                  STATUS_MOBIL = :STATUS_MOBIL,
-                  HARGA_SEWA = :HARGA_SEWA,
-                  FOTO_MOBIL = :FOTO_MOBIL
-                  WHERE CAR_ID = :CAR_ID ";
-        $this->db->query($query);
-        $this->db->bind('BRANCH_ID', $data['branch_id']);
-        $this->db->bind('NAMA_MOBIL', $data['nama_mobil']);
-        $this->db->bind('JENIS_MOBIL', $data['jenis_mobil']);
-        $this->db->bind('TIPE_TRANSMISI', $data['tipe_transmisi']);
-        $this->db->bind('MERK_MOBIL', $data['merk_mobil']);
-        $this->db->bind('STATUS_MOBIL', $data['status_mobil']);
-        $this->db->bind('HARGA_SEWA', $data['harga_sewa']);
-        $this->db->bind('FOTO_MOBIL', $data['foto_mobil']);
-        $this->db->bind('CAR_ID', $id);
+        $this->db->bind('car_id', $id);
 
         $this->db->execute();
 
