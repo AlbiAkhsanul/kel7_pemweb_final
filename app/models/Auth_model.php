@@ -12,26 +12,27 @@ class Auth_model
 
     public function verify($data)
     {
-        $username = strtolower(stripcslashes($data['username']));
+        $email = strtolower(stripcslashes($data['email']));
         $password = $data['password'];
-        $query = "SELECT * FROM {$this->table_name} WHERE username = :username";
+        $query = "SELECT * FROM {$this->table_name} WHERE email_user = :email_user";
 
         $this->db->query($query);
-        $this->db->bind('username', $username);
+        $this->db->bind('email_user', $email);
 
         $row = $this->db->single();
 
-        // cek username
+        // cek email
         if (!is_null($row)) {
             // cek password
             if (password_verify($password, $row['password'])) {
                 // cek session
                 $_SESSION['login'] = true;
+                $_SESSION['userId'] = $row['user_id'];
                 // cek remember me 
                 if (isset($data['remember'])) {
                     // buat cookie
-                    setcookie('num', $row['id'] + 7, time() + 3600); //samaran untuk cookie id
-                    setcookie('key', hash('sha256', $row['id'] . $row['username'] . $row['id']), time() + 3600); //samaran untuk cookie username
+                    setcookie('num', $row['user_id'] + 7, time() + 3600, '/'); //samaran untuk cookie id
+                    setcookie('key', hash('sha256', $row['user_id'] . $row['email_user'] . $row['user_id']), time() + 3600, '/'); //samaran untuk cookie email
                 }
                 // Pindah ke main page
                 header("Location:" . BASEURL . "/home/index");

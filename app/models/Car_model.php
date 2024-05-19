@@ -18,21 +18,25 @@ class Car_model
 
     public function getCarById($id)
     {
-        $this->db->query("SELECT * FROM {$this->table_name} WHERE id=:id");
+        $this->db->query("SELECT * FROM {$this->table_name} WHERE cAR_ID=:CAR_ID");
         // untuk menghindari sql injection
-        $this->db->bind('id', $id);
+        $this->db->bind('CAR_ID', $id);
         return $this->db->single();
     }
 
     public function createNewCar($data)
     {
-        $query = "INSERT INTO {$this->table_name} VALUES 
-                  ('',:name,:npm,:email,:major)";
+        $query = "INSERT INTO {$this->table_name} (BRANCH_ID,NAMA_MOBIL,JENIS_MOBIL,TIPE_TRANSMISI,MERK_MOBIL,STATUS_MOBIL,HARGA_SEWA,FOTO_MOBIL) VALUES 
+                  (:BRANCH_ID,:NAMA_MOBIL,:JENIS_MOBIL,:TIPE_TRANSMISI,:MERK_MOBIL,:STATUS_MOBIL,:HARGA_SEWA,:FOTO_MOBIL)";
         $this->db->query($query);
-        $this->db->bind('name', $data['name']);
-        $this->db->bind('npm', $data['npm']);
-        $this->db->bind('email', $data['email']);
-        $this->db->bind('major', $data['major']);
+        $this->db->bind('BRANCH_ID', $data['branch_id']);
+        $this->db->bind('NAMA_MOBIL', $data['nama_mobil']);
+        $this->db->bind('JENIS_MOBIL', $data['jenis_mobil']);
+        $this->db->bind('TIPE_TRANSMISI', $data['tipe_transmisi']);
+        $this->db->bind('MERK_MOBIL', $data['merk_mobil']);
+        $this->db->bind('STATUS_MOBIL', $data['status_mobil']);
+        $this->db->bind('HARGA_SEWA', $data['harga_sewa']);
+        $this->db->bind('FOTO_MOBIL', $data['foto_mobil']);
 
         $this->db->execute();
 
@@ -41,29 +45,37 @@ class Car_model
 
     public function deleteCarById($id)
     {
-        $query = "DELETE FROM {$this->table_name} WHERE id = :id";
+        $query = "DELETE FROM {$this->table_name} WHERE CAR_ID = :CAR_ID";
         $this->db->query($query);
-        $this->db->bind('id', $id);
+        $this->db->bind('CAR_ID', $id);
 
         $this->db->execute();
 
         return $this->db->affectedRowCount();
     }
 
-    public function editCarById($data)
+    public function editCarById($data, $id)
     {
         $query = "UPDATE {$this->table_name} SET 
-                  name = :name, 
-                  npm = :npm, 
-                  email = :email,
-                  major = :major
-                  WHERE id = :id ";
+                  BRANCH_ID = :BRANCH_ID, 
+                  NAMA_MOBIL = :NAMA_MOBIL, 
+                  JENIS_MOBIL = :JENIS_MOBIL,
+                  TIPE_TRANSMISI = :TIPE_TRANSMISI,
+                  MERK_MOBIL = :MERK_MOBIL, 
+                  STATUS_MOBIL = :STATUS_MOBIL,
+                  HARGA_SEWA = :HARGA_SEWA,
+                  FOTO_MOBIL = :FOTO_MOBIL
+                  WHERE CAR_ID = :CAR_ID ";
         $this->db->query($query);
-        $this->db->bind('id', $data['id']);
-        $this->db->bind('name', $data['name']);
-        $this->db->bind('npm', $data['npm']);
-        $this->db->bind('email', $data['email']);
-        $this->db->bind('major', $data['major']);
+        $this->db->bind('BRANCH_ID', $data['branch_id']);
+        $this->db->bind('NAMA_MOBIL', $data['nama_mobil']);
+        $this->db->bind('JENIS_MOBIL', $data['jenis_mobil']);
+        $this->db->bind('TIPE_TRANSMISI', $data['tipe_transmisi']);
+        $this->db->bind('MERK_MOBIL', $data['merk_mobil']);
+        $this->db->bind('STATUS_MOBIL', $data['status_mobil']);
+        $this->db->bind('HARGA_SEWA', $data['harga_sewa']);
+        $this->db->bind('FOTO_MOBIL', $data['foto_mobil']);
+        $this->db->bind('CAR_ID', $id);
 
         $this->db->execute();
 
@@ -74,15 +86,15 @@ class Car_model
     {
         $keyword = $_POST['keyword'];
 
-        $query = "SELECT * FROM {$this->table_name} WHERE
-            name LIKE :keyword OR
-            npm LIKE :keyword OR
-            email LIKE :keyword OR
-            major LIKE :keyword
-        ";
+        $query = "UPDATE {$this->table_name} SET 
+         NAMA_MOBIL LIKE :KEYWORD OR  
+         JENIS_MOBIL LIKE :KEYWORD OR
+         TIPE_TRANSMISI LIKE :KEYWORD OR 
+         MERK_MOBIL LIKE :KEYWORD OR 
+         WHERE CAR_ID = :CAR_ID ";
 
         $this->db->query($query);
-        $this->db->bind('keyword', "%$keyword%");
+        $this->db->bind('KEYWORD', "%$keyword%");
         return $this->db->resultSet();
     }
 }
