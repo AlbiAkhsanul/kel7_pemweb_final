@@ -12,8 +12,8 @@ class User_model
 
     function addUser($data)
     {
-        $nama = ucwords(stripcslashes($data['nama']));
-        $email = strtolower(stripcslashes($data['email']));
+        $nama = ucwords(htmlspecialchars($data['nama']));
+        $email = strtolower(htmlspecialchars($data['email']));
         $password = $data['password'];
         $passwordConfirm = $data['password_confirm'];
         $no_telp = $data['no_telp'];

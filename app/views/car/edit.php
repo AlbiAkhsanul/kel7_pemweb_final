@@ -1,10 +1,9 @@
-<?php var_dump($data); ?>
 <?php $car = $data['car'] ?>
 <h1>Buat List Mobil Baru</h1>
 
-<form action="<?= BASEURL; ?>/car/update/<?= $car['car_id']; ?>" method="post">
+<form action="<?= BASEURL; ?>/car/update/<?= $car['car_id']; ?>" method="post" enctype="multipart/form-data">
     <ul>
-        <input type="hidden" name="foto_mobil" id="foto" value="<?= $car['foto_mobil']; ?>">
+        <input type="hidden" name="old_foto_mobil" id="foto" value="<?= $car['foto_mobil']; ?>">
         <br>
         <li>
             <label for="car_brand_id">Merk Mobil: </label>
@@ -57,6 +56,11 @@
                 <option value="1" <?= $car['status_mobil'] == '1' ? 'selected' : '' ?>>Mobil Tersedia</option>
                 <option value="0" <?= $car['status_mobil'] == '0' ? 'selected' : '' ?>>Mobil Tidak Tersedia</option>
             </select>
+        </li>
+        <li>
+            <label for="foto_mobil">Foto Mobil: </label>
+            <input type="file" name="foto_mobil" id="foto_mobil">
+            <img src="<?= BASEURL ?>/img/cars/<?= $car["foto_mobil"]; ?>" alt="FotoMobil">
         </li>
         <li>
             <button type="submit" name="store">Edit List Mobil</button>

@@ -25,11 +25,15 @@ class Car extends Controller
 
     public function store()
     {
+        if (empty($_POST) && empty($_FILES)) {
+            header('Location: ' . BASEURL . '/car');
+            exit;
+        }
         if (!isset($_SESSION["login"])) {
             header("Location: " . BASEURL . "/auth/login");
             exit;
         }
-        if ($this->model('Car_model')->createNewCar($_POST) > 0) {
+        if ($this->model('Car_model')->createNewCar($_POST, $_FILES) > 0) {
             FlashMsg::setFlash('Succesfully', 'Created', 'success');
             header('Location: ' . BASEURL . '/car');
             exit;
@@ -64,11 +68,15 @@ class Car extends Controller
 
     public function update($id)
     {
+        if (empty($_POST) && empty($_FILES)) {
+            header('Location: ' . BASEURL . '/car');
+            exit;
+        }
         if (!isset($_SESSION["login"])) {
             header("Location: " . BASEURL . "/auth/login");
             exit;
         }
-        if ($this->model('Car_model')->editCarById($_POST, $id) > 0) {
+        if ($this->model('Car_model')->editCarById($_POST, $_FILES, $id) > 0) {
             FlashMsg::setFlash('Succesfully', 'Edited', 'success');
             header('Location: ' . BASEURL . '/car');
             exit;

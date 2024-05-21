@@ -1,9 +1,7 @@
 <h1>Buat List Mobil Baru</h1>
 
-<form action="<?= BASEURL; ?>/car/store" method="post">
+<form action="<?= BASEURL; ?>/car/store" method="post" enctype="multipart/form-data">
     <ul>
-        <input type="hidden" name="foto_mobil" id="foto" value="fotolibomaokwokwokw">
-        <br>
         <li>
             <label for="car_brand_id">Merk Mobil: </label>
             <select id="car_brand_id" name="car_brand_id" required>
@@ -42,7 +40,7 @@
                 <option value="1">Kenjeran</option>
                 <option value="2">Rungkut</option>
                 <option value="3">Wonokromo</option>
-                <option value="4">LMPV</option>
+                <option value="4">Gubeng</option>
             </select>
         </li>
         <li>
@@ -55,6 +53,10 @@
                 <option value="1">Mobil Tersedia</option>
                 <option value="0">Mobil Tidak Tersedia</option>
             </select>
+        </li>
+        <li>
+            <label for="foto_mobil">Foto Mobil: </label>
+            <input type="file" name="foto_mobil" id="foto_mobil" required>
         </li>
         <li>
             <button type="submit" name="store">Buat List Mobil</button>
