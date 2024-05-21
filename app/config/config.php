@@ -1,6 +1,6 @@
 <?php
 
-define('BASEURL', 'http://localhost:90/final_project_pemweb_kel7/public');
+define('BASEURL', 'http://localhost:3000/GitHub/kel7_pemweb_final/public');
 
 // DB
 define('DB_HOST', 'localhost');
