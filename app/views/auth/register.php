@@ -22,8 +22,6 @@
             <label for="no_telp">No Telp : </label>
             <input type="number" name="no_telp" id="no_telp" autocomplete="off" required>
         </li>
-        <input type="hidden" name="foto" id="foto" value="fotoaokwokwokw">
-        <br>
         <li>
             <button type="submit" name="SignUp">Sign Up</button>
         </li>

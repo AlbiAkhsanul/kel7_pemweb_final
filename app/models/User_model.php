@@ -17,7 +17,6 @@ class User_model
         $password = $data['password'];
         $passwordConfirm = $data['password_confirm'];
         $no_telp = $data['no_telp'];
-        $foto = $data['foto'];
         // Cek email sudah ada apa belum
         $query = "SELECT email_user FROM {$this->table_name} WHERE email_user = :email_user";
         $this->db->query($query);
@@ -47,14 +46,14 @@ class User_model
         $password = password_hash($password, PASSWORD_DEFAULT);
 
         // Memasukan kedalam database
-        $query = "INSERT INTO {$this->table_name} (nama_user,email_user,password,no_telp_user,foto_user) VALUES 
-                  (:nama_user,:email_user,:password,:no_telp_user,:foto_user)";
+        $query = "INSERT INTO {$this->table_name} (nama_user,email_user,password,no_telp_user,is_admin) VALUES 
+                  (:nama_user,:email_user,:password,:no_telp_user,:is_admin)";
         $this->db->query($query);
         $this->db->bind('nama_user', $nama);
         $this->db->bind('email_user', $email);
         $this->db->bind('password', $password);
         $this->db->bind('no_telp_user', $no_telp);
-        $this->db->bind('foto_user', $foto);
+        $this->db->bind('is_admin', false);
 
         $this->db->execute();
 
