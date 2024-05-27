@@ -10,6 +10,8 @@ body {
     font-family: Plus Jakarta Sans;
 }
 
+/* landing page utama */
+
 video {
     position: fixed;
     top: 0;
@@ -44,25 +46,299 @@ video {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     color: #121212 !important;
 }
-  .form-title {
-    background-color: #0d6efd;
-    color: white;
-    padding: 15px;
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
-    margin: -30px -30px 20px -30px;
-  }
-  .btn-group-toggle .btn {
-    border: 1px solid #ced4da;
-  }
-  .btn-group-toggle .btn-check:checked+.btn {
-    background-color: #0d6efd;
-    color: white;
-    border-color: #0d6efd;
-  }
-  .btn-primary {
-    background-color: #ffbf00;
-    border: none;
-    color: white;
-  }
+.form-title {
+  background-color: #0d6efd;
+  color: white;
+  padding: 15px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  margin: -30px -30px 20px -30px;
+}
+.btn-group-toggle .btn {
+  border: 1px solid #ced4da;
+}
+.btn-group-toggle .btn-check:checked+.btn {
+  background-color: #0d6efd;
+  color: white;
+  border-color: #0d6efd;
+}
+.btn-primary {
+  background-color: #ffbf00;
+  border: none;
+  color: white;
+}
 
+/* landing page mengapa rentacar */
+
+.bg-box{
+  border-radius: 128px 128px 0px 0px;
+  background: var(--Base-800, #094781);
+  flex-direction: column;
+  align-items: center;
+  gap: 64px;
+  margin-top: 80px;
+}
+
+a,
+a:hover,
+a:focus,
+a:active {
+    text-decoration: none;
+    outline: none;
+}
+
+a,
+a:active,
+a:focus {
+    color: #333;
+    text-decoration: none;
+    transition-timing-function: ease-in-out;
+    -ms-transition-timing-function: ease-in-out;
+    -moz-transition-timing-function: ease-in-out;
+    -webkit-transition-timing-function: ease-in-out;
+    -o-transition-timing-function: ease-in-out;
+    transition-duration: .2s;
+    -ms-transition-duration: .2s;
+    -moz-transition-duration: .2s;
+    -webkit-transition-duration: .2s;
+    -o-transition-duration: .2s;
+}
+
+ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+img {
+max-width: 100%;
+height: auto;
+}
+span, a, a:hover {
+display: inline-block;
+text-decoration: none;
+color: inherit;
+}
+.section-top {
+  margin-bottom: 60px;
+  }
+.section-head {
+margin-bottom: 60px;
+}
+.section-top .kenalkami {
+  position: relative;
+  padding:0;
+  color:#0d6efd;
+  line-height: 1;
+  letter-spacing:0.3px;
+  font-size: 34px;
+  font-weight: 700;  
+  text-align:center;
+  text-transform:none;
+  margin-bottom:30px;
+  }
+  .section-top .kenalkami span {
+  font-weight: 700;
+  padding-bottom: 5px;
+  color:#eaecee;
+  }
+.section-head .mengapakami {
+position: relative;
+padding:0;
+color:#0d6efd;
+line-height: 1;
+letter-spacing:0.3px;
+font-size: 34px;
+font-weight: 700;  
+text-align:center;
+text-transform:none;
+margin-bottom:30px;
+}
+.section-head .mengapakami:before {
+content: '';
+width: 60px;
+height: 3px;
+background: #0d6efd;
+position: absolute;
+left: 0px;
+bottom: -10px;
+right:0;  
+margin:0 auto;
+}
+.section-head .mengapakami span {
+font-weight: 700;
+padding-bottom: 5px;
+color:#eaecee;
+}
+
+.section-top p{
+color:#eaecee;
+font-size:16px;
+line-height:28px;
+text-align:center;  
+}
+
+.extra-text span {
+font-weight: 700;
+color:#f91942;
+}
+
+.item {
+background: #0569C4;
+text-align: center;
+padding: 30px 25px;
+-webkit-box-shadow:0 0px 25px rgba(0, 0, 0, 0.07);
+box-shadow:0 0px 25px rgba(0, 0, 0, 0.07);
+border-radius: 40px;
+border:6px solid #eaecee;
+margin-top: -30px;
+margin-bottom: 30px;
+-webkit-transition: all .5s ease 0;
+transition: all .5s ease 0;
+transition: all 0.5s ease 0s;
+}
+
+.item .icon {
+font-size: 40px;
+margin-bottom:15px;
+line-height: 96px;
+}
+
+.item p{
+font-size:15px;
+line-height:26px;
+color: #eaecee;
+}
+
+.item h6 {
+margin-bottom:20px;
+color:#eaecee;
+}
+
+/* landing page mitra */
+
+.bg {
+  background: var(--Base-800, #094781);
+}
+
+.mitrakami {
+  border-radius: 128px 128px 0px 0px; 
+  flex-direction: column;
+  align-items: center;
+  gap: 64px;
+}
+
+.mitra, .text-secondary {
+  color: #121212;
+  font-weight: 700;
+}
+
+.g-6,
+.gx-6 {
+  --bs-gutter-x: 4.5rem;
+}
+.g-6,
+.gy-6 {
+  --bs-gutter-y: 4.5rem;
+}
+@media (min-width: 576px) {
+  .g-sm-6,
+  .gx-sm-6 {
+    --bs-gutter-x: 4.5rem;
+  }
+  .g-sm-6,
+  .gy-sm-6 {
+    --bs-gutter-y: 4.5rem;
+  }
+}
+@media (min-width: 768px) {
+  .g-md-6,
+  .gx-md-6 {
+    --bs-gutter-x: 4.5rem;
+  }
+  .g-md-6,
+  .gy-md-6 {
+    --bs-gutter-y: 4.5rem;
+  }
+}
+@media (min-width: 992px) {
+  .g-lg-6,
+  .gx-lg-6 {
+    --bs-gutter-x: 4.5rem;
+  }
+  .g-lg-6,
+  .gy-lg-6 {
+    --bs-gutter-y: 4.5rem;
+  }
+}
+@media (min-width: 1200px) {
+  .g-xl-6,
+  .gx-xl-6 {
+    --bs-gutter-x: 4.5rem;
+  }
+  .g-xl-6,
+  .gy-xl-6 {
+    --bs-gutter-y: 4.5rem;
+  }
+}
+@media (min-width: 1400px) {
+  .g-xxl-6,
+  .gx-xxl-6 {
+    --bs-gutter-x: 4.5rem;
+  }
+  .g-xxl-6,
+  .gy-xxl-6 {
+    --bs-gutter-y: 4.5rem;
+  }
+}
+.mb-6 {
+  margin-bottom: 4.5rem !important;
+}
+.py-6 {
+  padding-top: 4.5rem !important;
+  padding-bottom: 4.5rem !important;
+}
+@media (min-width: 576px) {
+  .mb-sm-6 {
+    margin-bottom: 4.5rem !important;
+  }
+  .py-sm-6 {
+    padding-top: 4.5rem !important;
+    padding-bottom: 4.5rem !important;
+  }
+}
+@media (min-width: 768px) {
+  .mb-md-6 {
+    margin-bottom: 4.5rem !important;
+  }
+  .py-md-6 {
+    padding-top: 4.5rem !important;
+    padding-bottom: 4.5rem !important;
+  }
+}
+@media (min-width: 992px) {
+  .mb-lg-6 {
+    margin-bottom: 4.5rem !important;
+  }
+  .py-lg-6 {
+    padding-top: 4.5rem !important;
+    padding-bottom: 4.5rem !important;
+  }
+}
+@media (min-width: 1200px) {
+  .mb-xl-6 {
+    margin-bottom: 4.5rem !important;
+  }
+  .py-xl-6 {
+    padding-top: 4.5rem !important;
+    padding-bottom: 4.5rem !important;
+  }
+}
+@media (min-width: 1400px) {
+  .mb-xxl-6 {
+    margin-bottom: 4.5rem !important;
+  }
+  .py-xxl-6 {
+    padding-top: 4.5rem !important;
+    padding-bottom: 4.5rem !important;
+  }
+}
