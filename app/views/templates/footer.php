@@ -1,12 +1,12 @@
 <!-- CDN -->
 
-<footer class="footer text-center text-md-left">
+<footer class="footer text-md-left">
     <div class="container">
         <div class="row">
             <div class="col-md-3 mb-3">
-                <img class="bi me-2" width="213" height="48" alt="Logo" src="<?= BASEURL; ?>/src/logobrand.svg">
+                <img class="bi me-2" width="213" height="48" alt="Logo" src="src/logobrand.svg">
             </div>
-            <div class="col-md-3 mb-3">
+            <!-- <div class="col-md-3 mb-3">
                 <h5 class="font-weight-bold">Kerjasama</h5>
                 <ul class="list-unstyled">
                     <li><a href="#">Mendaftar Mitra</a></li>
@@ -21,14 +21,9 @@
                     <li><a href="#">Pusat Bantuan</a></li>
                     <li><a href="#">Laporkan Masalah</a></li>
                 </ul>
-            </div>
+            </div> -->
             <div class="col-md-3 mb-3">
-                <h5 class="font-weight-bold">Download Aplikasi</h5>
-                <ul class="app-icons">
-                    <a href="#"><img class="google" src="https://img.icons8.com/ios-filled/24/ffffff/google-play.png"/></a>
-                    <a href="#"><img class="apple" src="https://img.icons8.com/ios-filled/24/ffffff/apple-app-store.png"/></a>
-                </ul>
-                <h5 class="font-weight-bold mt-3">Media sosial kami</h5>
+                <h5 class="font-weight-bold">Media sosial kami</h5>
                 <div class="social-icons">
                     <a href="#"><i class="fab fa-twitter"></i></a>
                     <a href="#"><i class="fab fa-facebook"></i></a>
@@ -46,7 +41,7 @@
 <script src="https://code.jquery.com/jquery-3.6.4.slim.min.js" integrity="sha256-a2yjHM4jnF9f54xUQakjZGaqYs/V1CYvWpoqZzC2/Bw=" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
 <script src="https://kit.fontawesome.com/286a7fdf30.js" crossorigin="anonymous"></script>
-<script src="<?= BASEURL; ?>/js/script.js"></script>
+<script src="js/script.js"></script>
 </body>
 
 </html>

@@ -1,31 +1,32 @@
-<section style="background-color: #eee;">
+<section id="listmobil-bg">
   <div class="text-center container py-5">
     <h4 class="mt-4 mb-5"><strong>Bestsellers</strong></h4>
 
-    <div class="row">
+    <div class="col">
       <div class="col-lg-4 col-md-12 mb-4">
         <div class="card">
-          <div class="bg-image hover-zoom ripple ripple-surface ripple-surface-light"
+          <div class="car-body-margin bg-image hover-zoom ripple ripple-surface ripple-surface-light"
             data-mdb-ripple-color="light">
             <img src="https://mdbcdn.b-cdn.net/img/Photos/Horizontal/E-commerce/Products/belt.webp"
               class="w-100" />
             <a href="#!">
               <div class="mask">
                 <div class="d-flex justify-content-start align-items-end h-100">
-                  <h5><span class="badge bg-primary ms-2">New</span></h5>
+                  <h5><span class="badge bg-primary ms-2">Baru</span></h5>
                 </div>
               </div>
               <div class="hover-overlay">
-                <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
+                <div class="mask" style="background-color: #EAECEE;"></div>
               </div>
             </a>
           </div>
-          <div class="card-body">
+          <div class="card-body custom-height">
             <a href="" class="text-reset">
-              <h5 class="card-title mb-3">Product name</h5>
+              <h5 class="card-title mb-3">Mitsubishi Xpander</h5>
             </a>
+            <br>
             <a href="" class="text-reset">
-              <p>Category</p>
+              <p>MPV</p>
             </a>
             <h6 class="mb-3">$61.99</h6>
           </div>
@@ -92,7 +93,7 @@
       </div>
     </div>
 
-    <div class="row">
+    <div class="col">
       <div class="col-lg-4 col-md-12 mb-4">
         <div class="card">
           <div class="bg-image hover-zoom ripple" data-mdb-ripple-color="light">

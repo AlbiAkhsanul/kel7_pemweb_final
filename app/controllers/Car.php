@@ -6,8 +6,8 @@ class Car extends Controller
     public function index()
     {
         $data['activePage'] = $this->activePage;
-        $data['title'] = 'Car List';
-        $data['students'] = $this->model('Students_model')->getAllcar();
+        $data['title'] = 'RentACar - Car Rental';
+        // $data['students'] = $this->model('Students_model')->getAllcar();
         $this->view('templates/header', $data);
         $this->view('car/index', $data);
         $this->view('templates/footer');

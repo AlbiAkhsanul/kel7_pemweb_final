@@ -7,10 +7,10 @@
 </div> -->
 
 <video autoplay muted loop>
-  <source src="<?= BASEURL; ?>/src/nighttrafficjakarta.mp4" type="video/mp4">
+  <source src="src/nighttrafficjakarta.mp4" type="video/mp4">
 </video>
 
-<div class="container col-xl-10 col-xxl-12 py-5">
+<div class="container col-xl-1  0 col-xxl-12 py-5">
     <div class="row align-items-center g-0 py-5">
         <div class="hero-left col-lg-6 text-left text-lg-start">
             <div class="display-1 fw-bold lh-1 text-body-emphasis mb-3 text-white">
@@ -18,7 +18,7 @@
                 <h1 class="pembuka">aman & terpercaya</h1>
                 <h1 class="pembuka">No.1 di Indonesia!</h1>
             </div>
-            <img src="<?= BASEURL; ?>/src/OBJECTS.png">
+            <img src="src/OBJECTS.png">
         </div>
         <div class="hero-right col-md-10 d-flex justify-content-end">
             <div class="container mt-5 text-right">
@@ -89,7 +89,7 @@
             <div class="col-lg-3 col-sm-6">
                 <div class="item">
                     <span class="icon feature_box_col_one">
-                        <img class="icon" src="<?= BASEURL; ?>/src/ICON.png">
+                        <img class="icon" src="src/ICON.png">
                     </span>
                     <h6>Mudah & praktis</h6>
                     <p>Sewa mobil mudah melalui smartphone anda.</p>
@@ -98,7 +98,7 @@
             <div class="col-lg-3 col-sm-6">
                 <div class="item">
                     <span class="icon feature_box_col_two">
-                        <img class="icon" src="<?= BASEURL; ?>/src/symbols_fact-check.png">
+                        <img class="icon" src="src/symbols_fact-check.png">
                     </span>
                     <h6>Layanan berkualitas</h6>
                     <p>Layanan terbaik oleh mitra yang telah lulus kompetensi.</p>
@@ -107,7 +107,7 @@
             <div class="col-lg-3 col-sm-6">
                 <div class="item">
                     <span class="icon feature_box_col_three">
-                        <img class="icon" src="<?= BASEURL; ?>/src/money.png">
+                        <img class="icon" src="src/money.png">
                     </span>
                     <h6>Harga terjangkau</h6>
                     <p>Pilihan rental mobil bervariasi dengan harga sewa termurah.</p>
@@ -116,7 +116,7 @@
             <div class="col-lg-3 col-sm-6">
                 <div class="item">
                     <span class="icon feature_box_col_four">
-                        <img class="icon" src="<?= BASEURL; ?>/src/clock.png">
+                        <img class="icon" src="src/clock.png">
                     </span>
                     <h6>Layanan 24 jam</h6>
                     <p>Akses kapanpun anda membutuhkan jasa rental mobil</p>
@@ -138,34 +138,34 @@
         <div class="container overflow-hidden">
             <div class="row gy-5 gy-md-6">
                 <div class="custom-col-2-4 col-md-3 align-self-center text-center">
-                    <img src="<?= BASEURL; ?>/src/mitra-mitra/mitra1.png">
+                    <img src="src/mitra-mitra/mitra1.png">
                 </div>
                 <div class="custom-col-2-4 col-md-3 align-self-center text-center">
-                    <img src="<?= BASEURL; ?>/src/mitra-mitra/mitra2.png">
+                    <img src="src/mitra-mitra/mitra2.png">
                 </div>
                 <div class="custom-col-2-4 col-md-3 align-self-center text-center">
-                    <img src="<?= BASEURL; ?>/src/mitra-mitra/mitra3.png">
+                    <img src="src/mitra-mitra/mitra3.png">
                 </div>
                 <div class="custom-col-2-4 col-md-3 align-self-center text-center">
-                    <img src="<?= BASEURL; ?>/src/mitra-mitra/mitra4.png">
+                    <img src="src/mitra-mitra/mitra4.png">
                 </div>
                 <div class="custom-col-2-4 col-md-3 align-self-center text-center">
-                    <img src="<?= BASEURL; ?>/src/mitra-mitra/mitra5.png">
+                    <img src="src/mitra-mitra/mitra5.png">
                 </div>
                 <div class="custom-col-2-4 col-md-3 align-self-center text-center">
-                    <img src="<?= BASEURL; ?>/src/mitra-mitra/mitra6.png">
+                    <img src="src/mitra-mitra/mitra6.png">
                 </div>
                 <div class="custom-col-2-4 col-md-3 align-self-center text-center">
-                    <img src="<?= BASEURL; ?>/src/mitra-mitra/mitra7.png">
+                    <img src="src/mitra-mitra/mitra7.png">
                 </div>
                 <div class="custom-col-2-4 col-md-3 align-self-center text-center">
-                    <img src="<?= BASEURL; ?>/src/mitra-mitra/mitra8.png">
+                    <img src="src/mitra-mitra/mitra8.png">
                 </div>
                 <div class="custom-col-2-4 col-md-3 align-self-center text-center">
-                    <img src="<?= BASEURL; ?>/src/mitra-mitra/mitra9.png">
+                    <img src="src/mitra-mitra/mitra9.png">
                 </div>
                 <div class="custom-col-2-4 col-md-3 align-self-center text-center">
-                    <img src="<?= BASEURL; ?>/src/mitra-mitra/mitra10.png">
+                    <img src="src/mitra-mitra/mitra10.png">
                 </div>
             </div>
         </div>
