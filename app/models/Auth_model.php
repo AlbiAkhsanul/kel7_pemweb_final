@@ -28,6 +28,8 @@ class Auth_model
                 // cek session
                 $_SESSION['login'] = true;
                 $_SESSION['userId'] = $row['user_id'];
+                $_SESSION['is_admin'] = $row['is_admin'];
+                var_dump($_SESSION);
                 // cek remember me 
                 if (isset($data['remember'])) {
                     // buat cookie

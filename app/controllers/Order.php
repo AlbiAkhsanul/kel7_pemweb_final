@@ -2,85 +2,104 @@
 
 class Order extends Controller
 {
-    private $activePage = 2;
     public function index()
     {
-        $data['activePage'] = $this->activePage;
-        $data['title'] = 'Car List';
-        $data['students'] = $this->model('Students_model')->getAllCars();
-        $this->view('templates/header', $data);
-        $this->view('students/index', $data);
-        $this->view('templates/footer');
-    }
-
-    public function details($id)
-    {
-        $data['activePage'] = $this->activePage;
-        $data['title'] = 'Student-details-';
-        $data['students'] = $this->model('Students_model')->getCarById($id);
-        $this->view('templates/header', $data);
-        $this->view('students/details', $data);
-        $this->view('templates/footer');
-    }
-
-    public function create()
-    {
         if (!isset($_SESSION["login"])) {
-            header("Location: " . BASEURL . "/login/index");
+            header("Location: " . BASEURL . "/auth/login");
             exit;
         }
-        if ($this->model('Students_model')->createNewCar($_POST) > 0) {
+        $data['title'] = 'Order List';
+        $data['orders'] = $this->model('Order_model')->getAllOrders();
+        $this->view('templates/header', $data);
+        $this->view('order/index', $data);
+        $this->view('templates/footer');
+    }
+
+    public function create($id)
+    {
+        if (!isset($_SESSION["login"])) {
+            header("Location: " . BASEURL . "/auth/login");
+            exit;
+        }
+
+        $data['title'] = 'Create Order';
+        $data['car'] = $this->model('Car_model')->getCarById($id);
+        $this->view('templates/header', $data);
+        $this->view('order/create', $data);
+        $this->view('templates/footer');
+    }
+
+    public function confirm()
+    {
+        if (!isset($_SESSION["login"])) {
+            header("Location: " . BASEURL . "/auth/login");
+            exit;
+        }
+        $data['title'] = 'Confirm Order';
+        $data = $this->model('Order_model')->calculateTotalHarga($_POST);
+        var_dump($data);
+        $this->view('templates/header', $data);
+        $this->view('order/confirmation', $data);
+        $this->view('templates/footer');
+    }
+
+    public function store($id)
+    {
+        if (!isset($_SESSION["login"])) {
+            header("Location: " . BASEURL . "/auth/login");
+            exit;
+        }
+        if (empty($_POST) && empty($_FILES)) {
+            header('Location: ' . BASEURL . '/order/create/' . $id);
+            exit;
+        }
+        if ($this->model('Order_model')->createNewOrder($_POST, $_FILES) > 0) {
             FlashMsg::setFlash('Succesfully', 'Created', 'success');
-            header('Location: ' . BASEURL . '/students');
+            header('Location: ' . BASEURL . '/car');
             exit;
         } else {
             FlashMsg::setFlash('Unsuccesfully', 'Created', 'danger');
-            header('Location: ' . BASEURL . '/students');
+            header('Location: ' . BASEURL . '/car');
             exit;
         }
     }
 
-    public function delete($id)
+    public function show($id)
     {
-        if (!isset($_SESSION["login"])) {
-            header("Location: " . BASEURL . "/login/index");
-            exit;
-        }
-        if ($this->model('Students_model')->deleteCarById($id) > 0) {
-            FlashMsg::setFlash('Succesfully', 'Deleted', 'success');
-            header('Location: ' . BASEURL . '/students');
-            exit;
-        } else {
-            FlashMsg::setFlash('Unsuccesfully', 'Deleted', 'danger');
-            header('Location: ' . BASEURL . '/students');
-            exit;
-        }
+        $data['title'] = 'Order Details';
+        $data['orders'] = $this->model('Order_model')->getCarById($id);
+        $this->view('templates/header', $data);
+        $this->view('order/details', $data);
+        $this->view('templates/footer');
     }
 
-    public function edit()
+    public function edit($id)
     {
         if (!isset($_SESSION["login"])) {
-            header("Location: " . BASEURL . "/login/index");
+            header("Location: " . BASEURL . "/auth/login");
             exit;
         }
-        if ($this->model('Students_model')->editCarById($_POST) > 0) {
+        $data['title'] = 'Edit Order';
+        $data['order'] = $this->model('Order_model')->getCarById($id);
+        $this->view('templates/header', $data);
+        $this->view('order/edit', $data);
+        $this->view('templates/footer');
+    }
+
+    public function update($id)
+    {
+        if (!isset($_SESSION["login"])) {
+            header("Location: " . BASEURL . "/auth/login");
+            exit;
+        }
+        if ($this->model('Order_model')->editCarById($_POST, $_FILES, $id) > 0) {
             FlashMsg::setFlash('Succesfully', 'Edited', 'success');
-            header('Location: ' . BASEURL . '/students');
+            header('Location: ' . BASEURL . '/car');
             exit;
         } else {
             FlashMsg::setFlash('Unsuccesfully', 'Edited', 'danger');
-            header('Location: ' . BASEURL . '/students');
+            header('Location: ' . BASEURL . '/car');
             exit;
         }
     }
-
-    // public function search()
-    // {
-    //     $data['activePage'] = $this->activePage;
-    //     $data['title'] = 'Students-list-';
-    //     $data['students'] = $this->model('Students_model')->getCarsByKeyword();
-    //     $this->view('templates/header', $data);
-    //     $this->view('students/index', $data);
-    //     $this->view('templates/footer');
-    // }
 }

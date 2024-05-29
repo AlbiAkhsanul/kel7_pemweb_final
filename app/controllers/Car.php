@@ -4,6 +4,14 @@ class Car extends Controller
 {
     public function index()
     {
+        if (!isset($_SESSION["login"])) {
+            header("Location: " . BASEURL . "/auth/login");
+            exit;
+        }
+        if ($_SESSION["is_admin"] !== 1) {
+            header("Location: " . BASEURL . "/home");
+            exit;
+        }
         $data['title'] = 'Car List';
         $data['cars'] = $this->model('Car_model')->getAllCars();
         $this->view('templates/header', $data);
@@ -17,6 +25,11 @@ class Car extends Controller
             header("Location: " . BASEURL . "/auth/login");
             exit;
         }
+        if ($_SESSION["is_admin"] !== 1) {
+            header("Location: " . BASEURL . "/home");
+            exit;
+        }
+
         $data['title'] = 'Create Car';
         $this->view('templates/header', $data);
         $this->view('car/create', $data);
@@ -25,12 +38,16 @@ class Car extends Controller
 
     public function store()
     {
-        if (empty($_POST) && empty($_FILES)) {
-            header('Location: ' . BASEURL . '/car');
-            exit;
-        }
         if (!isset($_SESSION["login"])) {
             header("Location: " . BASEURL . "/auth/login");
+            exit;
+        }
+        if ($_SESSION["is_admin"] !== 1) {
+            header("Location: " . BASEURL . "/home");
+            exit;
+        }
+        if (empty($_POST) && empty($_FILES)) {
+            header('Location: ' . BASEURL . '/car/create');
             exit;
         }
         if ($this->model('Car_model')->createNewCar($_POST, $_FILES) > 0) {
@@ -59,6 +76,10 @@ class Car extends Controller
             header("Location: " . BASEURL . "/auth/login");
             exit;
         }
+        if ($_SESSION["is_admin"] !== 1) {
+            header("Location: " . BASEURL . "/home");
+            exit;
+        }
         $data['title'] = 'Edit Car';
         $data['car'] = $this->model('Car_model')->getCarById($id);
         $this->view('templates/header', $data);
@@ -68,12 +89,12 @@ class Car extends Controller
 
     public function update($id)
     {
-        if (empty($_POST) && empty($_FILES)) {
-            header('Location: ' . BASEURL . '/car');
-            exit;
-        }
         if (!isset($_SESSION["login"])) {
             header("Location: " . BASEURL . "/auth/login");
+            exit;
+        }
+        if ($_SESSION["is_admin"] !== 1) {
+            header("Location: " . BASEURL . "/home");
             exit;
         }
         if ($this->model('Car_model')->editCarById($_POST, $_FILES, $id) > 0) {
@@ -91,6 +112,10 @@ class Car extends Controller
     {
         if (!isset($_SESSION["login"])) {
             header("Location: " . BASEURL . "/auth/login");
+            exit;
+        }
+        if ($_SESSION["is_admin"] !== 1) {
+            header("Location: " . BASEURL . "/home");
             exit;
         }
         if ($this->model('Car_model')->deleteCarById($id) > 0) {

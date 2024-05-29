@@ -18,6 +18,7 @@ class Car_model
 
     public function createNewCar($data, $dataImg)
     {
+        // $currentTime = date('Y-m-d H:i');
         $currentTime = date('Y-m-d');
         $carImg = $this->uploadCarImg($dataImg, $currentTime);
         $query = "INSERT INTO {$this->table_name} (branch_id,car_brand_id,nama_mobil,jenis_mobil,tipe_transmisi,harga_sewa,foto_mobil,status_mobil) VALUES 
@@ -134,6 +135,7 @@ class Car_model
 
     public function deleteCarById($id)
     {
+        $this->unlinkCarImg($id);
         $query = "DELETE FROM {$this->table_name} WHERE car_id = :car_id";
         $this->db->query($query);
         $this->db->bind('car_id', $id);
