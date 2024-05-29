@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><?= $data['title']; ?></title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus Jakarta Sans:wght@400;600;700&display=swap" />
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js" integrity="sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.4.slim.min.js" integrity="sha256-a2yjHM4jnF9f54xUQakjZGaqYs/V1CYvWpoqZzC2/Bw=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://kit.fontawesome.com/286a7fdf30.js" crossorigin="anonymous"></script>
+    <script src="script.js"></script>
+    <link rel="stylesheet" href="https://fontawesome.com/v4.7.0/assets/font-awesome/css/font-awesome.css">
+  <link rel="stylesheet" href="styles.css" >
+</head>
+
+<body>
+    <!------ Include the above in your HEAD tag ---------->
+    <header class="p-3 text-bg-dark">
+        <div class="container">
+          <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start navbar-fixed-top">
+            <a href="" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
+              <img class="bi me-2" width="213" height="48" alt="Logo" src="/src/logobrand.svg">
+            </a>
+            <ul class="nav col-12 col-lg-auto ms-auto me-4 mb-2 justify-content-center mb-md-0">
+              <li><a href="#" class="nav-link px-2 text-white">Mendaftar Mitra</a></li>
+              <li><a href="#" class="nav-link px-2 text-white">Transaksi</a></li>
+              <li><a href="#" class="nav-link px-2 text-white">Bantuan</a></li>
+              <li><a href="#" class="nav-link px-2 text-white">Laporkan Masalah</a></li>
+            </ul>
+      
+            <div class="text-end">
+              <button type="button" class="btn btn-outline-light me-2">Masuk | Daftar</button>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <style>
+        
+        .store-item {
+            padding: 5px;
+            position: relative;
+            display: block;
+            margin-bottom: 30px;
+            border: 4px solid #eee;
+            -webkit-transition: all .2s ease-out;
+            transition: all .2s ease-out;
+        }
+        
+        .store-item:hover {
+            border-color: #ddd;
+            text-decoration: none;
+        }
+        
+        .store-item:hover .store-item-image img {
+            -webkit-transform: scale(1.3);
+            transform: scale(1.3);
+        }
+        
+        .store-item:hover .store-item-rating {
+            animation-name: fadeInQuick;
+            -webkit-animation-name: fadeInQuick;
+            animation-duration: .5s;
+            -webkit-animation-duration: .5s;
+            animation-timing-function: ease-out;
+            -webkit-animation-timing-function: ease-out;
+            visibility: visible!important;
+            display:block;
+             opacity: 1;
+             background:transparent;
+        }
+        
+        .store-item-rating {
+            position: absolute;
+            top: 0;
+            right: 0;
+            left: 0;
+            text-align: center;
+            padding: 10px;
+            opacity: 0;
+            filter: alpha(opacity=0);
+            background-color: #fff;
+            -webkit-transition: all .2s ease-out;
+            transition: all .2s ease-out;
+            z-index: 10;
+        }
+        
+        .text-warning, 
+        .text-warning:hover, 
+        a.text-warning, 
+        a.text-warning:focus, 
+        a.text-warning:hover {
+            color: #e67e22;
+        }
+        
+        .store-item-image {
+            overflow: hidden;
+        }
+        
+        .store-item-image img {
+            -webkit-transition: transform .2s ease-out;
+            transition: transform .2s ease-out;
+        }
+        
+        .store-item-info {
+            padding: 20px;
+            background-color: #f9f9f9;
+        }
+        
+        .themed-color-dark {
+            color: #394263;
+        }
+        
+        .store-item-price {
+            font-weight: 700;
+            font-size: 28px;
+        }
+        
+        .text-primary, .text-primary:hover, a, a:focus, a:hover {
+            color: #1bbae1;
+            text-decoration:none;
+        }
+        
+        .store-menu {
+          margin-top: 30px;
+        }
+        
+        .store-menu ul li {
+          border-bottom: 1px solid #f0f4f7;
+        }
+        
+        .store-menu ul li:last-child {
+          border-bottom: none;
+        }
+        
+        .store-menu ul li a {
+          color: #93a3b5;
+          font-size: 14px;
+          font-weight: 400;
+        }
+        
+        .store-menu ul li a i {
+          margin-right: 8px;
+          font-size: 14px;
+        }
+        
+        .store-menu ul li a:hover {
+          background-color: #fafcfd;
+          color: #5b9bd1;
+        }
+        
+        .store-menu ul li.active {
+          border-bottom: none;
+        }
+        
+        .store-menu ul li.active a {
+          color: #5b9bd1;
+          background-color: #f6f9fb;
+          border-left: 2px solid #5b9bd1;
+          margin-left: -2px;
+        }
+      </style>
+
+      <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+      <div class="container bootstrap snippets bootdey">
+          <div class="row">
+              <div class="col-md-3 store-menu">
+                  <ul class="nav">
+                      <li><a><i class="fa fa-angle-right"></i>Sport</a></li>
+                      <li><a><i class="fa fa-angle-right"></i>Computer </a></li>
+                      <li><a><i class="fa fa-angle-right"></i>Education </a></li>
+                      <li><a><i class="fa fa-angle-right"></i>Cars </a></li>
+                      <li><a><i class="fa fa-angle-right"></i>Snippets </a></li>
+                      <li><a><i class="fa fa-angle-right"></i>Bootdey </a></li>
+                      <li><a><i class="fa fa-angle-right"></i>Category bla </a></li>
+                      <li><a><i class="fa fa-angle-right"></i>Users</a></li>
+                      <li><a><i class="fa fa-angle-right"></i>Category 9</a></li>
+                      <li><a><i class="fa fa-angle-right"></i>Category 10</a></li>
+                      <li><a><i class="fa fa-angle-right"></i>Category 11</a></li>
+                      <li><a><i class="fa fa-angle-right"></i>Category 12</a></li>
+                  </ul>
+              </div>
+              <div class="col-md-9">
+                  <div class="col-md-6 col-sm-6">
+                      <div class="store-item">
+                          <div class="store-item-rating text-warning">
+                              <i class="fa fa-star"></i>
+                              <i class="fa fa-star"></i>
+                              <i class="fa fa-star"></i>
+                              <i class="fa fa-star"></i>
+                              <i class="fa fa-star-half-o"></i>
+                          </div>
+                          <div class="store-item-image">
+                              <a href="#">
+                                  <img src="https://www.bootdey.com/image/500x200/FFB6C1/000000" alt="" class="img-responsive">
+                              </a>
+                          </div>
+                          <div class="store-item-info clearfix">
+                              <span class="store-item-price themed-color-dark pull-right">$ 109</span>
+                              <a href="#"><strong>Product one</strong></a><br>
+                              <small><i class="fa fa-shopping-cart text-muted"></i>
+                              <a href="#" class="text-muted">Add to cart</a></small>
+                          </div>
+                      </div>
+                  </div> 
+                  <div class="col-md-6 col-sm-6">
+                      <div class="store-item">
+                          <div class="store-item-rating text-warning">
+                              <i class="fa fa-star"></i>
+                              <i class="fa fa-star"></i>
+                              <i class="fa fa-star"></i>
+                              <i class="fa fa-star"></i>
+                              <i class="fa fa-star-half-o"></i>
+                          </div>
+                          <div class="store-item-image">
+                              <a href="#">
+                                  <img src="https://www.bootdey.com/image/500x200/87CEFA/000000" alt="" class="img-responsive">
+                              </a>
+                          </div>
+                          <div class="store-item-info clearfix">
+                              <span class="store-item-price themed-color-dark pull-right">$ 109</span>
+                              <a href="#"><strong>Product two</strong></a><br>
+                              <small><i class="fa fa-shopping-cart text-muted"></i>
+                              <a href="#" class="text-muted">Add to cart</a></small>
+                          </div>
+                      </div>
+                  </div>  
+                  <div class="col-md-6 col-sm-6">
+                      <div class="store-item">
+                          <div class="store-item-rating text-warning">
+                              <i class="fa fa-star"></i>
+                              <i class="fa fa-star"></i>
+                              <i class="fa fa-star"></i>
+                              <i class="fa fa-star"></i>
+                              <i class="fa fa-star-half-o"></i>
+                          </div>
+                          <div class="store-item-image">
+                              <a href="#">
+                                  <img src="https://www.bootdey.com/image/500x200/FF7F50/000000" alt="" class="img-responsive">
+                              </a>
+                          </div>
+                          <div class="store-item-info clearfix">
+                              <span class="store-item-price themed-color-dark pull-right">$ 109</span>
+                              <a href="#"><strong>Product</strong></a><br>
+                              <small><i class="fa fa-shopping-cart text-muted"></i>
+                              <a href="#" class="text-muted">Add to cart</a></small>
+                          </div>
+                      </div>
+                  </div>  
+                  <div class="col-md-6 col-sm-6">
+                      <div class="store-item">
+                          <div class="store-item-rating text-warning">
+                              <i class="fa fa-star"></i>
+                              <i class="fa fa-star"></i>
+                              <i class="fa fa-star"></i>
+                              <i class="fa fa-star"></i>
+                              <i class="fa fa-star-half-o"></i>
+                          </div>
+                          <div class="store-item-image">
+                              <a href="#">
+                                  <img src="https://www.bootdey.com/image/500x200/20B2AA/000000" alt="" class="img-responsive">
+                              </a>
+                          </div>
+                          <div class="store-item-info clearfix">
+                              <span class="store-item-price themed-color-dark pull-right">$ 109</span>
+                              <a href="#"><strong>Sunglasses</strong></a><br>
+                              <small><i class="fa fa-shopping-cart text-muted"></i>
+                              <a href="#" class="text-muted">Add to cart</a></small>
+                          </div>
+                      </div>
+                  </div>            
+            </div>
+        </div>
+      </div>
+
+    <footer class="footer text-center text-md-left">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3 mb-3">
+                    <img class="bi me-2" width="213" height="48" alt="Logo" src="/src/logobrand.svg">
+                </div>
+                <div class="col-md-3 mb-3">
+                    <h5 class="font-weight-bold">Kerjasama</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#">Mendaftar Mitra</a></li>
+                        <li><a href="#">Kantor Cabang</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3 mb-3">
+                    <h5 class="font-weight-bold">Layanan Pelanggan</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#">Kantor Cabang</a></li>
+                        <li><a href="#">Pengembalian Dana</a></li>
+                        <li><a href="#">Pusat Bantuan</a></li>
+                        <li><a href="#">Laporkan Masalah</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3 mb-3">
+                    <h5 class="font-weight-bold">Download Aplikasi</h5>
+                    <ul class="app-icons">
+                        <a href="#"><img class="google" src="https://img.icons8.com/ios-filled/24/ffffff/google-play.png"/></a>
+                        <a href="#"><img class="apple" src="https://img.icons8.com/ios-filled/24/ffffff/apple-app-store.png"/></a>
+                    </ul>
+                    <h5 class="font-weight-bold mt-3">Media sosial kami</h5>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                        <a href="#"><i class="fab fa-tiktok"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+</body>
+
+</html>
