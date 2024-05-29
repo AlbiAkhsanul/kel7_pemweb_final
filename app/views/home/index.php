@@ -28,7 +28,7 @@
                             <div class="form-title">
                                 <h2 class="m-0">Pesan Mobil</h2>
                             </div>
-                            <form>
+                            <form action="../public/car/index.php" method="post">
                                 <div class="mb-3">
                                 <label for="lokasiRental" class="form-label">Lokasi Rental Mobil</label>
                                 <input type="text" class="form-control" id="lokasiRental" placeholder="Pilih kota atau nama tempat...">

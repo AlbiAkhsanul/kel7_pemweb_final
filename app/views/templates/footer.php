@@ -4,8 +4,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-3 mb-3">
-                <h5 class="font-weight-bold">RentACar.com</h5>
-                <p>Travel easily.</p>
+                <img class="bi me-2" width="213" height="48" alt="Logo" src="<?= BASEURL; ?>/src/logobrand.svg">
             </div>
             <div class="col-md-3 mb-3">
                 <h5 class="font-weight-bold">Kerjasama</h5>
@@ -25,9 +24,9 @@
             </div>
             <div class="col-md-3 mb-3">
                 <h5 class="font-weight-bold">Download Aplikasi</h5>
-                <ul class="list-unstyled">
-                    <li><a href="#"><img src="https://img.icons8.com/ios-filled/24/ffffff/google-play.png"/> Google Play</a></li>
-                    <li><a href="#"><img src="https://img.icons8.com/ios-filled/24/ffffff/apple-app-store.png"/> App Store</a></li>
+                <ul class="app-icons">
+                    <a href="#"><img class="google" src="https://img.icons8.com/ios-filled/24/ffffff/google-play.png"/></a>
+                    <a href="#"><img class="apple" src="https://img.icons8.com/ios-filled/24/ffffff/apple-app-store.png"/></a>
                 </ul>
                 <h5 class="font-weight-bold mt-3">Media sosial kami</h5>
                 <div class="social-icons">
@@ -46,7 +45,7 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js" integrity="sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N" crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/jquery-3.6.4.slim.min.js" integrity="sha256-a2yjHM4jnF9f54xUQakjZGaqYs/V1CYvWpoqZzC2/Bw=" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
-<script src="https://kit.fontawesome.com/a076d05399.js"></script>
+<script src="https://kit.fontawesome.com/286a7fdf30.js" crossorigin="anonymous"></script>
 <script src="<?= BASEURL; ?>/js/script.js"></script>
 </body>
 
