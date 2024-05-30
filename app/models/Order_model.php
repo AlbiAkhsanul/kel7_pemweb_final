@@ -40,7 +40,7 @@ class Order_model
         $this->db->bind('tanggal_sewa', $data['tanggal_sewa']);
         $this->db->bind('tanggal_transaksi', $data['tanggal_transaksi']);
         $this->db->bind('status_transaksi', $data['status_transaksi']);
-        $this->db->bind('status_order', $data['status_order']);
+        $this->db->bind('status_order', "Pending");
         $this->db->bind('total_harga', $data['totalHarga']);
 
         $this->db->execute();
@@ -99,9 +99,31 @@ class Order_model
 
     public function acceptOrder($id)
     {
+        $query = "UPDATE {$this->table_name} SET 
+                  status_order = :status_order, 
+                  WHERE order_id = :order_id ";
+        $this->db->query($query);
+        $this->db->bind('order_id', "Accepted");
+        $this->db->bind('order_id', $id);
     }
 
-    public function rejectOrder()
+    public function rejectOrder($id)
     {
+        $query = "UPDATE {$this->table_name} SET 
+                  status_order = :status_order, 
+                  WHERE order_id = :order_id ";
+        $this->db->query($query);
+        $this->db->bind('order_id', "Cancelled");
+        $this->db->bind('order_id', $id);
+    }
+
+    public function closeOrder($id)
+    {
+        $query = "UPDATE {$this->table_name} SET 
+                  status_order = :status_order, 
+                  WHERE order_id = :order_id ";
+        $this->db->query($query);
+        $this->db->bind('order_id', "Closed");
+        $this->db->bind('order_id', $id);
     }
 }

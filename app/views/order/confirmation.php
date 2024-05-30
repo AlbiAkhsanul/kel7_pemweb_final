@@ -5,6 +5,7 @@
     </button>
 </a>
 <form action="<?= BASEURL; ?>/order/confirm/<?= $data['car_id'] ?>" method="post">
+    <input type="hidden" name="status_transaksi" value="1">
     <input type="hidden" name="car_id" value="<?= $data['car_id']; ?>">
     <li>
         <label for="tanggal_sewa">Tanggal Sewa: </label>
