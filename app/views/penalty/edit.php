@@ -1,7 +1,7 @@
-<?php $car = $data['car'] ?>
-<h1>Buat List Mobil Baru</h1>
+<?php $penalty = $data['penalty'] ?>
+<h1>Edit Penalty</h1>
 
-<form action="<?= BASEURL; ?>/car/update/<?= $car['car_id']; ?>" method="post" enctype="multipart/form-data">
+<form action="<?= BASEURL; ?>/penalty/update/<?= $car['car_id']; ?>" method="post" enctype="multipart/form-data">
     <ul>
         <input type="hidden" name="old_foto_mobil" id="foto" value="<?= $car['foto_mobil']; ?>">
         <br>

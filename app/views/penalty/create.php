@@ -1,6 +1,6 @@
-<h1>Buat List Mobil Baru</h1>
+<h1>Buat Penalty</h1>
 
-<form action="<?= BASEURL; ?>/car/store" method="post" enctype="multipart/form-data">
+<form action="<?= BASEURL; ?>/penalty/store" method="post" enctype="multipart/form-data">
     <ul>
         <li>
             <label for="car_brand_id">Merk Mobil: </label>

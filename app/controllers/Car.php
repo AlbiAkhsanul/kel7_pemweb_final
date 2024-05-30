@@ -64,7 +64,7 @@ class Car extends Controller
     public function show($id)
     {
         $data['title'] = 'Car Details';
-        $data['cars'] = $this->model('Car_model')->getCarById($id);
+        $data['car'] = $this->model('Car_model')->getCarById($id);
         $this->view('templates/header', $data);
         $this->view('car/details', $data);
         $this->view('templates/footer');

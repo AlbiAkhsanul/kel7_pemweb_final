@@ -1,5 +1,5 @@
 <?php $car = $data['car'] ?>
-<h1>Buat List Mobil Baru</h1>
+<h1>Edit List Mobil</h1>
 
 <form action="<?= BASEURL; ?>/car/update/<?= $car['car_id']; ?>" method="post" enctype="multipart/form-data">
     <ul>

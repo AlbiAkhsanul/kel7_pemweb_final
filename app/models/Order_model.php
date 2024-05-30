@@ -55,7 +55,7 @@ class Order_model
         return $this->db->single();
     }
 
-    public function editCarById($data, $id)
+    public function editOrderById($data, $id)
     {
         $query = "UPDATE {$this->table_name} SET 
                   method_id = :method_id,
@@ -78,8 +78,9 @@ class Order_model
         $this->db->bind('tanggal_sewa', $data['tanggal_sewa']);
         $this->db->bind('tanggal_transaksi', $data['tanggal_transaksi']);
         $this->db->bind('status_transaksi', $data['status_transaksi']);
-        $this->db->bind('status_order', $data['status_order']);
-        $this->db->bind('total_harga', $data['total_harga']);
+        $this->db->bind('status_order', "Pending");
+        $this->db->bind('total_harga', $data['totalHarga']);
+        $this->db->bind('order_id', $id);
 
         $this->db->execute();
 

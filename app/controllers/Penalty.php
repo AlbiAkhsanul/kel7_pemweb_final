@@ -2,7 +2,7 @@
 
 class Penalty extends Controller
 {
-    public function index()
+    public function index($id)
     {
         if (!isset($_SESSION["login"])) {
             header("Location: " . BASEURL . "/auth/login");
@@ -19,7 +19,7 @@ class Penalty extends Controller
         $this->view('templates/footer');
     }
 
-    public function create()
+    public function create($id)
     {
         if (!isset($_SESSION["login"])) {
             header("Location: " . BASEURL . "/auth/login");

@@ -1,4 +1,4 @@
 <h1>
-    Ini Halaman Detail Cars
+    Ini Halaman Detail Car
 </h1>
-<?php var_dump($data['cars']); ?>
+<?php var_dump($data['car']); ?>
