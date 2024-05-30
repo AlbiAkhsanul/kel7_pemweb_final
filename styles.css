@@ -1,4 +1,4 @@
-header {
+xheader {
     width: 100%;
     position: sticky;
     top: 0;
@@ -23,7 +23,7 @@ body {
   text-decoration: none;
 }
 .footer a:hover {
-  text-decoration: underline;
+  /*text-decoration: underline;*/
 }
 .footer .social-icons i {
   font-size: 24px;
@@ -279,6 +279,27 @@ color:#eaecee;
   border: 3px solid #eaecee;
   color: #eaecee;
   background-color: #0d6efd;
+}
+
+/* === LIST MOBIL RENTAL === */
+
+#listmobil-bg {
+  background-color: #fcfafa;
+}
+
+.listmobil-card {
+  background-color: #EAECEE;
+}
+
+
+
+.car-body-margin {
+  margin: 24px;
+}
+
+.custom-height {
+  height: 200px;
+  overflow-y: auto;
 }
 
 /* === HALAMAN MOBIL === */
