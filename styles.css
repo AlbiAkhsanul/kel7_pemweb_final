@@ -9,6 +9,10 @@
   border-radius: 20px;
 }
 
+.nav ul:hover {
+  color: white;
+}
+
 body {
   margin: 0;
   line-height: normal;
@@ -36,21 +40,44 @@ body::before {
 
 
 .footer {
-  background-color: #111;
-  color: white;
-  padding: 20px 0;
+  background-color: #212529;
+  color: #eaecee;
+  padding: 40px 0;
 }
+
+footer .kerjasama, .layanan, .icons {
+  left: 200px;
+}
+
 .footer a {
-  color: white;
+  color: #eaeaea;
   text-decoration: none;
 }
 .footer a:hover {
-  /*text-decoration: underline;*/
+  color: white;
 }
-.footer .social-icons i {
-  font-size: 24px;
-  margin-right: 15px;
+.footer .divider {
+  border-top: 1px solid #444;
+  margin: 10px 0;
+  width: 100px;
 }
+
+.list-unstyled {
+  font-size: 12px;
+  line-height: 200%;
+}
+
+.fa-apple {
+  font-size: 19px;
+}
+
+/* .divider-big {
+  border-top: 1px solid #121212;
+  width: 70%;
+  position: relative;
+  margin-left: auto;
+  margin-right: auto;
+} */
 
 /* landing page utama */
 
@@ -113,6 +140,28 @@ li .text-white {
   background-color: #ffbf00;
   border: none;
   color: white;
+}
+
+.sewa-mobil-button {
+  border: 3px solid #212529;
+  border-radius: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+  margin-top: 256px;
+  width: 261px;
+}
+
+.sewa-mobil {
+  width: 256px;
+  height: 48px;
+  letter-spacing: 0.15em;
+  border-radius: 40px;
+  flex-shrink: 0;
+  border: 3px solid #eaecee;
+  color: #eaecee;
+  background-color: rgba(33,37,41, 0.5);
 }
 
 /* landing page mengapa rentacar */
@@ -264,6 +313,7 @@ color:#121212;
 font-weight: 700;
 }
 
+
 /* landing page mitra */
 
 .bg {
@@ -303,30 +353,30 @@ font-weight: 700;
 }
 
 .mitra-bottom {
-  margin-top: 60px;
+  margin-top: 140px;
   font-size: 34px;
 }
 
-.sewa-mobil-button {
-  border: 3px solid #212529;
+.sewa-mobil-button-bottom {
+  border: 3px solid rgb(255, 191, 0);
   border-radius: 40px;
   display: flex;
   align-items: center;
   justify-content: center;
   margin: 0 auto;
-  margin-top: 256px;
+  margin-top: 128px;
   width: 261px;
 }
 
-.sewa-mobil {
+.sewa-mobil-bottom {
   width: 256px;
   height: 48px;
   letter-spacing: 0.15em;
   border-radius: 40px;
   flex-shrink: 0;
   border: 3px solid #eaecee;
-  color: #eaecee;
-  background-color: rgba(33,37,41, 0.5);
+  color: #121212;
+  background-color: rgba(255, 191, 0);
 }
 
 /* === LIST MOBIL RENTAL === */
