@@ -145,7 +145,7 @@ class Car_model
         $row = $this->db->single();
         $string = 'img/penalties/' . $row['foto_penalty'];
         // Menghapus foto
-        unlink('img/penalties/' . $row['foto_penalty']);
+        unlink($string);
     }
 
     public function ClosePenalty($id)
@@ -156,6 +156,9 @@ class Car_model
         $this->db->query($query);
         $this->db->bind('order_id', "Closed");
         $this->db->bind('penalty_id', $id);
+        $this->db->execute();
+
+        return $this->db->affectedRowCount();
     }
 
     public function rejectPenalty($id)
@@ -166,5 +169,8 @@ class Car_model
         $this->db->query($query);
         $this->db->bind('order_id', "Cancelled");
         $this->db->bind('penalty_id', $id);
+        $this->db->execute();
+
+        return $this->db->affectedRowCount();
     }
 }

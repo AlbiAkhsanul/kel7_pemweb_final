@@ -155,7 +155,7 @@ class Car_model
         $row = $this->db->single();
         $string = 'img/cars/' . $row['foto_mobil'];
         // Menghapus foto
-        unlink('img/cars/' . $row['foto_mobil']);
+        unlink($string);
     }
 
     public function getCarsByKeyword()
