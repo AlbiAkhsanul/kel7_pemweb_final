@@ -12,10 +12,10 @@ class Driver extends Controller
             header("Location: " . BASEURL . "/home");
             exit;
         }
-        $data['title'] = 'Car List';
-        $data['cars'] = $this->model('Car_model')->getAllCars();
+        $data['title'] = 'Driver List';
+        $data['drivers'] = $this->model('Driver_model')->getAllDrivers();
         $this->view('templates/header', $data);
-        $this->view('car/index', $data);
+        $this->view('driver/index', $data);
         $this->view('templates/footer');
     }
 
@@ -30,9 +30,9 @@ class Driver extends Controller
             exit;
         }
 
-        $data['title'] = 'Create Car';
+        $data['title'] = 'Create Driver';
         $this->view('templates/header', $data);
-        $this->view('car/create', $data);
+        $this->view('driver/create', $data);
         $this->view('templates/footer');
     }
 
@@ -47,26 +47,26 @@ class Driver extends Controller
             exit;
         }
         if (empty($_POST) && empty($_FILES)) {
-            header('Location: ' . BASEURL . '/car/create');
+            header('Location: ' . BASEURL . '/driver/create');
             exit;
         }
-        if ($this->model('Car_model')->createNewCar($_POST, $_FILES) > 0) {
+        if ($this->model('Driver_model')->createNewDriver($_POST, $_FILES) > 0) {
             FlashMsg::setFlash('Succesfully', 'Created', 'success');
-            header('Location: ' . BASEURL . '/car');
+            header('Location: ' . BASEURL . '/driver');
             exit;
         } else {
             FlashMsg::setFlash('Unsuccesfully', 'Created', 'danger');
-            header('Location: ' . BASEURL . '/car');
+            header('Location: ' . BASEURL . '/driver');
             exit;
         }
     }
 
     public function show($id)
     {
-        $data['title'] = 'Car Details';
-        $data['car'] = $this->model('Car_model')->getCarById($id);
+        $data['title'] = 'Driver Details';
+        $data['driver'] = $this->model('Driver_model')->getDriverById($id);
         $this->view('templates/header', $data);
-        $this->view('car/details', $data);
+        $this->view('driver/details', $data);
         $this->view('templates/footer');
     }
 
@@ -80,10 +80,10 @@ class Driver extends Controller
             header("Location: " . BASEURL . "/home");
             exit;
         }
-        $data['title'] = 'Edit Car';
-        $data['car'] = $this->model('Car_model')->getCarById($id);
+        $data['title'] = 'Edit driver';
+        $data['driver'] = $this->model('Driver_model')->getDriverById($id);
         $this->view('templates/header', $data);
-        $this->view('car/edit', $data);
+        $this->view('driver/edit', $data);
         $this->view('templates/footer');
     }
 
@@ -97,13 +97,13 @@ class Driver extends Controller
             header("Location: " . BASEURL . "/home");
             exit;
         }
-        if ($this->model('Car_model')->editCarById($_POST, $_FILES, $id) > 0) {
+        if ($this->model('Driver_model')->editDriverById($_POST, $_FILES, $id) > 0) {
             FlashMsg::setFlash('Succesfully', 'Edited', 'success');
-            header('Location: ' . BASEURL . '/car');
+            header('Location: ' . BASEURL . '/driver');
             exit;
         } else {
             FlashMsg::setFlash('Unsuccesfully', 'Edited', 'danger');
-            header('Location: ' . BASEURL . '/car');
+            header('Location: ' . BASEURL . '/driver');
             exit;
         }
     }
@@ -118,23 +118,35 @@ class Driver extends Controller
             header("Location: " . BASEURL . "/home");
             exit;
         }
-        if ($this->model('Car_model')->deleteCarById($id) > 0) {
+        if ($this->model('Driver_model')->deleteDriverById($id) > 0) {
             FlashMsg::setFlash('Succesfully', 'Deleted', 'success');
-            header('Location: ' . BASEURL . '/car');
+            header('Location: ' . BASEURL . '/driver');
             exit;
         } else {
             FlashMsg::setFlash('Unsuccesfully', 'Deleted', 'danger');
-            header('Location: ' . BASEURL . '/car');
+            header('Location: ' . BASEURL . '/driver');
             exit;
         }
     }
 
-    public function search()
+    public function changeStatus($id)
     {
-        $data['title'] = 'Car List';
-        $data['cars'] = $this->model('Car_model')->getCarsByKeyword();
-        $this->view('templates/header', $data);
-        $this->view('car/index', $data);
-        $this->view('templates/footer');
+        if (!isset($_SESSION["login"])) {
+            header("Location: " . BASEURL . "/auth/login");
+            exit;
+        }
+        if ($_SESSION["is_admin"] !== 1) {
+            header("Location: " . BASEURL . "/home");
+            exit;
+        }
+        if ($this->model('Driver_model')->changeDriverStatusById($_POST, $id) > 0) {
+            FlashMsg::setFlash('Succesfully', 'Deleted', 'success');
+            header('Location: ' . BASEURL . '/driver');
+            exit;
+        } else {
+            FlashMsg::setFlash('Unsuccesfully', 'Deleted', 'danger');
+            header('Location: ' . BASEURL . '/driver');
+            exit;
+        }
     }
 }

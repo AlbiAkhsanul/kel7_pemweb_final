@@ -21,7 +21,10 @@ class Order extends Controller
             header("Location: " . BASEURL . "/auth/login");
             exit;
         }
-
+        $data['is_driver'] = 0;
+        if ($this->model('Driver_model')->getAllActiveDrivers()) {
+            $data['is_driver'] = 1;
+        }
         $data['title'] = 'Create Order';
         $data['car'] = $this->model('Car_model')->getCarById($id);
         $this->view('templates/header', $data);
