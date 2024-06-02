@@ -48,21 +48,23 @@ class Order extends Controller
 
     public function store($id)
     {
+        echo "gate1";
         if (!isset($_SESSION["login"])) {
             header("Location: " . BASEURL . "/auth/login");
             exit;
         }
-        if (empty($_POST) && empty($_FILES)) {
+        if (empty($_POST)) {
             header('Location: ' . BASEURL . '/order/create/' . $id);
             exit;
         }
-        if ($this->model('Order_model')->createNewOrder($_POST, $_FILES) > 0) {
+        echo "gate2";
+        if ($this->model('Order_model')->createNewOrder($_POST) > 0) {
             FlashMsg::setFlash('Succesfully', 'Created', 'success');
-            header('Location: ' . BASEURL . '/car');
+            header('Location: ' . BASEURL . '/order');
             exit;
         } else {
             FlashMsg::setFlash('Unsuccesfully', 'Created', 'danger');
-            header('Location: ' . BASEURL . '/car');
+            header('Location: ' . BASEURL . '/order');
             exit;
         }
     }
@@ -83,7 +85,9 @@ class Order extends Controller
             exit;
         }
         $data['title'] = 'Edit Order';
-        $data['order'] = $this->model('Order_model')->getCarById($id);
+        $data['order'] = $this->model('Order_model')->getOrderById($id);
+        $data['drivers'] = $this->model('Driver_model')->getAllActiveDrivers();
+        $data['cars'] = $this->model('Car_model')->getAllCars();
         $this->view('templates/header', $data);
         $this->view('order/edit', $data);
         $this->view('templates/footer');
@@ -95,13 +99,13 @@ class Order extends Controller
             header("Location: " . BASEURL . "/auth/login");
             exit;
         }
-        if ($this->model('Order_model')->editCarById($_POST, $_FILES, $id) > 0) {
+        if ($this->model('Order_model')->editOrderById($_POST, $id) > 0) {
             FlashMsg::setFlash('Succesfully', 'Edited', 'success');
-            header('Location: ' . BASEURL . '/car');
+            header('Location: ' . BASEURL . '/order');
             exit;
         } else {
             FlashMsg::setFlash('Unsuccesfully', 'Edited', 'danger');
-            header('Location: ' . BASEURL . '/car');
+            header('Location: ' . BASEURL . '/order');
             exit;
         }
     }

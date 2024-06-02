@@ -27,7 +27,7 @@ class Auth_model
             if (password_verify($password, $row['password'])) {
                 // cek session
                 $_SESSION['login'] = true;
-                $_SESSION['userId'] = $row['user_id'];
+                $_SESSION['user_id'] = $row['user_id'];
                 $_SESSION['is_admin'] = $row['is_admin'];
                 var_dump($_SESSION);
                 // cek remember me 

@@ -25,7 +25,7 @@ class Auth extends Controller
 
                 if ($key === $hashedValue) {
                     $_SESSION['login'] = true;
-                    $_SESSION['userId'] = $num;
+                    $_SESSION['user_id'] = $num;
                     $_SESSION['is_admin'] = $row['is_admin'];
                 }
             }

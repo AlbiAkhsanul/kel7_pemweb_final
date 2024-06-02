@@ -79,8 +79,8 @@
     <li>
         <label for="jenis_sewa">Jenis Sewa : </label>
         <select id="jenis_sewa" name="jenis_sewa" required>
-            <option value="0">Sewa Mobil Dengan Supir</option>
-            <option value="1">Sewa Mobil Tanpa Supir</option>
+            <option value="0">Sewa Mobil Tanpa Supir</option>
+            <option value="1">Sewa Mobil Dengan Supir</option>
         </select>
         <p>[Sewa Dengan Supir Akan Menambah Biaya Sewa Sebesar Rp 100.000 / Hari]</p>
     </li>
