@@ -78,6 +78,10 @@ class Order extends Controller
     {
         $data['title'] = 'Order Details';
         $data['order'] = $this->model('Order_model')->getOrderById($id);
+        if (!$data['order']) {
+            header('Location: ' . BASEURL . '/home');
+            exit;
+        }
         $data['penalties'] = $this->model('Penalty_model')->getPenaltiesyByOrderId($id);
         $this->view('templates/header', $data);
         $this->view('order/details', $data);
@@ -140,7 +144,7 @@ class Order extends Controller
             header('Location: ' . BASEURL . '/home');
             exit;
         }
-        $data['title'] = 'Order Details';
+        $data['title'] = 'Order Action';
         $data['order'] = $this->model('Order_model')->getOrderById($id);
 
         if (!$data['order']) {

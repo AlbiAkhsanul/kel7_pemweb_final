@@ -68,7 +68,11 @@ class Penalty extends Controller
     public function show($id)
     {
         $data['title'] = 'Penalty Details';
-        $data['penalties'] = $this->model('Penalty_model')->getPenaltyById($id);
+        $data['penalty'] = $this->model('Penalty_model')->getPenaltyById($id);
+        if (!$data['penalty']) {
+            header('Location: ' . BASEURL . '/home');
+            exit;
+        }
         $this->view('templates/header', $data);
         $this->view('penalty/details', $data);
         $this->view('templates/footer');
@@ -147,6 +151,31 @@ class Penalty extends Controller
             header('Location: ' . BASEURL . '/admin/penalties');
             exit;
         }
+    }
+
+    public function action($id)
+    {
+        if (!isset($_SESSION["login"])) {
+            header("Location: " . BASEURL . "/auth/login");
+            exit;
+        }
+        if ($_SESSION['is_admin'] !== 1) {
+            header('Location: ' . BASEURL . '/home');
+            exit;
+        }
+        $data['title'] = 'Penalty Action';
+        $data['penalty'] = $this->model('Penalty_model')->getPenaltyById($id);
+
+        if (!$data['penalty']) {
+            header('Location: ' . BASEURL . '/admin/penalties');
+            exit;
+        }
+
+        $order_id = $data['penalty']['order_id'];
+        $data['order'] = $this->model('Order_model')->getOrderById($order_id);
+        $this->view('templates/header', $data);
+        $this->view('admin/penalties/action', $data);
+        $this->view('templates/footer');
     }
 
     public function close($id)

@@ -9,7 +9,7 @@ echo "<hr>";
 var_dump($car);
 ?>
 <h1>
-    Halaman Action
+    Halaman Action Order
 </h1>
 
 <ul>
@@ -54,7 +54,7 @@ var_dump($car);
         </a>
     </li>
     <li>
-        <a href="<?= BASEURL; ?>/order/Reject/<?= $order['order_id'] ?>">
+        <a href="<?= BASEURL; ?>/order/reject/<?= $order['order_id'] ?>">
             <button>
                 Reject Order
             </button>

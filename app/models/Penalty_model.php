@@ -161,13 +161,13 @@ class Penalty_model
         unlink($string);
     }
 
-    public function ClosePenalty($id)
+    public function closePenalty($id)
     {
         $query = "UPDATE {$this->table_name} SET 
-                  status_penalty = :status_penalty, 
+                  status_penalty = :status_penalty 
                   WHERE penalty_id = :penalty_id ";
         $this->db->query($query);
-        $this->db->bind('order_id', "Closed");
+        $this->db->bind('status_penalty', "Closed");
         $this->db->bind('penalty_id', $id);
         $this->db->execute();
 
@@ -177,10 +177,10 @@ class Penalty_model
     public function rejectPenalty($id)
     {
         $query = "UPDATE {$this->table_name} SET 
-                  status_penalty = :status_penalty, 
+                  status_penalty = :status_penalty 
                   WHERE penalty_id = :penalty_id ";
         $this->db->query($query);
-        $this->db->bind('order_id', "Cancelled");
+        $this->db->bind('status_penalty', "Cancelled");
         $this->db->bind('penalty_id', $id);
         $this->db->execute();
 

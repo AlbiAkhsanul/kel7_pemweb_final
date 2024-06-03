@@ -65,7 +65,7 @@ var_dump($penalty);
         <li>
             <label for="foto_penalty">Foto Penalty: </label>
             <input type="file" name="foto_penalty" id="foto_penalty" required>
-            <img src="<?= BASEURL ?>/img/penalties/<?= $penalty["foto_penalty"]; ?>" alt="FotoMobil">
+            <img src="<?= BASEURL ?>/img/penalties/<?= $penalty["foto_penalty"]; ?>" alt="FotoPenalty">
         </li>
         <li>
             <button type="submit" name="store">Buat Penalty</button>
