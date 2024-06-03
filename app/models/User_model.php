@@ -59,4 +59,12 @@ class User_model
 
         return $this->db->affectedRowCount();
     }
+
+    public function getUserById($id)
+    {
+        $this->db->query("SELECT * FROM {$this->table_name} WHERE user_id=:user_id");
+        // untuk menghindari sql injection
+        $this->db->bind('user_id', $id);
+        return $this->db->single();
+    }
 }

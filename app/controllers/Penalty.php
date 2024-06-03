@@ -2,7 +2,7 @@
 
 class Penalty extends Controller
 {
-    public function index($id)
+    public function index()
     {
         if (!isset($_SESSION["login"])) {
             header("Location: " . BASEURL . "/auth/login");
@@ -15,7 +15,7 @@ class Penalty extends Controller
         $data['title'] = 'Penalty List';
         $data['penalties'] = $this->model('Penalty_model')->getAllPenalties();
         $this->view('templates/header', $data);
-        $this->view('penalty/index', $data);
+        $this->view('admin/penalties/index', $data);
         $this->view('templates/footer');
     }
 
@@ -29,10 +29,14 @@ class Penalty extends Controller
             header("Location: " . BASEURL . "/home");
             exit;
         }
-
         $data['title'] = 'Create Penalty';
+        $data['order'] = $this->model('order_model')->getOrderById($id);
+        $user_id = $data['order']['user_id'];
+        $data['user'] = $this->model('User_model')->getUserById($user_id);
+        $car_id = $data['order']['car_id'];
+        $data['car'] = $this->model('Car_model')->getCarById($car_id);
         $this->view('templates/header', $data);
-        $this->view('penalty/create', $data);
+        $this->view('admin/penalties/create', $data);
         $this->view('templates/footer');
     }
 
@@ -52,11 +56,11 @@ class Penalty extends Controller
         }
         if ($this->model('Penalty_model')->createNewPenalty($_POST, $_FILES) > 0) {
             FlashMsg::setFlash('Succesfully', 'Created', 'success');
-            header('Location: ' . BASEURL . '/penalty');
+            header('Location: ' . BASEURL . '/admin/penalties');
             exit;
         } else {
             FlashMsg::setFlash('Unsuccesfully', 'Created', 'danger');
-            header('Location: ' . BASEURL . '/penalty');
+            header('Location: ' . BASEURL . '/admin/penalties');
             exit;
         }
     }
@@ -81,9 +85,9 @@ class Penalty extends Controller
             exit;
         }
         $data['title'] = 'Edit Penalty';
-        $data['Penalty'] = $this->model('Penalty_model')->getPenaltyById($id);
+        $data['penalty'] = $this->model('Penalty_model')->getPenaltyById($id);
         $this->view('templates/header', $data);
-        $this->view('penalty/edit', $data);
+        $this->view('admin/penalties/edit', $data);
         $this->view('templates/footer');
     }
 
@@ -103,11 +107,11 @@ class Penalty extends Controller
         }
         if ($this->model('Penalty_model')->editPenaltyById($_POST, $_FILES, $id) > 0) {
             FlashMsg::setFlash('Succesfully', 'Edited', 'success');
-            header('Location: ' . BASEURL . '/penalty');
+            header('Location: ' . BASEURL . '/admin/penalties');
             exit;
         } else {
             FlashMsg::setFlash('Unsuccesfully', 'Edited', 'danger');
-            header('Location: ' . BASEURL . '/penalty');
+            header('Location: ' . BASEURL . '/admin/penalties');
             exit;
         }
     }
@@ -124,11 +128,11 @@ class Penalty extends Controller
         }
         if ($this->model('Penalty_model')->deletePenaltyById($id) > 0) {
             FlashMsg::setFlash('Succesfully', 'Deleted', 'success');
-            header('Location: ' . BASEURL . '/penalty');
+            header('Location: ' . BASEURL . '/admin/penalties');
             exit;
         } else {
             FlashMsg::setFlash('Unsuccesfully', 'Deleted', 'danger');
-            header('Location: ' . BASEURL . '/penalty');
+            header('Location: ' . BASEURL . '/admin/penalties');
             exit;
         }
     }
@@ -145,11 +149,11 @@ class Penalty extends Controller
         }
         if ($this->model('Penalty_model')->closePenalty($id) > 0) {
             FlashMsg::setFlash('Succesfully', 'Accept', 'success');
-            header('Location: ' . BASEURL . '/admin/dashboard');
+            header('Location: ' . BASEURL . '/admin/penalties');
             exit;
         } else {
             FlashMsg::setFlash('Unsuccesfully', 'Accept', 'danger');
-            header('Location: ' . BASEURL . '/admin/dashboard');
+            header('Location: ' . BASEURL . '/admin/penalties');
             exit;
         }
     }
@@ -166,11 +170,11 @@ class Penalty extends Controller
         }
         if ($this->model('Penalty_model')->rejectPenalty($id) > 0) {
             FlashMsg::setFlash('Succesfully', 'Reject', 'success');
-            header('Location: ' . BASEURL . '/admin/dashboard');
+            header('Location: ' . BASEURL . '/admin/penalties');
             exit;
         } else {
             FlashMsg::setFlash('Unsuccesfully', 'Reject', 'danger');
-            header('Location: ' . BASEURL . '/admin/dashboard');
+            header('Location: ' . BASEURL . '/admin/penalties');
             exit;
         }
     }

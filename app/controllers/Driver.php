@@ -15,7 +15,7 @@ class Driver extends Controller
         $data['title'] = 'Driver List';
         $data['drivers'] = $this->model('Driver_model')->getAllDrivers();
         $this->view('templates/header', $data);
-        $this->view('driver/index', $data);
+        $this->view('admin/drivers/index', $data);
         $this->view('templates/footer');
     }
 
@@ -32,7 +32,7 @@ class Driver extends Controller
 
         $data['title'] = 'Create Driver';
         $this->view('templates/header', $data);
-        $this->view('driver/create', $data);
+        $this->view('admin/drivers/create', $data);
         $this->view('templates/footer');
     }
 
@@ -52,11 +52,11 @@ class Driver extends Controller
         }
         if ($this->model('Driver_model')->createNewDriver($_POST, $_FILES) > 0) {
             FlashMsg::setFlash('Succesfully', 'Created', 'success');
-            header('Location: ' . BASEURL . '/driver');
+            header('Location: ' . BASEURL . '/admin/drivers');
             exit;
         } else {
             FlashMsg::setFlash('Unsuccesfully', 'Created', 'danger');
-            header('Location: ' . BASEURL . '/driver');
+            header('Location: ' . BASEURL . '/admin/drivers');
             exit;
         }
     }
@@ -66,7 +66,7 @@ class Driver extends Controller
         $data['title'] = 'Driver Details';
         $data['driver'] = $this->model('Driver_model')->getDriverById($id);
         $this->view('templates/header', $data);
-        $this->view('driver/details', $data);
+        $this->view('admin/drivers/details', $data);
         $this->view('templates/footer');
     }
 
@@ -83,7 +83,7 @@ class Driver extends Controller
         $data['title'] = 'Edit driver';
         $data['driver'] = $this->model('Driver_model')->getDriverById($id);
         $this->view('templates/header', $data);
-        $this->view('driver/edit', $data);
+        $this->view('admin/drivers/edit', $data);
         $this->view('templates/footer');
     }
 
@@ -99,11 +99,11 @@ class Driver extends Controller
         }
         if ($this->model('Driver_model')->editDriverById($_POST, $_FILES, $id) > 0) {
             FlashMsg::setFlash('Succesfully', 'Edited', 'success');
-            header('Location: ' . BASEURL . '/driver');
+            header('Location: ' . BASEURL . '/admin/drivers');
             exit;
         } else {
             FlashMsg::setFlash('Unsuccesfully', 'Edited', 'danger');
-            header('Location: ' . BASEURL . '/driver');
+            header('Location: ' . BASEURL . '/admin/drivers');
             exit;
         }
     }
@@ -120,11 +120,11 @@ class Driver extends Controller
         }
         if ($this->model('Driver_model')->deleteDriverById($id) > 0) {
             FlashMsg::setFlash('Succesfully', 'Deleted', 'success');
-            header('Location: ' . BASEURL . '/driver');
+            header('Location: ' . BASEURL . '/admin/drivers');
             exit;
         } else {
             FlashMsg::setFlash('Unsuccesfully', 'Deleted', 'danger');
-            header('Location: ' . BASEURL . '/driver');
+            header('Location: ' . BASEURL . '/admin/drivers');
             exit;
         }
     }
@@ -139,13 +139,14 @@ class Driver extends Controller
             header("Location: " . BASEURL . "/home");
             exit;
         }
-        if ($this->model('Driver_model')->changeDriverStatusById($_POST, $id) > 0) {
+        $status = $_POST['driver_status'];
+        if ($this->model('Driver_model')->changeDriverStatusById($status, $id) > 0) {
             FlashMsg::setFlash('Succesfully', 'Deleted', 'success');
-            header('Location: ' . BASEURL . '/driver');
+            header('Location: ' . BASEURL . '/admin/drivers');
             exit;
         } else {
             FlashMsg::setFlash('Unsuccesfully', 'Deleted', 'danger');
-            header('Location: ' . BASEURL . '/driver');
+            header('Location: ' . BASEURL . '/admin/drivers');
             exit;
         }
     }

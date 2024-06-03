@@ -75,13 +75,13 @@ class Driver_model
         return $this->db->affectedRowCount();
     }
 
-    public function changeDriverStatusById($data, $id)
+    public function changeDriverStatusById($status, $id)
     {
         $query = "UPDATE {$this->table_name} SET 
         status_driver = :status_driver, 
         WHERE driver_id = :driver_id ";
         $this->db->query($query);
-        $this->db->bind('status_driver', $data['status_driver']);
+        $this->db->bind('status_driver', $status);
         $this->db->bind('driver_id', $id);
 
         $this->db->execute();

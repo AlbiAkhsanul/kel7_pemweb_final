@@ -1,6 +1,6 @@
 <?php
 
-class Car_model
+class Penalty_model
 {
     private $table_name = 'penalties';
     private $db;
@@ -16,7 +16,7 @@ class Car_model
         return $this->db->resultSet();
     }
 
-    public function createNewPenalty($data, $dataImg, $order_id)
+    public function createNewPenalty($data, $dataImg)
     {
         // $currentTime = date('Y-m-d H:i');
         $currentTime = date('Y-m-d');
@@ -24,7 +24,7 @@ class Car_model
         $query = "INSERT INTO {$this->table_name} (order_id,jenis_penalty,biaya_penalty,foto_penalty,status_penalty) VALUES 
                   (:order_id,:jenis_penalty,:biaya_penalty,:foto_penalty,:status_penalty)";
         $this->db->query($query);
-        $this->db->bind('order_id', $order_id);
+        $this->db->bind('order_id', $data['order_id']);
         $this->db->bind('jenis_penalty', $data['jenis_penalty']);
         $this->db->bind('biaya_penalty', $data['biaya_penalty']);
         $this->db->bind('foto_penalty', $penaltyImg);
@@ -92,6 +92,21 @@ class Car_model
         // untuk menghindari sql injection
         $this->db->bind('penalty_id', $id);
         return $this->db->single();
+    }
+
+    public function getAllPenaltiesByOrderId($id)
+    {
+        $this->db->query("SELECT * FROM {$this->table_name} WHERE order_id = :order_id");
+        $this->db->bind('order_id', $id);
+        return $this->db->resultSet();
+    }
+
+    public function getPenaltiesyByOrderId($order_id)
+    {
+        $this->db->query("SELECT * FROM {$this->table_name} WHERE order_id=:order_id");
+        // untuk menghindari sql injection
+        $this->db->bind('order_id', $order_id);
+        return $this->db->resultSet();
     }
 
     public function editPenaltyById($data, $dataImg, $id)

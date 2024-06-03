@@ -48,7 +48,6 @@ class Order extends Controller
 
     public function store($id)
     {
-        echo "gate1";
         if (!isset($_SESSION["login"])) {
             header("Location: " . BASEURL . "/auth/login");
             exit;
@@ -57,8 +56,14 @@ class Order extends Controller
             header('Location: ' . BASEURL . '/order/create/' . $id);
             exit;
         }
-        echo "gate2";
-        if ($this->model('Order_model')->createNewOrder($_POST) > 0) {
+        $data['POST'] = $_POST;
+        if ($data['POST']['jenis_sewa'] != 0) {
+            $row = $this->model('Driver_model')->getAllActiveDrivers($_POST);
+            $data['driver_id'] = $row[0]['driver_id'];
+        } else {
+            $data['driver_id'] = 0;
+        }
+        if ($this->model('Order_model')->createNewOrder($data) > 0) {
             FlashMsg::setFlash('Succesfully', 'Created', 'success');
             header('Location: ' . BASEURL . '/order');
             exit;
@@ -72,7 +77,8 @@ class Order extends Controller
     public function show($id)
     {
         $data['title'] = 'Order Details';
-        $data['orders'] = $this->model('Order_model')->getCarById($id);
+        $data['order'] = $this->model('Order_model')->getOrderById($id);
+        $data['penalties'] = $this->model('Penalty_model')->getPenaltiesyByOrderId($id);
         $this->view('templates/header', $data);
         $this->view('order/details', $data);
         $this->view('templates/footer');
@@ -84,9 +90,13 @@ class Order extends Controller
             header("Location: " . BASEURL . "/auth/login");
             exit;
         }
+        if ($_SESSION['is_admin'] !== 1) {
+            header('Location: ' . BASEURL . '/home');
+            exit;
+        }
         $data['title'] = 'Edit Order';
         $data['order'] = $this->model('Order_model')->getOrderById($id);
-        $data['drivers'] = $this->model('Driver_model')->getAllActiveDrivers();
+        $data['drivers'] = $this->model('Driver_model')->getAllDrivers();
         $data['cars'] = $this->model('Car_model')->getAllCars();
         $this->view('templates/header', $data);
         $this->view('order/edit', $data);
@@ -99,13 +109,17 @@ class Order extends Controller
             header("Location: " . BASEURL . "/auth/login");
             exit;
         }
+        if ($_SESSION['is_admin'] !== 1) {
+            header('Location: ' . BASEURL . '/home');
+            exit;
+        }
         if ($this->model('Order_model')->editOrderById($_POST, $id) > 0) {
             FlashMsg::setFlash('Succesfully', 'Edited', 'success');
-            header('Location: ' . BASEURL . '/order');
+            header('Location: ' . BASEURL . '/admin/orders');
             exit;
         } else {
             FlashMsg::setFlash('Unsuccesfully', 'Edited', 'danger');
-            header('Location: ' . BASEURL . '/order');
+            header('Location: ' . BASEURL . '/admin/orders');
             exit;
         }
     }
@@ -122,11 +136,11 @@ class Order extends Controller
         }
         if ($this->model('Order_model')->acceptOrder($id) > 0) {
             FlashMsg::setFlash('Succesfully', 'Accept', 'success');
-            header('Location: ' . BASEURL . '/admin/dashboard');
+            header('Location: ' . BASEURL . '/admin/orders');
             exit;
         } else {
             FlashMsg::setFlash('Unsuccesfully', 'Accept', 'danger');
-            header('Location: ' . BASEURL . '/admin/dashboard');
+            header('Location: ' . BASEURL . '/admin/orders');
             exit;
         }
     }
@@ -143,11 +157,11 @@ class Order extends Controller
         }
         if ($this->model('Order_model')->rejectOrder($id) > 0) {
             FlashMsg::setFlash('Succesfully', 'Reject', 'success');
-            header('Location: ' . BASEURL . '/admin/dashboard');
+            header('Location: ' . BASEURL . '/admin/orders');
             exit;
         } else {
             FlashMsg::setFlash('Unsuccesfully', 'Reject', 'danger');
-            header('Location: ' . BASEURL . '/admin/dashboard');
+            header('Location: ' . BASEURL . '/admin/orders');
             exit;
         }
     }
@@ -164,11 +178,11 @@ class Order extends Controller
         }
         if ($this->model('Order_model')->closeOrder($id) > 0) {
             FlashMsg::setFlash('Succesfully', 'Reject', 'success');
-            header('Location: ' . BASEURL . '/admin/dashboard');
+            header('Location: ' . BASEURL . '/admin/orders');
             exit;
         } else {
             FlashMsg::setFlash('Unsuccesfully', 'Reject', 'danger');
-            header('Location: ' . BASEURL . '/admin/dashboard');
+            header('Location: ' . BASEURL . '/admin/orders');
             exit;
         }
     }

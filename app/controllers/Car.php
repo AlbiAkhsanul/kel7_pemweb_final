@@ -32,7 +32,7 @@ class Car extends Controller
 
         $data['title'] = 'Create Car';
         $this->view('templates/header', $data);
-        $this->view('car/create', $data);
+        $this->view('admin/cars/create', $data);
         $this->view('templates/footer');
     }
 
@@ -52,11 +52,11 @@ class Car extends Controller
         }
         if ($this->model('Car_model')->createNewCar($_POST, $_FILES) > 0) {
             FlashMsg::setFlash('Succesfully', 'Created', 'success');
-            header('Location: ' . BASEURL . '/car');
+            header('Location: ' . BASEURL . '/admin/cars');
             exit;
         } else {
             FlashMsg::setFlash('Unsuccesfully', 'Created', 'danger');
-            header('Location: ' . BASEURL . '/car');
+            header('Location: ' . BASEURL . '/admin/cars');
             exit;
         }
     }
@@ -83,7 +83,7 @@ class Car extends Controller
         $data['title'] = 'Edit Car';
         $data['car'] = $this->model('Car_model')->getCarById($id);
         $this->view('templates/header', $data);
-        $this->view('car/edit', $data);
+        $this->view('admin/cars/edit', $data);
         $this->view('templates/footer');
     }
 
@@ -99,11 +99,11 @@ class Car extends Controller
         }
         if ($this->model('Car_model')->editCarById($_POST, $_FILES, $id) > 0) {
             FlashMsg::setFlash('Succesfully', 'Edited', 'success');
-            header('Location: ' . BASEURL . '/car');
+            header('Location: ' . BASEURL . '/admin/cars');
             exit;
         } else {
             FlashMsg::setFlash('Unsuccesfully', 'Edited', 'danger');
-            header('Location: ' . BASEURL . '/car');
+            header('Location: ' . BASEURL . '/admin/cars');
             exit;
         }
     }
@@ -120,11 +120,11 @@ class Car extends Controller
         }
         if ($this->model('Car_model')->deleteCarById($id) > 0) {
             FlashMsg::setFlash('Succesfully', 'Deleted', 'success');
-            header('Location: ' . BASEURL . '/car');
+            header('Location: ' . BASEURL . '/admin/cars');
             exit;
         } else {
             FlashMsg::setFlash('Unsuccesfully', 'Deleted', 'danger');
-            header('Location: ' . BASEURL . '/car');
+            header('Location: ' . BASEURL . '/admin/cars');
             exit;
         }
     }
