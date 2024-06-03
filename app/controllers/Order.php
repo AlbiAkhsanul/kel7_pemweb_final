@@ -96,10 +96,16 @@ class Order extends Controller
         }
         $data['title'] = 'Edit Order';
         $data['order'] = $this->model('Order_model')->getOrderById($id);
+
+        if (!$data['order']) {
+            header('Location: ' . BASEURL . '/admin/orders');
+            exit;
+        }
+
         $data['drivers'] = $this->model('Driver_model')->getAllDrivers();
         $data['cars'] = $this->model('Car_model')->getAllCars();
         $this->view('templates/header', $data);
-        $this->view('order/edit', $data);
+        $this->view('admin/orders/edit', $data);
         $this->view('templates/footer');
     }
 

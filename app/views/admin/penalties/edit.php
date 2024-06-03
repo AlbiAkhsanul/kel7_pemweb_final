@@ -1,69 +1,74 @@
-<?php $penalty = $data['penalty'] ?>
-<h1>Edit Penalty</h1>
+<?php
+$order = $data['order'];
+$user = $data['user'];
+$car = $data['car'];
+$penalty = $data['penalty'];
 
-<form action="<?= BASEURL; ?>/penalty/update/<?= $car['car_id']; ?>" method="post" enctype="multipart/form-data">
+var_dump($order);
+echo "<hr>";
+var_dump($user);
+echo "<hr>";
+var_dump($car);
+echo "<hr>";
+var_dump($penalty);
+?>
+<h1>Buat Penalty</h1>
+
+<h3>
+    Data Order
+</h3>
+
+<ul>
+    <li>
+        <h5>
+            Order Id : <?= $order['order_id'] ?>
+        </h5>
+    </li>
+    <li>
+        <h5>
+            Nama User : <?= $user['nama_user'] ?>
+        </h5>
+    </li>
+    <li>
+        <h5>
+            Tanggal Sewa : <?= $order['tanggal_sewa'] ?>
+        </h5>
+    </li>
+    <li>
+        <h5>
+            Durasi Sewa : <?= $order['durasi_sewa'] ?> Hari
+        </h5>
+    </li>
+    <li>
+        <h5>
+            Jenis Sewa : <?= $order['jenis_sewa'] === 1 ? 'Dengan Supir' : 'Tanpa Supir' ?>
+        </h5>
+    </li>
+    <li>
+        <h5>
+            Nama Mobil [Id Mobil] : <?= $car['nama_mobil'] ?> [<?= $car['car_id'] ?>]
+        </h5>
+    </li>
+</ul>
+
+<form action="<?= BASEURL; ?>/penalty/update/<?= $penalty['penalty_id'] ?>" method="post" enctype="multipart/form-data">
     <ul>
-        <input type="hidden" name="old_foto_mobil" id="foto" value="<?= $car['foto_mobil']; ?>">
-        <br>
+        <input type="hidden" name="order_id" id="order_id" value="<?= $order['order_id']; ?>">
         <li>
-            <label for="car_brand_id">Merk Mobil: </label>
-            <select id="car_brand_id" name="car_brand_id" required>
-                <option value="1" <?= $car['car_brand_id'] == '1' ? 'selected' : '' ?>>Toyota</option>
-                <option value="2" <?= $car['car_brand_id'] == '2' ? 'selected' : '' ?>>Honda</option>
-                <option value="3" <?= $car['car_brand_id'] == '3' ? 'selected' : '' ?>>Nissan</option>
-                <option value="4" <?= $car['car_brand_id'] == '4' ? 'selected' : '' ?>>Suzuki</option>
-                <option value="5" <?= $car['car_brand_id'] == '5' ? 'selected' : '' ?>>Ford</option>
-                <option value="6" <?= $car['car_brand_id'] == '6' ? 'selected' : '' ?>>Daihatsu</option>
-            </select>
+            <label for="jenis_penalty">Jenis Penalty: </label>
+            <input type="text" value="<?= $penalty['jenis_penalty'] ?>" name="jenis_penalty" id="jenis_penalty" autofocus required>
         </li>
         <li>
-            <label for="nama_mobil">Nama Mobil: </label>
-            <input type="text" name="nama_mobil" id="nama_mobil" value="<?= $car['nama_mobil']; ?>" autofocus required>
+            <label for="biaya_penalty">Biaya Penalty: </label>
+            <input type="number" value="<?= $penalty['biaya_penalty'] ?>" name="biaya_penalty" id="biaya_penalty" required>
         </li>
         <li>
-            <label for="jenis_mobil">Jenis Mobil: </label>
-            <select id="jenis_mobil" name="jenis_mobil" required>
-                <option value="MPV" <?= $car['jenis_mobil'] === 'MPV' ? 'selected' : '' ?>>MPV</option>
-                <option value="SUV" <?= $car['jenis_mobil'] === 'SUV' ? 'selected' : '' ?>>SUV</option>
-                <option value="Hatchback" <?= $car['jenis_mobil'] === 'Hatchback' ? 'selected' : '' ?>>Hatchback</option>
-                <option value="LMPV" <?= $car['jenis_mobil'] === 'LMPV' ? 'selected' : '' ?>>LMPV</option>
-                <option value="Sedan" <?= $car['jenis_mobil'] === 'Sedan' ? 'selected' : '' ?>>Sedan</option>
-            </select>
+            <label for="foto_penalty">Foto Penalty: </label>
+            <input type="file" name="foto_penalty" id="foto_penalty" required>
+            <img src="<?= BASEURL ?>/img/penalties/<?= $penalty["foto_penalty"]; ?>" alt="FotoMobil">
         </li>
         <li>
-            <label for="tipe_transmisi">Tipe Transmisi: </label>
-            <select id="tipe_transmisi" name="tipe_transmisi" required>
-                <option value="Manual" <?= $car['tipe_transmisi'] === 'Manual' ? 'selected' : '' ?>>Manual</option>
-                <option value="Matic" <?= $car['tipe_transmisi'] === 'Matic' ? 'selected' : '' ?>>Matic</option>
-            </select>
-        </li>
-        <li>
-            <label for="branch_id">Cabang Perusahaan: </label>
-            <select id="branch_id" name="branch_id" required>
-                <option value="1" <?= $car['branch_id'] == '1' ? 'selected' : '' ?>>Kenjeran</option>
-                <option value="2" <?= $car['branch_id'] == '2' ? 'selected' : '' ?>>Rungkut</option>
-                <option value="3" <?= $car['branch_id'] == '3' ? 'selected' : '' ?>>Wonokromo</option>
-                <option value="4" <?= $car['branch_id'] == '4' ? 'selected' : '' ?>>LMPV</option>
-            </select>
-        </li>
-        <li>
-            <label for="harga_sewa">Harga Sewa: </label>
-            <input type="number" name="harga_sewa" id="harga_sewa" value="<?= $car['harga_sewa']; ?>" required>
-        </li>
-        <li>
-            <label for="status_mobil">Status Mobil: </label>
-            <select id="status_mobil" name="status_mobil" required>
-                <option value="1" <?= $car['status_mobil'] == '1' ? 'selected' : '' ?>>Mobil Tersedia</option>
-                <option value="0" <?= $car['status_mobil'] == '0' ? 'selected' : '' ?>>Mobil Tidak Tersedia</option>
-            </select>
-        </li>
-        <li>
-            <label for="foto_mobil">Foto Mobil: </label>
-            <input type="file" name="foto_mobil" id="foto_mobil">
-            <img src="<?= BASEURL ?>/img/cars/<?= $car["foto_mobil"]; ?>" alt="FotoMobil">
-        </li>
-        <li>
-            <button type="submit" name="store">Edit List Mobil</button>
+            <button type="submit" name="store">Buat Penalty</button>
         </li>
     </ul>
 </form>

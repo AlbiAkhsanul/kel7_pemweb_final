@@ -15,10 +15,12 @@ var_dump($drivers);
     <li>
         <label for="car_id">Mobil Yang Di Sewa : </label>
         <select id="car_id" name="car_id" required>
-            <?php $i = 1 ?>
             <?php foreach ($cars as $car) : ?>
-                <option value="<?= $i ?>" <?= $i === $order['car_id'] ? 'selected' : '' ?>><?= $car['nama_mobil'] ?></option>
-                <?php $i++ ?>
+                <?php if ($car['car_id'] === $order['car_id']) : ?>
+                    <option value="<?= $car['car_id'] ?>" selected><?= $car['nama_mobil'] ?></option>
+                <?php else : ?>
+                    <option value="<?= $car['car_id'] ?>"><?= $car['nama_mobil'] ?></option>
+                <?php endif ?>
             <?php endforeach; ?>
         </select>
     </li>
@@ -30,11 +32,11 @@ var_dump($drivers);
         <li>
             <label for="driver_id">Driver : </label>
             <select id="driver_id" name="driver_id" required>
-                <?php $i = 1 ?>
                 <?php foreach ($drivers as $driver) : ?>
-                    <?php if ($driver['status_driver'] === 1 || $driver['driver_id'] === $order['driver_id']) : ?>
-                        <option value="<?= $i ?>" <?= $i === $order['driver_id'] ? 'selected' : '' ?>><?= $driver['nama_driver'] ?></option>
-                        <?php $i++ ?>
+                    <?php if ($driver['driver_id'] === $order['driver_id']) : ?>
+                        <option value="<?= $driver['driver_id'] ?>" selected><?= $driver['nama_driver'] ?></option>
+                    <?php elseif ($driver['status_driver'] === 1) : ?>
+                        <option value="<?= $driver['driver_id'] ?>"><?= $driver['nama_driver'] ?></option>
                     <?php endif ?>
                 <?php endforeach; ?>
             </select>

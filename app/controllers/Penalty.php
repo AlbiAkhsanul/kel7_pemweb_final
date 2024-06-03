@@ -30,7 +30,7 @@ class Penalty extends Controller
             exit;
         }
         $data['title'] = 'Create Penalty';
-        $data['order'] = $this->model('order_model')->getOrderById($id);
+        $data['order'] = $this->model('Order_model')->getOrderById($id);
         $user_id = $data['order']['user_id'];
         $data['user'] = $this->model('User_model')->getUserById($user_id);
         $car_id = $data['order']['car_id'];
@@ -86,6 +86,18 @@ class Penalty extends Controller
         }
         $data['title'] = 'Edit Penalty';
         $data['penalty'] = $this->model('Penalty_model')->getPenaltyById($id);
+
+        if (!$data['penalty']) {
+            header('Location: ' . BASEURL . '/admin/penalties');
+            exit;
+        }
+
+        $order_id = $data['penalty']['order_id'];
+        $data['order'] = $this->model('Order_model')->getOrderById($order_id);
+        $user_id = $data['order']['user_id'];
+        $data['user'] = $this->model('User_model')->getUserById($user_id);
+        $car_id = $data['order']['car_id'];
+        $data['car'] = $this->model('Car_model')->getCarById($car_id);
         $this->view('templates/header', $data);
         $this->view('admin/penalties/edit', $data);
         $this->view('templates/footer');

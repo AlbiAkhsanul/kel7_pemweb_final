@@ -124,14 +124,12 @@ class Penalty_model
                   jenis_penalty = :jenis_penalty,
                   biaya_penalty = :biaya_penalty, 
                   foto_penalty = :foto_penalty,
-                  status_penalty = :status_penalty,
                   WHERE penalty_id = :penalty_id ";
         $this->db->query($query);
         $this->db->bind('order_id', $data['order_id']);
         $this->db->bind('jenis_penalty', $data['jenis_penalty']);
         $this->db->bind('biaya_penalty', $data['biaya_penalty']);
         $this->db->bind('foto_penalty', $penaltyImg);
-        $this->db->bind('status_penalty', $data['status_penalty']);
         $this->db->bind('penalty_id', $id);
 
         $this->db->execute();
