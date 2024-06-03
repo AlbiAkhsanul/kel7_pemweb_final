@@ -121,10 +121,10 @@ class Order_model
     public function acceptOrder($id)
     {
         $query = "UPDATE {$this->table_name} SET 
-                  status_order = :status_order, 
+                  status_order = :status_order 
                   WHERE order_id = :order_id ";
         $this->db->query($query);
-        $this->db->bind('order_id', "Accepted");
+        $this->db->bind('status_order', "Accepted");
         $this->db->bind('order_id', $id);
 
         $this->db->execute();
@@ -135,10 +135,10 @@ class Order_model
     public function rejectOrder($id)
     {
         $query = "UPDATE {$this->table_name} SET 
-                  status_order = :status_order, 
+                  status_order = :status_order 
                   WHERE order_id = :order_id ";
         $this->db->query($query);
-        $this->db->bind('order_id', "Cancelled");
+        $this->db->bind('status_order', "Cancelled");
         $this->db->bind('order_id', $id);
         $this->db->execute();
 
@@ -155,10 +155,10 @@ class Order_model
     public function closeOrder($id)
     {
         $query = "UPDATE {$this->table_name} SET 
-                  status_order = :status_order, 
+                  status_order = :status_order 
                   WHERE order_id = :order_id ";
         $this->db->query($query);
-        $this->db->bind('order_id', "Closed");
+        $this->db->bind('status_order', "Closed");
         $this->db->bind('order_id', $id);
         $this->db->execute();
 

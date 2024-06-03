@@ -4,14 +4,6 @@ class Car extends Controller
 {
     public function index()
     {
-        if (!isset($_SESSION["login"])) {
-            header("Location: " . BASEURL . "/auth/login");
-            exit;
-        }
-        if ($_SESSION["is_admin"] !== 1) {
-            header("Location: " . BASEURL . "/home");
-            exit;
-        }
         $data['title'] = 'Car List';
         $data['cars'] = $this->model('Car_model')->getAllCars();
         $this->view('templates/header', $data);

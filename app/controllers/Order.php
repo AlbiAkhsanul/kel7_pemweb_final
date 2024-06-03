@@ -130,6 +130,33 @@ class Order extends Controller
         }
     }
 
+    public function action($id)
+    {
+        if (!isset($_SESSION["login"])) {
+            header("Location: " . BASEURL . "/auth/login");
+            exit;
+        }
+        if ($_SESSION['is_admin'] !== 1) {
+            header('Location: ' . BASEURL . '/home');
+            exit;
+        }
+        $data['title'] = 'Order Details';
+        $data['order'] = $this->model('Order_model')->getOrderById($id);
+
+        if (!$data['order']) {
+            header('Location: ' . BASEURL . '/admin/penalties');
+            exit;
+        }
+
+        $user_id = $data['order']['user_id'];
+        $data['user'] = $this->model('User_model')->getUserById($user_id);
+        $car_id = $data['order']['car_id'];
+        $data['car'] = $this->model('Car_model')->getCarById($car_id);
+        $this->view('templates/header', $data);
+        $this->view('admin/orders/action', $data);
+        $this->view('templates/footer');
+    }
+
     public function accept($id)
     {
         if (!isset($_SESSION["login"])) {

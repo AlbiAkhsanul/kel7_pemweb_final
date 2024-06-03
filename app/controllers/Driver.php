@@ -46,11 +46,11 @@ class Driver extends Controller
             header("Location: " . BASEURL . "/home");
             exit;
         }
-        if (empty($_POST) && empty($_FILES)) {
+        if (empty($_POST)) {
             header('Location: ' . BASEURL . '/driver/create');
             exit;
         }
-        if ($this->model('Driver_model')->createNewDriver($_POST, $_FILES) > 0) {
+        if ($this->model('Driver_model')->createNewDriver($_POST) > 0) {
             FlashMsg::setFlash('Succesfully', 'Created', 'success');
             header('Location: ' . BASEURL . '/admin/drivers');
             exit;
@@ -82,6 +82,10 @@ class Driver extends Controller
         }
         $data['title'] = 'Edit driver';
         $data['driver'] = $this->model('Driver_model')->getDriverById($id);
+        if (!$data['driver']) {
+            header('Location: ' . BASEURL . '/admin/drivers');
+            exit;
+        }
         $this->view('templates/header', $data);
         $this->view('admin/drivers/edit', $data);
         $this->view('templates/footer');
@@ -97,7 +101,11 @@ class Driver extends Controller
             header("Location: " . BASEURL . "/home");
             exit;
         }
-        if ($this->model('Driver_model')->editDriverById($_POST, $_FILES, $id) > 0) {
+        if (empty($_POST)) {
+            header('Location: ' . BASEURL . '/driver/edit/' . $id);
+            exit;
+        }
+        if ($this->model('Driver_model')->editDriverById($_POST, $id) > 0) {
             FlashMsg::setFlash('Succesfully', 'Edited', 'success');
             header('Location: ' . BASEURL . '/admin/drivers');
             exit;
