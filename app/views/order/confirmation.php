@@ -10,7 +10,6 @@
     <input type="hidden" name="durasi_sewa" value="<?= $data['durasi_sewa']; ?>">
     <input type="hidden" name="total_harga" value="<?= $data['total_harga']; ?>">
     <input type="hidden" name="tanggal_sewa" value="<?= $data['tanggal_sewa']; ?>">
-    <input type="hidden" name="method_id" value="<?= $data['method_id']; ?>">
     <li>
         <label for="tanggal_sewa">Tanggal Sewa: </label>
         <input type="date" name="tanggal_sewa" id="tanggal_sewa" value="<?= $data['tanggal_sewa'] ?>" required disabled>

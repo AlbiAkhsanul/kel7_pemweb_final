@@ -20,7 +20,7 @@ class Order_model
     {
         $data['total_harga'] = $data['harga_sewa'] * $data['durasi_sewa'];
 
-        if ($data['jenis_sewa'] !== 0) {
+        if ($data['jenis_sewa'] != 0) {
             $data['total_harga'] += 100000 * $data['durasi_sewa'];
         }
 
@@ -31,7 +31,8 @@ class Order_model
     {
         $order = $data['POST'];
         $driver_id = $data['driver_id'];
-        $car_id = $data['car_id'];
+        $car_id = $data['POST']['car_id'];
+
         $this->changeCarStatus($car_id, 0);
 
         if ($driver_id != 0) {
@@ -114,17 +115,6 @@ class Order_model
         return $this->db->affectedRowCount();
     }
 
-    public function deletOrderById($id)
-    {
-        $query = "DELETE FROM {$this->table_name} WHERE order_id = :order_id";
-        $this->db->query($query);
-        $this->db->bind('order_id', $id);
-
-        $this->db->execute();
-
-        return $this->db->affectedRowCount();
-    }
-
     public function acceptOrder($id)
     {
         $query = "UPDATE {$this->table_name} SET 
@@ -156,6 +146,9 @@ class Order_model
             $this->changeDriverStatus($driver_id, 1);
         }
 
+        $car_id = $order['car_id'];
+        $this->changeCarStatus($car_id, 1);
+
         return $this->db->affectedRowCount();
     }
 
@@ -175,6 +168,9 @@ class Order_model
             $driver_id = $order['driver_id'];
             $this->changeDriverStatus($driver_id, 1);
         }
+
+        $car_id = $order['car_id'];
+        $this->changeCarStatus($car_id, 1);
 
         return $this->db->affectedRowCount();
     }

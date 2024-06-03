@@ -108,6 +108,8 @@ class Order extends Controller
 
         $data['drivers'] = $this->model('Driver_model')->getAllDrivers();
         $data['cars'] = $this->model('Car_model')->getAllCars();
+        $car_id = $data['order']['car_id'];
+        $data['old_car'] = $this->model('Car_model')->getCarById($car_id);
         $this->view('templates/header', $data);
         $this->view('admin/orders/edit', $data);
         $this->view('templates/footer');

@@ -6,6 +6,10 @@ $orders = $data['orders'];
 </h1>
 <?php var_dump($data); ?>
 <hr>
+<a href="<?= BASEURL ?>/admin/dashboard">
+    <button>Dashboard</button>
+</a>
+<hr>
 
 <?php if (!$orders) : ?>
     <li>
@@ -21,12 +25,14 @@ $orders = $data['orders'];
                     >> [<?= $order['order_id'] ?>] <?= $order['tanggal_order'] ?> [<?= $order['status_order'] ?>]
                 </h5>
             </a>
-            <a href="<?= BASEURL ?>/order/action/<?= $order['order_id'] ?>">
-                <button>Action</button>
-            </a>
-            <a href="<?= BASEURL ?>/order/edit/<?= $order['order_id'] ?>">
-                <button>Edit Order</button>
-            </a>
+            <?php if ($order['status_order'] != "Closed" && $order['status_order'] != "Cancelled") : ?>
+                <a href="<?= BASEURL ?>/order/action/<?= $order['order_id'] ?>">
+                    <button>Action</button>
+                </a>
+                <a href="<?= BASEURL ?>/order/edit/<?= $order['order_id'] ?>">
+                    <button>Edit Order</button>
+                </a>
+            <?php endif ?>
         </li>
     <?php endforeach; ?>
 <?php endif ?>

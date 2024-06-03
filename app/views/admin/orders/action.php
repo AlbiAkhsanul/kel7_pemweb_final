@@ -40,6 +40,11 @@ var_dump($car);
     </li>
     <li>
         <h5>
+            Total Harga : Rp<?= $order['total_harga'] ?>
+        </h5>
+    </li>
+    <li>
+        <h5>
             Nama Mobil [Id Mobil] : <?= $car['nama_mobil'] ?> [<?= $car['car_id'] ?>]
         </h5>
     </li>

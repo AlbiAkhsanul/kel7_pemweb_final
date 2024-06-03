@@ -1,5 +1,6 @@
 <?php
 $cars = $data['cars'];
+$old_car = $data['old_car'];
 $order = $data['order'];
 $drivers = $data['drivers'];
 var_dump($cars);
@@ -19,11 +20,14 @@ var_dump($drivers);
             <?php foreach ($cars as $car) : ?>
                 <?php if ($car['car_id'] === $order['car_id']) : ?>
                     <option value="<?= $car['car_id'] ?>" selected><?= $car['nama_mobil'] ?></option>
-                <?php elseif ($car['status_mobil'] === 1) : ?>
+                <?php elseif ($car['status_mobil'] === 1 && $car['harga_sewa'] === $old_car['harga_sewa']) : ?>
                     <option value="<?= $car['car_id'] ?>"><?= $car['nama_mobil'] ?></option>
                 <?php endif ?>
             <?php endforeach; ?>
         </select>
+        <p>
+            [Hanya Bisa Ganti Mobil Dengan Harga Yang Sama]
+        </p>
     </li>
     <li>
         <label for="tanggal_sewa">Tanggal Sewa: </label>

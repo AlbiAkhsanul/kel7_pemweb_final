@@ -5,6 +5,11 @@ $drivers = $data['drivers'];
     Ini Halaman Driver Admin
 </h1>
 <?php var_dump($data); ?>
+<hr>
+<a href="<?= BASEURL ?>/admin/dashboard">
+    <button>Dashboard</button>
+</a>
+<hr>
 
 <?php if (!$drivers) : ?>
     <li>

@@ -6,7 +6,10 @@ $penalties = $data['penalties'];
 </h1>
 <?php var_dump($data); ?>
 <hr>
-
+<a href="<?= BASEURL ?>/admin/dashboard">
+    <button>Dashboard</button>
+</a>
+<hr>
 <?php if (!$penalties) : ?>
     <li>
         <h5>
@@ -18,15 +21,17 @@ $penalties = $data['penalties'];
         <li>
             <a href="<?= BASEURL ?>/penalty/show/<?= $penalty['penalty_id'] ?>">
                 <h5>
-                    >> [<?= $penalty['penalty_id'] ?>] <?= $penalty['jenis_penalty'] ?>
+                    >> [<?= $penalty['penalty_id'] ?>] <?= $penalty['jenis_penalty'] ?> (<?= $penalty['status_penalty'] ?>)
                 </h5>
             </a>
-            <a href="<?= BASEURL ?>/penalty/action/<?= $penalty['penalty_id'] ?>">
-                <button>Action</button>
-            </a>
-            <a href="<?= BASEURL ?>/penalty/edit/<?= $penalty['penalty_id'] ?>">
-                <button>Edit Penalty</button>
-            </a>
+            <?php if ($penalty['status_penalty'] != "Closed") : ?>
+                <a href="<?= BASEURL ?>/penalty/action/<?= $penalty['penalty_id'] ?>">
+                    <button>Action</button>
+                </a>
+                <a href="<?= BASEURL ?>/penalty/edit/<?= $penalty['penalty_id'] ?>">
+                    <button>Edit Penalty</button>
+                </a>
+            <?php endif ?>
         </li>
     <?php endforeach; ?>
 <?php endif ?>
