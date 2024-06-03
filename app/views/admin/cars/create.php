@@ -35,15 +35,6 @@
             </select>
         </li>
         <li>
-            <label for="branch_id">Cabang Perusahaan: </label>
-            <select id="branch_id" name="branch_id" required>
-                <option value="1">Kenjeran</option>
-                <option value="2">Rungkut</option>
-                <option value="3">Wonokromo</option>
-                <option value="4">Gubeng</option>
-            </select>
-        </li>
-        <li>
             <label for="harga_sewa">Harga Sewa: </label>
             <input type="number" name="harga_sewa" id="harga_sewa" required>
         </li>

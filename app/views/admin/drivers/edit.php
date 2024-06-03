@@ -11,15 +11,6 @@ var_dump($driver);
             <input type="text" name="nama_driver" id="nama_driver" value="<?= $driver['nama_driver']; ?>" autofocus required>
         </li>
         <li>
-            <label for="branch_id">Cabang Perusahaan: </label>
-            <select id="branch_id" name="branch_id" required>
-                <option value="1" <?= $driver['branch_id'] == '1' ? 'selected' : '' ?>>Kenjeran</option>
-                <option value="2" <?= $driver['branch_id'] == '2' ? 'selected' : '' ?>>Rungkut</option>
-                <option value="3" <?= $driver['branch_id'] == '3' ? 'selected' : '' ?>>Wonokromo</option>
-                <option value="4" <?= $driver['branch_id'] == '4' ? 'selected' : '' ?>>Gubeng</option>
-            </select>
-        </li>
-        <li>
             <label for="no_telp_driver">No Telephon Driver: </label>
             <input type="number" name="no_telp_driver" id="no_telp_driver" value="<?= $driver['no_telp_driver']; ?>" required>
         </li>

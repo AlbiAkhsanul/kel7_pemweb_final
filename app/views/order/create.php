@@ -41,15 +41,6 @@ var_dump($data);
             </select>
         </li>
         <li>
-            <label for="branch_id">Cabang Perusahaan: </label>
-            <select id="branch_id" name="branch_id" required disabled>
-                <option value="1" <?= $car['branch_id'] == '1' ? 'selected' : '' ?>>Kenjeran</option>
-                <option value="2" <?= $car['branch_id'] == '2' ? 'selected' : '' ?>>Rungkut</option>
-                <option value="3" <?= $car['branch_id'] == '3' ? 'selected' : '' ?>>Wonokromo</option>
-                <option value="4" <?= $car['branch_id'] == '4' ? 'selected' : '' ?>>LMPV</option>
-            </select>
-        </li>
-        <li>
             <label for="harga_sewa">Harga Sewa [Harian]: </label>
             <input type="number" name="harga_sewa" id="harga_sewa" value="<?= $car['harga_sewa']; ?>" required disabled>
         </li>
