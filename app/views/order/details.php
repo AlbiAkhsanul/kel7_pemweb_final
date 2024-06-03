@@ -11,6 +11,12 @@ var_dump($penalties);
     Ini Halaman Detail Orders
 </h1>
 <hr>
+<?php if ($_SESSION['is_admin'] === 1) : ?>
+    <a href="<?= BASEURL ?>/penalty/create/<?= $order['order_id'] ?>">
+        <button>Buat Penalty Untuk Order Ini</button>
+    </a>
+<?php endif ?>
+<hr>
 <h3>
     List Penalties
 </h3>
@@ -26,7 +32,7 @@ var_dump($penalties);
             <li>
                 <a href="<?= BASEURL ?>/penalty/show/<?= $penalty['penalty_id'] ?>">
                     <h5>
-                        <?= $penalty['jenis_penalty'] ?>
+                        <?= $penalty['jenis_penalty'] ?> [<?= $penalty['status_penalty'] ?>]
                     </h5>
                 </a>
             </li>

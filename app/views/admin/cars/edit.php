@@ -63,7 +63,7 @@
             <img src="<?= BASEURL ?>/img/cars/<?= $car["foto_mobil"]; ?>" alt="FotoMobil">
         </li>
         <li>
-            <button type="submit" name="store">Edit List Mobil</button>
+            <button type="submit" name="store">Update List Mobil</button>
         </li>
     </ul>
 </form>

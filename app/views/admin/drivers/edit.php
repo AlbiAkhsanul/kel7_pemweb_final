@@ -31,7 +31,7 @@ var_dump($driver);
             </select>
         </li>
         <li>
-            <button type="submit" name="store">Edit Driver</button>
+            <button type="submit" name="store">Update Driver</button>
         </li>
     </ul>
 </form>

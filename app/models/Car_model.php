@@ -16,6 +16,12 @@ class Car_model
         return $this->db->resultSet();
     }
 
+    public function getAllActiveCars()
+    {
+        $this->db->query("SELECT * FROM {$this->table_name} WHERE status_mobil = 1");
+        return $this->db->resultSet();
+    }
+
     public function createNewCar($data, $dataImg)
     {
         // $currentTime = date('Y-m-d H:i');

@@ -31,8 +31,8 @@ class Order_model
     {
         $order = $data['POST'];
         $driver_id = $data['driver_id'];
-        // var_dump($driver_id);
-        // exit;
+        $car_id = $data['car_id'];
+        $this->changeCarStatus($car_id, 0);
 
         if ($driver_id != 0) {
             $this->changeDriverStatus($driver_id, 0);
@@ -69,6 +69,13 @@ class Order_model
 
     public function editOrderById($data, $id)
     {
+        if ($data['old_car_id'] != $data['car_id']) {
+            $old_car_id = $data['old_car_id'];
+            $car_id = $data['car_id'];
+
+            $this->changeCarStatus($car_id, 0);
+            $this->changeCarStatus($old_car_id, 1);
+        }
         // $jenisSewa = 0;
         // // $totalHarga = $data['total_harga'];
         // if ($data['driver_id'] != 0) {
@@ -188,6 +195,28 @@ class Order_model
             $this->db->query($query);
             $this->db->bind('status_driver', $driverStatus);
             $this->db->bind('driver_id', $driver_id);
+
+            $this->db->execute();
+        }
+        return $this->db->affectedRowCount();
+    }
+
+    public function changeCarStatus($car_id, $carStatus)
+    {
+        $query = "SELECT * FROM cars WHERE car_id = :car_id";
+
+        $this->db->query($query);
+        $this->db->bind('car_id', $car_id);
+
+        $row = $this->db->single();
+
+        if ($row) {
+            $query = "UPDATE cars SET 
+                  status_mobil = :status_mobil
+                  WHERE car_id = :car_id ";
+            $this->db->query($query);
+            $this->db->bind('status_mobil', $carStatus);
+            $this->db->bind('car_id', $car_id);
 
             $this->db->execute();
         }

@@ -68,7 +68,7 @@ var_dump($penalty);
             <img src="<?= BASEURL ?>/img/penalties/<?= $penalty["foto_penalty"]; ?>" alt="FotoPenalty">
         </li>
         <li>
-            <button type="submit" name="store">Buat Penalty</button>
+            <button type="submit" name="store">Update Penalty</button>
         </li>
     </ul>
 </form>
