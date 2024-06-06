@@ -35,7 +35,7 @@
             <option value="1">BNI</option>
             <option value="2">BCA</option>
             <option value="3">OVO</option>
-            <option value="4">Shoppe Pay</option>
+            <option value="4">Shopee Pay</option>
         </select>
     </li>
     <li>

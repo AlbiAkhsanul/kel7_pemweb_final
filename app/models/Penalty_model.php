@@ -136,17 +136,17 @@ class Penalty_model
         return $this->db->affectedRowCount();
     }
 
-    public function deletePenaltyById($id)
-    {
-        $this->unlinkPenaltyImg($id);
-        $query = "DELETE FROM {$this->table_name} WHERE penalty_id = :penalty_id";
-        $this->db->query($query);
-        $this->db->bind('penalty_id', $id);
+    // public function deletePenaltyById($id)
+    // {
+    //     $this->unlinkPenaltyImg($id);
+    //     $query = "DELETE FROM {$this->table_name} WHERE penalty_id = :penalty_id";
+    //     $this->db->query($query);
+    //     $this->db->bind('penalty_id', $id);
 
-        $this->db->execute();
+    //     $this->db->execute();
 
-        return $this->db->affectedRowCount();
-    }
+    //     return $this->db->affectedRowCount();
+    // }
 
     public function unlinkPenaltyImg($id)
     {
