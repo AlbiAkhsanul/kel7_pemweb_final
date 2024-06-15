@@ -165,12 +165,12 @@ class Car_model
     {
         $keyword = $_POST['keyword'];
 
-        $query = "UPDATE {$this->table_name} SET 
-         NAMA_MOBIL LIKE :KEYWORD OR  
-         JENIS_MOBIL LIKE :KEYWORD OR
-         TIPE_TRANSMISI LIKE :KEYWORD OR 
-         MERK_MOBIL LIKE :KEYWORD OR 
-         WHERE CAR_ID = :CAR_ID ";
+        // Menggunakan SELECT untuk mendapatkan data
+        $query = "SELECT * FROM {$this->table_name} WHERE 
+        NAMA_MOBIL LIKE :KEYWORD OR  
+        JENIS_MOBIL LIKE :KEYWORD OR
+        TIPE_TRANSMISI LIKE :KEYWORD OR 
+        MERK_MOBIL LIKE :KEYWORD";
 
         $this->db->query($query);
         $this->db->bind('KEYWORD', "%$keyword%");
