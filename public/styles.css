@@ -1,0 +1,407 @@
+.header {
+    width: 100%;
+    position: sticky;
+    top: 0;
+    z-index: 99;
+}
+
+.text-end .btn {
+  border-radius: 20px;
+}
+
+.nav ul:hover {
+  color: white;
+}
+
+body {
+  margin: 0;
+  line-height: normal;
+  color: #eaecee;
+  background-color: #121212;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  position: relative; /* Make sure body is positioned */
+}
+
+body::before {
+  content: "";
+  background-image: url('src/cars/2024cx5.png') no-repeat center center !important;
+  background-size: cover;
+  opacity: 0.5;
+  position: fixed; /* Fixes the background relative to the viewport */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1; /* Places the pseudo-element behind the body content */
+}
+
+
+footer {
+  width: 100%;
+  background-color: #212529;
+  color: #eaecee;
+  padding: 40px 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.footer a {
+  color: #eaeaea;
+  text-decoration: none;
+}
+.footer a:hover {
+  color: white;
+}
+.footer .divider {
+  border-top: 1px solid #444;
+  margin: 10px 0;
+  width: 100px;
+}
+
+.list-unstyled {
+  font-size: 12px;
+  line-height: 200%;
+}
+
+.fa-apple {
+  font-size: 19px;
+}
+
+.img-fluid .mb-3 {
+  margin-left: 50px;
+}
+
+/* .divider-big {
+  border-top: 1px solid #121212;
+  width: 70%;
+  position: relative;
+  margin-left: auto;
+  margin-right: auto;
+} */
+
+/* landing page utama */
+
+video {
+    position: fixed;
+    top: 0;
+    left: 0;
+    min-width: 100%;
+    min-height: 100%;
+    z-index:-100;
+    filter: opacity(60%);
+  }
+
+.pembuka {
+    color: #eaecee;
+    font-size: 0.7em;
+    letter-spacing: 0.05em;
+    line-height: 100%;
+    font-weight: 700;
+    margin-top: 55px;
+}
+
+li .text-white {
+    letter-spacing: 0.1em;
+}
+
+/* .hero-left {
+    margin-left: -0.35%;
+} */
+
+/* .hero-right {
+    margin-right: -7%;
+    width: 656px;
+} */
+
+.form-container {
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    color: #121212 !important;
+}
+.form-title {
+  background-color: #448fff;
+  color: white;
+  padding: 15px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  margin: -30px -30px 20px -30px;
+}
+.btn-group-toggle .btn {
+  border: 1px solid #ced4da;
+}
+.btn-group-toggle .btn-check:checked+.btn {
+  background-color: #448fff;
+  color: white;
+  border-color: #448fff;
+}
+.btn-primary {
+  background-color: #ffbf00;
+  border: none;
+  color: white;
+}
+
+.sewa-mobil-button {
+  border: 3px solid #212529;
+  border-radius: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+  margin-top: 256px;
+  width: 261px;
+}
+
+.sewa-mobil {
+  width: 256px;
+  height: 48px;
+  letter-spacing: 0.15em;
+  border-radius: 40px;
+  flex-shrink: 0;
+  border: 3px solid #eaecee;
+  color: #eaecee;
+  background-color: rgba(33,37,41, 0.5);
+}
+
+/* landing page mengapa rentacar */
+
+.bg-box{
+  /* border-radius: 128px 128px 0px 0px; */
+  background: var(--Base-800,#f8f9fa);
+  flex-direction: column;
+  align-items: center;
+  gap: 64px;
+  margin-top: 40px;
+}
+
+a,
+a:hover,
+a:focus,
+a:active {
+    text-decoration: none;
+    outline: none;
+}
+
+a,
+a:active,
+a:focus {
+    color: #333;
+    text-decoration: none;
+    transition-timing-function: ease-in-out;
+    -ms-transition-timing-function: ease-in-out;
+    -moz-transition-timing-function: ease-in-out;
+    -webkit-transition-timing-function: ease-in-out;
+    -o-transition-timing-function: ease-in-out;
+    transition-duration: .2s;
+    -ms-transition-duration: .2s;
+    -moz-transition-duration: .2s;
+    -webkit-transition-duration: .2s;
+    -o-transition-duration: .2s;
+}
+
+ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+img {
+max-width: 100%;
+height: auto;
+}
+span, a, a:hover {
+display: inline-block;
+text-decoration: none;
+color: inherit;
+}
+.section-1, .section-2 {
+  margin-bottom: 60px;
+  }
+.section-1 .kenalkami {
+  position: relative;
+  padding:0;
+  color:#448fff;
+  line-height: 1;
+  letter-spacing:0.3px;
+  font-size: 34px;
+  font-weight: 700;  
+  text-align:center;
+  text-transform:none;
+  margin-bottom:30px;
+  }
+  .section-1 .kenalkami span {
+  font-weight: 700;
+  padding-bottom: 5px;
+  color:#121212;
+  }
+.section-2 .mengapakami {
+position: relative;
+padding:0;
+color:#448fff;
+line-height: 1;
+letter-spacing:0.3px;
+font-size: 34px;
+font-weight: 700;  
+text-align:center;
+text-transform:none;
+margin-bottom:30px;
+}
+.section-2 .mengapakami:before {
+content: '';
+width: 155px;
+height: 3px;
+background: #448fff;
+position: absolute;
+left: 362px;
+bottom: -2px;
+right:0;  
+margin:0 auto;
+}
+.section-2 .mengapakami span {
+font-weight: 700;
+padding-bottom: 5px;
+color:#121212;
+}
+
+.section-1 p{
+color:#121212;
+font-size:16px;
+line-height:28px;
+text-align:center;  
+font-weight: 700;
+}
+
+.extra-text span {
+font-weight: 700;
+color:#f91942;
+}
+
+.icon {
+  filter: brightness(0) saturate(100%) invert(47%) sepia(53%) saturate(2280%) hue-rotate(198deg) brightness(101%) contrast(101%);
+}
+
+.item {
+text-align: center;
+padding: 30px 25px;
+/* -webkit-box-shadow:0 0px 25px rgba(0, 0, 0, 0.07); */
+/* box-shadow:0 0px 25px rgba(0, 0, 0, 0.07); */
+/* border-radius: 40px; */
+/* border:6px solid #eaecee; */
+margin-top: -30px;
+margin-bottom: 30px;
+-webkit-transition: all .5s ease 0;
+transition: all .5s ease 0;
+transition: all 0.5s ease 0s;
+}
+
+.item .icon {
+font-size: 40px;
+margin-bottom:15px;
+line-height: 96px;
+}
+
+.item p{
+font-size:15px;
+line-height:26px;
+color: #121212;
+font-weight: 700;
+}
+
+.item h6 {
+margin-bottom:20px;
+color:#121212;
+font-weight: 700;
+}
+
+
+/* landing page mitra */
+
+.bg {
+  background: var(--Base-800, #094781);
+  text-align: center;
+}
+
+.mitrakami {
+  /* border-radius: 128px 128px 0px 0px;  */
+  flex-direction: column;
+  align-items: center;
+  gap: 64px;
+}
+
+.mitra, .text-secondary {
+  color: #121212 !important;
+  font-weight: 700;
+}
+
+.text-secondary {
+  position: relative;
+  padding:0;
+  color:#448fff;
+  line-height:28px;
+  letter-spacing:0.3px;
+  font-size: 16px;
+  font-weight: 700;  
+  text-align:center;
+  text-transform:none;
+  margin-bottom:30px;
+}
+
+.custom-col-2-4 {
+  width: 20%;
+  float: left;
+  padding: 10px;
+}
+
+.mitra-bottom {
+  margin-top: 140px;
+  font-size: 34px;
+}
+
+.sewa-mobil-button-bottom {
+  border: 3px solid rgb(255, 191, 0);
+  border-radius: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+  margin-top: 128px;
+  width: 261px;
+}
+
+.sewa-mobil-bottom {
+  width: 256px;
+  height: 48px;
+  letter-spacing: 0.15em;
+  border-radius: 40px;
+  flex-shrink: 0;
+  border: 3px solid #ffffff;
+  color: #ffffff;
+  background-color: rgba(255, 191, 0);
+}
+
+/* === LIST MOBIL RENTAL === */
+
+#listmobil-bg {
+  background-color: #fcfafa;
+}
+
+.listmobil-card {
+  background-color: #EAECEE;
+}
+
+
+
+.car-body-margin {
+  margin: 24px;
+}
+
+.custom-height {
+  height: 200px;
+  overflow-y: auto;
+}
+
+/* === HALAMAN MOBIL === */
+
