@@ -22,11 +22,8 @@ class Car_model
         return $this->db->resultSet();
     }
 
-    public function getAllAvailableCars()
+    public function getAllAvailableCars($tanggalSewaBaru, $tanggalKembaliSewaBaru)
     {
-        $tanggalSewaBaru = $_SESSION['tanggal_sewa'];
-        $tanggalKembaliSewaBaru = $_SESSION['tanggal_kembali_sewa'];
-
         $cars = $this->getAllActiveCars();
 
         foreach ($cars as $car) {
@@ -34,7 +31,7 @@ class Car_model
             $this->db->bind('car_id', $car['car_id']);
             $orders = $this->db->resultSet();
             if (count($orders) > 0) {
-                $query = "SELECT * FROM orders WHERE car_id = :car_id AND (
+                $query = "SELECT * FROM orders WHERE car_id = :car_id AND (status_order = 'Pending' OR status_order = 'Accepted') AND (
                     (tanggal_sewa <= :tanggal_sewa_baru AND tanggal_kembali_sewa >= :tanggal_kembali_sewa_baru) OR (tanggal_sewa <= :tanggal_sewa_baru AND tanggal_kembali_sewa <= :tanggal_kembali_sewa_baru) OR (tanggal_sewa >= :tanggal_sewa_baru AND tanggal_kembali_sewa >= :tanggal_kembali_sewa_baru) OR (tanggal_sewa >= :tanggal_sewa_baru AND tanggal_kembali_sewa <= :tanggal_kembali_sewa_baru)
                 )";
                 $this->db->query($query);

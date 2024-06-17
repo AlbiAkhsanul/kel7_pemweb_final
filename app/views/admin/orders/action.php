@@ -1,10 +1,7 @@
 <?php
 $order = $data['order'];
-$user = $data['user'];
 $car = $data['car'];
 var_dump($order);
-echo "<hr>";
-var_dump($user);
 echo "<hr>";
 var_dump($car);
 ?>
@@ -20,7 +17,7 @@ var_dump($car);
     </li>
     <li>
         <h5>
-            Nama User : <?= $user['nama_user'] ?>
+            Nama User : <?= $data['nama_user'] ?>
         </h5>
     </li>
     <li>
@@ -59,9 +56,9 @@ var_dump($car);
         </a>
     </li>
     <li>
-        <a href="<?= BASEURL; ?>/order/reject/<?= $order['order_id'] ?>">
+        <a href="<?= BASEURL; ?>/order/cancel/<?= $order['order_id'] ?>">
             <button>
-                Reject Order
+                Cancel Order
             </button>
         </a>
     </li>

@@ -1,6 +1,7 @@
 <?php
 $cars = $data['cars'];
 $old_car = $data['old_car'];
+$old_driver = $data['old_driver'];
 $order = $data['order'];
 $drivers = $data['drivers'];
 var_dump($cars);
@@ -17,10 +18,9 @@ var_dump($drivers);
     <li>
         <label for="car_id">Mobil Yang Di Sewa : </label>
         <select id="car_id" name="car_id" required>
+            <option value="<?= $old_car['car_id'] ?>" selected><?= $old_car['nama_mobil'] ?></option>
             <?php foreach ($cars as $car) : ?>
-                <?php if ($car['car_id'] === $order['car_id']) : ?>
-                    <option value="<?= $car['car_id'] ?>" selected><?= $car['nama_mobil'] ?></option>
-                <?php elseif ($car['status_mobil'] === 1 && $car['harga_sewa'] === $old_car['harga_sewa']) : ?>
+                <?php if ($car['harga_sewa'] === $old_car['harga_sewa']) : ?>
                     <option value="<?= $car['car_id'] ?>"><?= $car['nama_mobil'] ?></option>
                 <?php endif ?>
             <?php endforeach; ?>
@@ -29,20 +29,13 @@ var_dump($drivers);
             [Hanya Bisa Ganti Mobil Dengan Harga Yang Sama]
         </p>
     </li>
-    <li>
-        <label for="tanggal_sewa">Tanggal Sewa: </label>
-        <input type="date" name="tanggal_sewa" id="tanggal_sewa" value="<?= date('Y-m-d', strtotime($order['tanggal_sewa'])) ?>" required>
-    </li>
     <?php if ($order['jenis_sewa'] === 1) : ?>
         <li>
             <label for="driver_id">Driver : </label>
             <select id="driver_id" name="driver_id" required>
+                <option value="<?= $old_driver['driver_id'] ?>" selected><?= $old_driver['nama_driver'] ?></option>
                 <?php foreach ($drivers as $driver) : ?>
-                    <?php if ($driver['driver_id'] === $order['driver_id']) : ?>
-                        <option value="<?= $driver['driver_id'] ?>" selected><?= $driver['nama_driver'] ?></option>
-                    <?php elseif ($driver['status_driver'] === 1) : ?>
-                        <option value="<?= $driver['driver_id'] ?>"><?= $driver['nama_driver'] ?></option>
-                    <?php endif ?>
+                    <option value="<?= $driver['driver_id'] ?>"><?= $driver['nama_driver'] ?></option>
                 <?php endforeach; ?>
             </select>
         </li>

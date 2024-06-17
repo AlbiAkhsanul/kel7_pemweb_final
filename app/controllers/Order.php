@@ -21,13 +21,13 @@ class Order extends Controller
             header("Location: " . BASEURL . "/auth/login");
             exit;
         }
-        $data['is_driver'] = 0;
-        if ($this->model('Driver_model')->getAllAvailableDrivers()) {
-            $data['is_driver'] = 1;
-        }
         if (!isset($_SESSION['tanggal_sewa']) || !isset($_SESSION['tanggal_kembali_sewa']) || !isset($_SESSION['durasi_sewa'])) {
             header('Location: ' . BASEURL . '/car/index');
             exit;
+        }
+        $data['is_driver'] = 0;
+        if ($this->model('Driver_model')->getAllAvailableDrivers($_SESSION['tanggal_sewa'], $_SESSION['tanggal_kembali_sewa'])) {
+            $data['is_driver'] = 1;
         }
         $data['title'] = 'Create Order';
         $data['car'] = $this->model('Car_model')->getCarById($id);
@@ -67,10 +67,10 @@ class Order extends Controller
             header('Location: ' . BASEURL . '/car/index');
         }
         if ($_POST['jenis_sewa'] == 1) {
-            $drivers = $this->model('Driver_model')->getAllAvailableDrivers();
+            $drivers = $this->model('Driver_model')->getAllAvailableDrivers($_SESSION['tanggal_sewa'], $_SESSION['tanggal_kembali_sewa']);
             $count = count($drivers);
             if ($count > 0) {
-                $rand = rand(0, $count);
+                $rand = rand(0, $count - 1);
                 $data['driver_id'] = $drivers[$rand]['driver_id'];
             } else {
                 FlashMsg::setFlash('Unsuccesfully', 'Created', 'danger');
@@ -123,9 +123,12 @@ class Order extends Controller
             header('Location: ' . BASEURL . '/admin/orders');
             exit;
         }
-
-        $data['drivers'] = $this->model('Driver_model')->getAllDrivers();
-        $data['cars'] = $this->model('Car_model')->getAllCars();
+        $oldDriverId = $data['order']['driver_id'];
+        $tanggalSewa = $data['order']['tanggal_sewa'];
+        $tanggalKembaliSewa = $data['order']['tanggal_kembali_sewa'];
+        $data['old_driver'] = $this->model('Driver_model')->getDriverById($oldDriverId);
+        $data['drivers'] = $this->model('Driver_model')->getAllAvailableDrivers($tanggalSewa, $tanggalKembaliSewa);
+        $data['cars'] = $this->model('Car_model')->getAllAvailableCars($tanggalSewa, $tanggalKembaliSewa);
         $car_id = $data['order']['car_id'];
         $data['old_car'] = $this->model('Car_model')->getCarById($car_id);
         $this->view('templates/header', $data);
@@ -173,7 +176,8 @@ class Order extends Controller
         }
 
         $user_id = $data['order']['user_id'];
-        $data['user'] = $this->model('User_model')->getUserById($user_id);
+        $user = $this->model('User_model')->getUserById($user_id);
+        $data['nama_user'] = $user['nama_user'];
         $car_id = $data['order']['car_id'];
         $data['car'] = $this->model('Car_model')->getCarById($car_id);
         $this->view('templates/header', $data);
@@ -191,7 +195,7 @@ class Order extends Controller
             header("Location: " . BASEURL . "/home");
             exit;
         }
-        if ($this->model('Order_model')->acceptOrder($id) > 0) {
+        if ($this->model('Order_model')->changeOrderStatus($id, 'Accepted') > 0) {
             FlashMsg::setFlash('Succesfully', 'Accept', 'success');
             header('Location: ' . BASEURL . '/admin/orders');
             exit;
@@ -202,7 +206,7 @@ class Order extends Controller
         }
     }
 
-    public function reject($id)
+    public function cancel($id)
     {
         if (!isset($_SESSION["login"])) {
             header("Location: " . BASEURL . "/auth/login");
@@ -212,7 +216,7 @@ class Order extends Controller
             header("Location: " . BASEURL . "/home");
             exit;
         }
-        if ($this->model('Order_model')->rejectOrder($id) > 0) {
+        if ($this->model('Order_model')->changeOrderStatus($id, 'Cancelled') > 0) {
             FlashMsg::setFlash('Succesfully', 'Reject', 'success');
             header('Location: ' . BASEURL . '/admin/orders');
             exit;
@@ -233,7 +237,7 @@ class Order extends Controller
             header("Location: " . BASEURL . "/home");
             exit;
         }
-        if ($this->model('Order_model')->closeOrder($id) > 0) {
+        if ($this->model('Order_model')->changeOrderStatus($id, 'Closed') > 0) {
             FlashMsg::setFlash('Succesfully', 'Reject', 'success');
             header('Location: ' . BASEURL . '/admin/orders');
             exit;

@@ -45,7 +45,7 @@ class Car extends Controller
             header('Location: ' . BASEURL . '/car/index');
         }
         $data['title'] = 'Car List Ready';
-        $data['cars'] = $this->model('Car_model')->getAllAvailableCars();
+        $data['cars'] = $this->model('Car_model')->getAllAvailableCars($_SESSION['tanggal_sewa'], $_SESSION['tanggal_kembali_sewa']);
         $this->view('templates/header', $data);
         $this->view('car/allCars', $data);
         $this->view('templates/footer');

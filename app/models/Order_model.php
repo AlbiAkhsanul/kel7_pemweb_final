@@ -64,13 +64,11 @@ class Order_model
     {
         $query = "UPDATE {$this->table_name} SET 
                   driver_id = :driver_id, 
-                  car_id = :car_id,
-                  tanggal_sewa = :tanggal_sewa
+                  car_id = :car_id
                   WHERE order_id = :order_id ";
         $this->db->query($query);
         $this->db->bind('driver_id', $data['driver_id']);
         $this->db->bind('car_id', $data['car_id']);
-        $this->db->bind('tanggal_sewa', $data['tanggal_sewa']);
         $this->db->bind('order_id', $id);
 
         $this->db->execute();
@@ -114,47 +112,17 @@ class Order_model
         $this->db->execute();
     }
 
-    public function changeDriverStatus($driver_id, $driverStatus)
+    public function changeOrderStatus($order_id, $orderStatus)
     {
-        $query = "SELECT * FROM drivers WHERE driver_id = :driver_id";
-
+        $query = "UPDATE {$this->table_name} SET 
+                  status_order = :status_order
+                  WHERE order_id = :order_id ";
         $this->db->query($query);
-        $this->db->bind('driver_id', $driver_id);
+        $this->db->bind('status_order', $orderStatus);
+        $this->db->bind('order_id', $order_id);
 
-        $row = $this->db->single();
+        $this->db->execute();
 
-        if ($row) {
-            $query = "UPDATE drivers SET 
-                  status_driver = :status_driver
-                  WHERE driver_id = :driver_id ";
-            $this->db->query($query);
-            $this->db->bind('status_driver', $driverStatus);
-            $this->db->bind('driver_id', $driver_id);
-
-            $this->db->execute();
-        }
-        return $this->db->affectedRowCount();
-    }
-
-    public function changeCarStatus($car_id, $carStatus)
-    {
-        $query = "SELECT * FROM cars WHERE car_id = :car_id";
-
-        $this->db->query($query);
-        $this->db->bind('car_id', $car_id);
-
-        $row = $this->db->single();
-
-        if ($row) {
-            $query = "UPDATE cars SET 
-                  status_mobil = :status_mobil
-                  WHERE car_id = :car_id ";
-            $this->db->query($query);
-            $this->db->bind('status_mobil', $carStatus);
-            $this->db->bind('car_id', $car_id);
-
-            $this->db->execute();
-        }
         return $this->db->affectedRowCount();
     }
 }

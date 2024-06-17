@@ -22,19 +22,17 @@ class Driver_model
         return $this->db->resultSet();
     }
 
-    public function getAllAvailableDrivers()
+    public function getAllAvailableDrivers($tanggalSewaBaru, $tanggalKembaliSewaBaru)
     {
-        $tanggalSewaBaru = $_SESSION['tanggal_sewa'];
-        $tanggalKembaliSewaBaru = $_SESSION['tanggal_kembali_sewa'];
-
         $drivers = $this->getAllActiveDrivers();
+        $avaliableDrivers = NULL;
 
         foreach ($drivers as $driver) {
             $this->db->query("SELECT * FROM orders WHERE driver_id = :driver_id");
             $this->db->bind('driver_id', $driver['driver_id']);
             $orders = $this->db->resultSet();
             if (count($orders) > 0) {
-                $query = "SELECT * FROM orders WHERE driver_id = :driver_id AND (
+                $query = "SELECT * FROM orders WHERE driver_id = :driver_id AND (status_order = 'Pending' OR status_order = 'Accepted') AND(
                     (tanggal_sewa <= :tanggal_sewa_baru AND tanggal_kembali_sewa >= :tanggal_kembali_sewa_baru) OR (tanggal_sewa <= :tanggal_sewa_baru AND tanggal_kembali_sewa <= :tanggal_kembali_sewa_baru) OR (tanggal_sewa >= :tanggal_sewa_baru AND tanggal_kembali_sewa >= :tanggal_kembali_sewa_baru) OR (tanggal_sewa >= :tanggal_sewa_baru AND tanggal_kembali_sewa <= :tanggal_kembali_sewa_baru)
                 )";
                 $this->db->query($query);
