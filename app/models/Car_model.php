@@ -22,6 +22,37 @@ class Car_model
         return $this->db->resultSet();
     }
 
+    public function getAllAvailableCars()
+    {
+        $tanggalSewaBaru = $_SESSION['tanggal_sewa'];
+        $tanggalKembaliSewaBaru = $_SESSION['tanggal_kembali_sewa'];
+
+        $cars = $this->getAllActiveCars();
+
+        foreach ($cars as $car) {
+            $this->db->query("SELECT * FROM orders WHERE car_id = :car_id");
+            $this->db->bind('car_id', $car['car_id']);
+            $orders = $this->db->resultSet();
+            if (count($orders) > 0) {
+                $query = "SELECT * FROM orders WHERE car_id = :car_id AND (
+                    (tanggal_sewa <= :tanggal_sewa_baru AND tanggal_kembali_sewa >= :tanggal_kembali_sewa_baru) OR (tanggal_sewa <= :tanggal_sewa_baru AND tanggal_kembali_sewa <= :tanggal_kembali_sewa_baru) OR (tanggal_sewa >= :tanggal_sewa_baru AND tanggal_kembali_sewa >= :tanggal_kembali_sewa_baru) OR (tanggal_sewa >= :tanggal_sewa_baru AND tanggal_kembali_sewa <= :tanggal_kembali_sewa_baru)
+                )";
+                $this->db->query($query);
+                $this->db->bind('tanggal_sewa_baru', $tanggalSewaBaru);
+                $this->db->bind('tanggal_kembali_sewa_baru', $tanggalKembaliSewaBaru);
+                $this->db->bind('car_id', $car['car_id']);
+                $ordersCrash = $this->db->resultSet();
+                if (count($ordersCrash) === 0) {
+                    $avaliableCars[] = $this->getCarById($car['car_id']);
+                }
+            } else {
+                $avaliableCars[] = $this->getCarById($car['car_id']);
+            }
+        }
+
+        return $avaliableCars;
+    }
+
     public function createNewCar($data, $dataImg)
     {
         // $currentTime = date('Y-m-d H:i');

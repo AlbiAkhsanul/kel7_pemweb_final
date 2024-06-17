@@ -6,7 +6,6 @@ var_dump($data);
 
 <form>
     <ul>
-        <input type="hidden" name="old_foto_mobil" id="foto" value="<?= $car['foto_mobil']; ?>">
         <br>
         <li>
             <label for="car_brand_id">Merk Mobil: </label>

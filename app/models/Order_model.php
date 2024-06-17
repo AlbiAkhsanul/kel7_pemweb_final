@@ -31,18 +31,20 @@ class Order_model
     {
         $order = $data['POST'];
         $driver_id = $data['driver_id'];
-        $car_id = $data['POST']['car_id'];
 
-        $this->changeCarStatus($car_id, 0);
+        $tanggalSewa = $data['tanggal_sewa'];
+        $durasiSewa = $data['durasi_sewa'];
 
-        if ($driver_id != 0) {
-            $this->changeDriverStatus($driver_id, 0);
-        }
+        $dateSewa = new DateTime($tanggalSewa);
+
+        $dateSewa->modify("+$durasiSewa days");
+
+        $tanggalKembaliSewa = $dateSewa->format('Y-m-d');
 
         $currentTime = date('Y-m-d H:i');
 
-        $query = "INSERT INTO {$this->table_name} (method_id,driver_id,car_id,user_id,tanggal_order,jenis_sewa,tanggal_sewa,durasi_sewa,tanggal_transaksi,status_order,total_harga) VALUES 
-                  (:method_id,:driver_id,:car_id,:user_id,:tanggal_order,:jenis_sewa,:tanggal_sewa,:durasi_sewa,:tanggal_transaksi,:status_order,:total_harga)";
+        $query = "INSERT INTO {$this->table_name} (method_id,driver_id,car_id,user_id,tanggal_order,jenis_sewa,tanggal_sewa,durasi_sewa,tanggal_kembali_sewa,tanggal_transaksi,status_order,total_harga) VALUES 
+                  (:method_id,:driver_id,:car_id,:user_id,:tanggal_order,:jenis_sewa,:tanggal_sewa,:durasi_sewa,:tanggal_kembali_sewa,:tanggal_transaksi,:status_order,:total_harga)";
         $this->db->query($query);
         $this->db->bind('method_id', $order['method_id']);
         $this->db->bind('driver_id', $driver_id);
@@ -52,6 +54,7 @@ class Order_model
         $this->db->bind('jenis_sewa', $order['jenis_sewa']);
         $this->db->bind('tanggal_sewa', $order['tanggal_sewa']);
         $this->db->bind('durasi_sewa', $order['durasi_sewa']);
+        $this->db->bind('tanggal_kembali_sewa', $tanggalKembaliSewa);
         $this->db->bind('tanggal_transaksi', $currentTime);
         $this->db->bind('status_order', "Pending");
         $this->db->bind('total_harga', $order['total_harga']);
@@ -63,42 +66,12 @@ class Order_model
     public function getOrderById($id)
     {
         $this->db->query("SELECT * FROM {$this->table_name} WHERE order_id=:order_id");
-        // untuk menghindari sql injection
         $this->db->bind('order_id', $id);
         return $this->db->single();
     }
 
     public function editOrderById($data, $id)
     {
-        if ($data['old_car_id'] != $data['car_id']) {
-            $old_car_id = $data['old_car_id'];
-            $car_id = $data['car_id'];
-
-            $this->changeCarStatus($car_id, 0);
-            $this->changeCarStatus($old_car_id, 1);
-        }
-        // $jenisSewa = 0;
-        // // $totalHarga = $data['total_harga'];
-        // if ($data['driver_id'] != 0) {
-        //     $jenisSewa = 1;
-        // }
-
-        if ($data['old_driver_id'] != $data['driver_id']) {
-            // if ($data['old_driver_id'] === 0 && $jenisSewa === 1) {
-            //     $totalHarga = $data['total_harga'] + (100000 * $data['durasi_sewa']);
-            // } else {
-            //     $totalHarga = $data['total_harga'] - (100000 * $data['durasi_sewa']);
-            // }
-
-            if ($data['driver_id'] != 0) {
-                $driver_id = $data['driver_id'];
-                $this->changeDriverStatus($driver_id, 0);
-            }
-
-            $old_driver_id = $data['old_driver_id'];
-            $this->changeDriverStatus($old_driver_id, 1);
-        }
-
         $query = "UPDATE {$this->table_name} SET 
                   driver_id = :driver_id, 
                   car_id = :car_id,
@@ -138,18 +111,6 @@ class Order_model
         $this->db->bind('status_order', "Cancelled");
         $this->db->bind('order_id', $id);
         $this->db->execute();
-
-        $order = $this->getOrderById($id);
-
-        if ($order['driver_id'] != 0 && $order['jenis_sewa'] != 0) {
-            $driver_id = $order['driver_id'];
-            $this->changeDriverStatus($driver_id, 1);
-        }
-
-        $car_id = $order['car_id'];
-        $this->changeCarStatus($car_id, 1);
-
-        return $this->db->affectedRowCount();
     }
 
     public function closeOrder($id)
@@ -161,18 +122,6 @@ class Order_model
         $this->db->bind('status_order', "Closed");
         $this->db->bind('order_id', $id);
         $this->db->execute();
-
-        $order = $this->getOrderById($id);
-
-        if ($order['driver_id'] != 0 && $order['jenis_sewa'] != 0) {
-            $driver_id = $order['driver_id'];
-            $this->changeDriverStatus($driver_id, 1);
-        }
-
-        $car_id = $order['car_id'];
-        $this->changeCarStatus($car_id, 1);
-
-        return $this->db->affectedRowCount();
     }
 
     public function changeDriverStatus($driver_id, $driverStatus)

@@ -4,10 +4,40 @@ class Car extends Controller
 {
     public function index()
     {
-        $data['title'] = 'Car List';
-        $data['cars'] = $this->model('Car_model')->getAllActiveCars();
+        $data['title'] = 'Car List Ready';
         $this->view('templates/header', $data);
-        $this->view('car/index', $data);
+        $this->view('car/index');
+        $this->view('templates/footer');
+    }
+
+    public function createOrderSession()
+    {
+        if (empty($_POST)) {
+            header('Location: ' . BASEURL . '/car/index');
+            exit;
+        }
+        $_SESSION['tanggal_sewa'] = $_POST['tanggal_sewa'];
+        $_SESSION['tanggal_kembali_sewa'] = $_POST['tanggal_kembali_sewa'];
+
+        $dateMulai = new DateTime($_POST['tanggal_sewa']);
+        $dateAkhir = new DateTime($_POST['tanggal_kembali_sewa']);
+
+        $interval = $dateMulai->diff($dateAkhir);
+
+        $_SESSION['durasi_sewa'] = $interval->days;
+
+        header('Location: ' . BASEURL . '/car/allCars');
+    }
+
+    public function allCars()
+    {
+        if (!isset($_SESSION['tanggal_sewa']) || !isset($_SESSION['tanggal_kembali_sewa']) || !isset($_SESSION['durasi_sewa'])) {
+            header('Location: ' . BASEURL . '/car/index');
+        }
+        $data['title'] = 'Car List Ready';
+        $data['cars'] = $this->model('Car_model')->getAllAvailableCars();
+        $this->view('templates/header', $data);
+        $this->view('car/allCars', $data);
         $this->view('templates/footer');
     }
 
