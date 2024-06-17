@@ -1,3 +1,6 @@
+<?php
+var_dump($data);
+?>
 <h1>Konfirmasi Order</h1>
 <a href="<?= BASEURL; ?>/order/create/<?= $data['car_id'] ?>">
     <button>
@@ -7,16 +10,23 @@
 <form action="<?= BASEURL; ?>/order/store/<?= $data['car_id'] ?>" method="post">
     <input type="hidden" name="car_id" value="<?= $data['car_id']; ?>">
     <input type="hidden" name="jenis_sewa" value="<?= $data['jenis_sewa']; ?>">
-    <input type="hidden" name="durasi_sewa" value="<?= $data['durasi_sewa']; ?>">
+    <input type="hidden" name="tanggal_sewa" value="<?= $_SESSION['tanggal_sewa']; ?>">
+    <input type="hidden" name="tanggal_kembali_sewa" value="<?= $_SESSION['tanggal_kembali_sewa']; ?>">
+    <input type="hidden" name="durasi_sewa" value="<?= $_SESSION['durasi_sewa']; ?>">
     <input type="hidden" name="total_harga" value="<?= $data['total_harga']; ?>">
-    <input type="hidden" name="tanggal_sewa" value="<?= $data['tanggal_sewa']; ?>">
+    <input type="hidden" name="nama_mobil" value="<?= $data['nama_mobil']; ?>">
+    <input type="hidden" name="jenis_mobil" value="<?= $data['jenis_mobil']; ?>">
     <li>
         <label for="tanggal_sewa">Tanggal Sewa: </label>
-        <input type="date" name="tanggal_sewa" id="tanggal_sewa" value="<?= $data['tanggal_sewa'] ?>" required disabled>
+        <input type="date" name="tanggal_sewa" id="tanggal_sewa" value="<?= $_SESSION['tanggal_sewa'] ?>" disabled>
+    </li>
+    <li>
+        <label for="tanggal_kembali_sewa">Tanggal Kembali: </label>
+        <input type="date" name="tanggal_kembali_sewa" id="tanggal_kembali_sewa" value="<?= $_SESSION['tanggal_kembali_sewa'] ?>" disabled>
     </li>
     <li>
         <label for="durasi_sewa">Durasi Sewa [Dalam Hari]: </label>
-        <input type="number" name="durasi_sewa" id="durasi_sewa" value="<?= $data['durasi_sewa'] ?>" required min="3" disabled>
+        <input type="number" name="durasi_sewa" id="durasi_sewa" value="<?= $_SESSION['durasi_sewa'] ?>" disabled>
     </li>
     <li>
         <label for="jenis_sewa">Jenis Sewa : </label>

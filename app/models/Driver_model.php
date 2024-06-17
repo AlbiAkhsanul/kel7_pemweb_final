@@ -22,6 +22,37 @@ class Driver_model
         return $this->db->resultSet();
     }
 
+    public function getAllAvailableDrivers()
+    {
+        $tanggalSewaBaru = $_SESSION['tanggal_sewa'];
+        $tanggalKembaliSewaBaru = $_SESSION['tanggal_kembali_sewa'];
+
+        $drivers = $this->getAllActiveDrivers();
+
+        foreach ($drivers as $driver) {
+            $this->db->query("SELECT * FROM orders WHERE driver_id = :driver_id");
+            $this->db->bind('driver_id', $driver['driver_id']);
+            $orders = $this->db->resultSet();
+            if (count($orders) > 0) {
+                $query = "SELECT * FROM orders WHERE driver_id = :driver_id AND (
+                    (tanggal_sewa <= :tanggal_sewa_baru AND tanggal_kembali_sewa >= :tanggal_kembali_sewa_baru) OR (tanggal_sewa <= :tanggal_sewa_baru AND tanggal_kembali_sewa <= :tanggal_kembali_sewa_baru) OR (tanggal_sewa >= :tanggal_sewa_baru AND tanggal_kembali_sewa >= :tanggal_kembali_sewa_baru) OR (tanggal_sewa >= :tanggal_sewa_baru AND tanggal_kembali_sewa <= :tanggal_kembali_sewa_baru)
+                )";
+                $this->db->query($query);
+                $this->db->bind('tanggal_sewa_baru', $tanggalSewaBaru);
+                $this->db->bind('tanggal_kembali_sewa_baru', $tanggalKembaliSewaBaru);
+                $this->db->bind('driver_id', $driver['driver_id']);
+                $ordersCrash = $this->db->resultSet();
+                if (count($ordersCrash) === 0) {
+                    $avaliableDrivers[] = $this->getDriverById($driver['driver_id']);
+                }
+            } else {
+                $avaliableDrivers[] = $this->getDriverById($driver['driver_id']);
+            }
+        }
+
+        return $avaliableDrivers;
+    }
+
     public function createNewDriver($data)
     {
         // $currentTime = date('Y-m-d H:i');

@@ -60,14 +60,19 @@ var_dump($data);
 <form action="<?= BASEURL; ?>/order/confirm/<?= $car['car_id'] ?>" method="post">
     <input type="hidden" name="harga_sewa" value="<?= $car['harga_sewa']; ?>">
     <input type="hidden" name="car_id" value="<?= $car['car_id']; ?>">
+    <input type="hidden" name="nama_mobil" value="<?= $car['nama_mobil']; ?>">
+    <input type="hidden" name="jenis_mobil" value="<?= $car['jenis_mobil']; ?>">
     <li>
         <label for="tanggal_sewa">Tanggal Sewa: </label>
-        <input type="date" name="tanggal_sewa" id="tanggal_sewa" required>
+        <input type="date" name="tanggal_sewa" id="tanggal_sewa" value="<?= $_SESSION['tanggal_sewa'] ?>" disabled>
+    </li>
+    <li>
+        <label for="tanggal_kembali_sewa">Tanggal Kembali: </label>
+        <input type="date" name="tanggal_kembali_sewa" id="tanggal_kembali_sewa" value="<?= $_SESSION['tanggal_kembali_sewa'] ?>" disabled>
     </li>
     <li>
         <label for="durasi_sewa">Durasi Sewa [Dalam Hari]: </label>
-        <input type="number" name="durasi_sewa" id="durasi_sewa" value="3" required min="3" oninput="validateDurasiSewa()">
-        <span id="durasi_sewa_error" style="color:red; display:none;">Durasi sewa minimal 3 hari</span>
+        <input type="number" name="durasi_sewa" id="durasi_sewa" value="<?= $_SESSION['durasi_sewa'] ?>" disabled>
     </li>
     <?php if ($data['is_driver'] === 0) : ?>
         <li>
@@ -92,16 +97,3 @@ var_dump($data);
         <button type="submit" name="store">Buat Order</button>
     </li>
 </form>
-
-<script>
-    function validateDurasiSewa() {
-        const durasiSewaInput = document.getElementById('durasi_sewa');
-        const durasiSewaError = document.getElementById('durasi_sewa_error');
-
-        if (durasiSewaInput.value < 3) {
-            durasiSewaError.style.display = 'inline';
-        } else {
-            durasiSewaError.style.display = 'none';
-        }
-    }
-</script>

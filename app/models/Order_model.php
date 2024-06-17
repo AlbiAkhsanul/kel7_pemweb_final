@@ -18,10 +18,10 @@ class Order_model
 
     public function calculateTotalHarga($data)
     {
-        $data['total_harga'] = $data['harga_sewa'] * $data['durasi_sewa'];
+        $data['total_harga'] = $data['harga_sewa'] * $_SESSION['durasi_sewa'];
 
         if ($data['jenis_sewa'] != 0) {
-            $data['total_harga'] += 100000 * $data['durasi_sewa'];
+            $data['total_harga'] += 100000 * $_SESSION['durasi_sewa'];
         }
 
         return $data;

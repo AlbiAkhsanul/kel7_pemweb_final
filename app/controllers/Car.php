@@ -16,13 +16,23 @@ class Car extends Controller
             header('Location: ' . BASEURL . '/car/index');
             exit;
         }
-        $_SESSION['tanggal_sewa'] = $_POST['tanggal_sewa'];
-        $_SESSION['tanggal_kembali_sewa'] = $_POST['tanggal_kembali_sewa'];
 
+        $dateNow = new DateTime('now');
         $dateMulai = new DateTime($_POST['tanggal_sewa']);
         $dateAkhir = new DateTime($_POST['tanggal_kembali_sewa']);
 
+        if ($dateMulai < $dateNow) {
+            FlashMsg::setFlash('Failed', 'Created', 'danger');
+            header('Location: ' . BASEURL . '/car/index');
+        }
+        if ($dateMulai >= $dateAkhir) {
+            FlashMsg::setFlash('Failed', 'Created', 'danger');
+            header('Location: ' . BASEURL . '/car/index');
+        }
+
         $interval = $dateMulai->diff($dateAkhir);
+        $_SESSION['tanggal_sewa'] = $_POST['tanggal_sewa'];
+        $_SESSION['tanggal_kembali_sewa'] = $_POST['tanggal_kembali_sewa'];
 
         $_SESSION['durasi_sewa'] = $interval->days;
 

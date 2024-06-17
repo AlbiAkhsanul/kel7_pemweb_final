@@ -22,8 +22,11 @@ class Order extends Controller
             exit;
         }
         $data['is_driver'] = 0;
-        if ($this->model('Driver_model')->getAllActiveDrivers()) {
+        if ($this->model('Driver_model')->getAllAvailableDrivers()) {
             $data['is_driver'] = 1;
+        }
+        if (!isset($_SESSION['tanggal_sewa']) || !isset($_SESSION['tanggal_kembali_sewa']) || !isset($_SESSION['durasi_sewa'])) {
+            header('Location: ' . BASEURL . '/car/index');
         }
         $data['title'] = 'Create Order';
         $data['car'] = $this->model('Car_model')->getCarById($id);
@@ -38,9 +41,11 @@ class Order extends Controller
             header("Location: " . BASEURL . "/auth/login");
             exit;
         }
+        if (!isset($_SESSION['tanggal_sewa']) || !isset($_SESSION['tanggal_kembali_sewa']) || !isset($_SESSION['durasi_sewa'])) {
+            header('Location: ' . BASEURL . '/car/index');
+        }
         $data['title'] = 'Confirm Order';
         $data = $this->model('Order_model')->calculateTotalHarga($_POST);
-        var_dump($data);
         $this->view('templates/header', $data);
         $this->view('order/confirmation', $data);
         $this->view('templates/footer');
@@ -55,6 +60,9 @@ class Order extends Controller
         if (empty($_POST)) {
             header('Location: ' . BASEURL . '/order/create/' . $id);
             exit;
+        }
+        if (!isset($_SESSION['tanggal_sewa']) || !isset($_SESSION['tanggal_kembali_sewa']) || !isset($_SESSION['durasi_sewa'])) {
+            header('Location: ' . BASEURL . '/car/index');
         }
         $data['POST'] = $_POST;
         if ($data['POST']['jenis_sewa'] != 0) {
