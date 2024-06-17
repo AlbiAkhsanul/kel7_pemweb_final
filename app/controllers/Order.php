@@ -27,6 +27,7 @@ class Order extends Controller
         }
         if (!isset($_SESSION['tanggal_sewa']) || !isset($_SESSION['tanggal_kembali_sewa']) || !isset($_SESSION['durasi_sewa'])) {
             header('Location: ' . BASEURL . '/car/index');
+            exit;
         }
         $data['title'] = 'Create Order';
         $data['car'] = $this->model('Car_model')->getCarById($id);
@@ -43,6 +44,7 @@ class Order extends Controller
         }
         if (!isset($_SESSION['tanggal_sewa']) || !isset($_SESSION['tanggal_kembali_sewa']) || !isset($_SESSION['durasi_sewa'])) {
             header('Location: ' . BASEURL . '/car/index');
+            exit;
         }
         $data['title'] = 'Confirm Order';
         $data = $this->model('Order_model')->calculateTotalHarga($_POST);
@@ -64,13 +66,21 @@ class Order extends Controller
         if (!isset($_SESSION['tanggal_sewa']) || !isset($_SESSION['tanggal_kembali_sewa']) || !isset($_SESSION['durasi_sewa'])) {
             header('Location: ' . BASEURL . '/car/index');
         }
-        $data['POST'] = $_POST;
-        if ($data['POST']['jenis_sewa'] != 0) {
-            $row = $this->model('Driver_model')->getAllActiveDrivers($_POST);
-            $data['driver_id'] = $row[0]['driver_id'];
+        if ($_POST['jenis_sewa'] == 1) {
+            $drivers = $this->model('Driver_model')->getAllAvailableDrivers();
+            $count = count($drivers);
+            if ($count > 0) {
+                $rand = rand(0, $count);
+                $data['driver_id'] = $drivers[$rand]['driver_id'];
+            } else {
+                FlashMsg::setFlash('Unsuccesfully', 'Created', 'danger');
+                header('Location: ' . BASEURL . '/order');
+                exit;
+            }
         } else {
             $data['driver_id'] = 0;
         }
+        $data['order'] = $_POST;
         if ($this->model('Order_model')->createNewOrder($data) > 0) {
             FlashMsg::setFlash('Succesfully', 'Created', 'success');
             header('Location: ' . BASEURL . '/order');

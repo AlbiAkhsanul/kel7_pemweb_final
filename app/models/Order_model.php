@@ -29,18 +29,8 @@ class Order_model
 
     public function createNewOrder($data)
     {
-        $order = $data['POST'];
+        $order = $data['order'];
         $driver_id = $data['driver_id'];
-
-        $tanggalSewa = $data['tanggal_sewa'];
-        $durasiSewa = $data['durasi_sewa'];
-
-        $dateSewa = new DateTime($tanggalSewa);
-
-        $dateSewa->modify("+$durasiSewa days");
-
-        $tanggalKembaliSewa = $dateSewa->format('Y-m-d');
-
         $currentTime = date('Y-m-d H:i');
 
         $query = "INSERT INTO {$this->table_name} (method_id,driver_id,car_id,user_id,tanggal_order,jenis_sewa,tanggal_sewa,durasi_sewa,tanggal_kembali_sewa,tanggal_transaksi,status_order,total_harga) VALUES 
@@ -52,9 +42,9 @@ class Order_model
         $this->db->bind('user_id', $_SESSION['user_id']);
         $this->db->bind('tanggal_order', $currentTime);
         $this->db->bind('jenis_sewa', $order['jenis_sewa']);
-        $this->db->bind('tanggal_sewa', $order['tanggal_sewa']);
-        $this->db->bind('durasi_sewa', $order['durasi_sewa']);
-        $this->db->bind('tanggal_kembali_sewa', $tanggalKembaliSewa);
+        $this->db->bind('tanggal_sewa', $_SESSION['tanggal_sewa']);
+        $this->db->bind('durasi_sewa', $_SESSION['durasi_sewa']);
+        $this->db->bind('tanggal_kembali_sewa', $_SESSION['tanggal_kembali_sewa']);
         $this->db->bind('tanggal_transaksi', $currentTime);
         $this->db->bind('status_order', "Pending");
         $this->db->bind('total_harga', $order['total_harga']);
