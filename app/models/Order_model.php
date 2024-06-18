@@ -16,6 +16,13 @@ class Order_model
         return $this->db->resultSet();
     }
 
+    public function getAllOrdersByUserId($id)
+    {
+        $this->db->query("SELECT * FROM {$this->table_name} WHERE user_id = :user_id");
+        $this->db->bind('user_id', $id);
+        return $this->db->resultSet();
+    }
+
     public function calculateTotalHarga($data)
     {
         $data['total_harga'] = $data['harga_sewa'] * $_SESSION['durasi_sewa'];

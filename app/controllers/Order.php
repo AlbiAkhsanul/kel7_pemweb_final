@@ -9,7 +9,8 @@ class Order extends Controller
             exit;
         }
         $data['title'] = 'Order List';
-        $data['orders'] = $this->model('Order_model')->getAllOrders();
+        $data['orders'] = $this->model('Order_model')->getAllOrdersByUserId($_SESSION['user_id']);
+        $data['user'] = $this->model('User_model')->getUserById($_SESSION['user_id']);
         $this->view('templates/header', $data);
         $this->view('order/index', $data);
         $this->view('templates/footer');
