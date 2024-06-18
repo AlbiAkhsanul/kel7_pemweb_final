@@ -16,6 +16,36 @@ class Penalty_model
         return $this->db->resultSet();
     }
 
+    public function getAllPenaltiesByUserId($id)
+    {
+        $queryOrders = "SELECT * FROM orders WHERE user_id = :user_id";
+        $this->db->query($queryOrders);
+        $this->db->bind('user_id', $id);
+        $orders = $this->db->resultSet();
+
+        $order_ids = [];
+        foreach ($orders as $order) {
+            $order_ids[] = $order['order_id'];
+        }
+
+        // Langkah 2: Mendapatkan semua data dari tabel penalties berdasarkan order_id
+        if (!empty($order_ids)) {
+            $inQuery = implode(',', array_fill(0, count($order_ids), '?'));
+
+            $queryPenalties = "SELECT * FROM penalties WHERE order_id IN ($inQuery)";
+            $this->db->query($queryPenalties);
+
+            foreach ($order_ids as $key => $order_id) {
+                $this->db->bind($key + 1, $order_id);
+            }
+
+            $penalties = $this->db->resultSet();
+        } else {
+            $penalties = [];
+        }
+        return $penalties;
+    }
+
     public function createNewPenalty($data, $dataImg)
     {
         // $currentTime = date('Y-m-d H:i');

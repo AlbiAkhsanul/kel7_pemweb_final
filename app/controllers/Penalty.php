@@ -8,14 +8,12 @@ class Penalty extends Controller
             header("Location: " . BASEURL . "/auth/login");
             exit;
         }
-        if ($_SESSION["is_admin"] !== 1) {
-            header("Location: " . BASEURL . "/home");
-            exit;
-        }
         $data['title'] = 'Penalty List';
-        $data['penalties'] = $this->model('Penalty_model')->getAllPenalties();
+        $data['penalties'] = $this->model('Penalty_model')->getAllPenaltiesByUserId($_SESSION['user_id']);
+        $user = $this->model('User_model')->getUserById($_SESSION['user_id']);
+        $data['nama_user'] = $user['nama_user'];
         $this->view('templates/header', $data);
-        $this->view('admin/penalties/index', $data);
+        $this->view('penalty/index', $data);
         $this->view('templates/footer');
     }
 

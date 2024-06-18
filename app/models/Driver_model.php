@@ -25,7 +25,7 @@ class Driver_model
     public function getAllAvailableDrivers($tanggalSewaBaru, $tanggalKembaliSewaBaru)
     {
         $drivers = $this->getAllActiveDrivers();
-        $avaliableDrivers = NULL;
+        $avaliableDrivers = [];
 
         foreach ($drivers as $driver) {
             $this->db->query("SELECT * FROM orders WHERE driver_id = :driver_id");

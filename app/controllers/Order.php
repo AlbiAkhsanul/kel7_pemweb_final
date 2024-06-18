@@ -10,7 +10,8 @@ class Order extends Controller
         }
         $data['title'] = 'Order List';
         $data['orders'] = $this->model('Order_model')->getAllOrdersByUserId($_SESSION['user_id']);
-        $data['user'] = $this->model('User_model')->getUserById($_SESSION['user_id']);
+        $user = $this->model('User_model')->getUserById($_SESSION['user_id']);
+        $data['nama_user'] = $user['nama_user'];
         $this->view('templates/header', $data);
         $this->view('order/index', $data);
         $this->view('templates/footer');

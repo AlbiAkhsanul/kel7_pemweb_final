@@ -25,6 +25,7 @@ class Car_model
     public function getAllAvailableCars($tanggalSewaBaru, $tanggalKembaliSewaBaru)
     {
         $cars = $this->getAllActiveCars();
+        $avaliableCars = [];
 
         foreach ($cars as $car) {
             $this->db->query("SELECT * FROM orders WHERE car_id = :car_id");
