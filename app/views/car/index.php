@@ -8,13 +8,13 @@ var_dump($_SESSION);
     <ul>
         <li>
             <label for="tanggal_sewa">Tanggal Sewa: </label>
-            <input type="date" name="tanggal_sewa" id="tanggal_sewa" required>
+            <input type="date" name="tanggal_sewa" value="<?= isset($_SESSION['tanggal_sewa']) ? $_SESSION['tanggal_sewa'] : '' ?>" id="tanggal_sewa" required>
             <br>
             <span id="tanggalSewaWarning" style="color: red; display: none;">Tanggal sewa tidak boleh lebih kecil dari tanggal saat ini.</span>
         </li>
         <li>
             <label for="tanggal_kembali_sewa">Tanggal Selesai: </label>
-            <input type="date" name="tanggal_kembali_sewa" id="tanggal_kembali_sewa" required>
+            <input type="date" name="tanggal_kembali_sewa" id="tanggal_kembali_sewa" value="<?= isset($_SESSION['tanggal_kembali_sewa']) ? $_SESSION['tanggal_kembali_sewa'] : '' ?>" required>
             <br>
             <span id="tanggalKembaliWarning" style="color: red; display: none;">Tanggal kembali sewa harus lebih besar daripada tanggal sewa.</span>
         </li>
