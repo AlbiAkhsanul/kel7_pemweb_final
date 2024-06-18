@@ -4,6 +4,10 @@ class Car extends Controller
 {
     public function index()
     {
+        if (!isset($_SESSION["login"])) {
+            header("Location: " . BASEURL . "/auth/login");
+            exit;
+        }
         $data['title'] = 'Car List Ready';
         $this->view('templates/header', $data);
         $this->view('car/index');
@@ -12,6 +16,10 @@ class Car extends Controller
 
     public function createOrderSession()
     {
+        if (!isset($_SESSION["login"])) {
+            header("Location: " . BASEURL . "/auth/login");
+            exit;
+        }
         if (empty($_POST)) {
             header('Location: ' . BASEURL . '/car/index');
             exit;
@@ -41,6 +49,10 @@ class Car extends Controller
 
     public function allCars()
     {
+        if (!isset($_SESSION["login"])) {
+            header("Location: " . BASEURL . "/auth/login");
+            exit;
+        }
         if (!isset($_SESSION['tanggal_sewa']) || !isset($_SESSION['tanggal_kembali_sewa']) || !isset($_SESSION['durasi_sewa'])) {
             header('Location: ' . BASEURL . '/car/index');
         }
