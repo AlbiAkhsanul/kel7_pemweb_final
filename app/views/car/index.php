@@ -19,7 +19,7 @@ var_dump($_SESSION);
             <span id="tanggalKembaliWarning" style="color: red; display: none;">Tanggal kembali sewa harus lebih besar daripada tanggal sewa.</span>
         </li>
         <li>
-            <button type="submit" name="store">Buat Order</button>
+            <button type="submit" name="store">Set Periode Sewa</button>
         </li>
     </ul>
 </form>
