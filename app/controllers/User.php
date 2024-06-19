@@ -52,12 +52,12 @@ class User extends Controller
             exit;
         }
         if ($this->model('User_model')->editUserById($_POST, $id) > 0) {
-            FlashMsg::setFlash('Berhasil Membuat Penalty!', 'success');
-            header('Location: ' . BASEURL . '/home');
+            FlashMsg::setFlash('Berhasil Mengupdate Profile!', 'success');
+            header('Location: ' . BASEURL . '/user');
             exit;
         } else {
             FlashMsg::setFlash('Gagal Mengupdate Profile!', 'danger');
-            header('Location: ' . BASEURL . '/home');
+            header('Location: ' . BASEURL . '/user');
             exit;
         }
     }
