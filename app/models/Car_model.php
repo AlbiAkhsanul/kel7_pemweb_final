@@ -175,19 +175,36 @@ class Car_model
         unlink($string);
     }
 
-    public function getCarsByKeyword()
+    public function getAllFilteredCars($post, $data)
     {
-        $keyword = $_POST['keyword'];
+        $filteredData = [];
+        if (isset($post['brand']) || isset($post['jenis']) || isset($post['transmisi'])) {
+            foreach ($data as $car) {
+                $isBrandMatch = isset($post['brand']) && $car['car_brand'] == $post['brand'];
+                $isJenisMatch = isset($post['jenis']) && $car['jenis_mobil'] == $post['jenis'];
+                $isTransmisiMatch = isset($post['transmisi']) && $car['tipe_transmisi'] == $post['transmisi'];
 
-        // Menggunakan SELECT untuk mendapatkan data
-        $query = "SELECT * FROM {$this->table_name} WHERE 
-        NAMA_MOBIL LIKE :KEYWORD OR  
-        JENIS_MOBIL LIKE :KEYWORD OR
-        TIPE_TRANSMISI LIKE :KEYWORD OR 
-        MERK_MOBIL LIKE :KEYWORD";
+                if ($isBrandMatch && $isJenisMatch && $isTransmisiMatch) {
+                    $filteredData[] = $car;
+                }
+            }
+        }
 
-        $this->db->query($query);
-        $this->db->bind('KEYWORD', "%$keyword%");
-        return $this->db->resultSet();
+        return $filteredData;
     }
+    // public function getCarsByKeyword()
+    // {
+    //     $keyword = $_POST['keyword'];
+
+    //     // Menggunakan SELECT untuk mendapatkan data
+    //     $query = "SELECT * FROM {$this->table_name} WHERE 
+    //     nama_mobil LIKE :keyword OR  
+    //     jenis_mobil LIKE :keyword OR
+    //     tipe_transmisi LIKE :keyword OR 
+    //     car_brand LIKE :keyword";
+
+    //     $this->db->query($query);
+    //     $this->db->bind('keyword', "%$keyword%");
+    //     return $this->db->resultSet();
+    // }
 }

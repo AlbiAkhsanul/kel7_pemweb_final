@@ -58,6 +58,10 @@ class Car extends Controller
         }
         $data['title'] = 'Car List Ready';
         $data['cars'] = $this->model('Car_model')->getAllAvailableCars($_SESSION['tanggal_sewa'], $_SESSION['tanggal_kembali_sewa']);
+        if ($_POST) {
+            $data['filters'] = $_POST;
+            $data['cars'] = $this->model('Car_model')->getAllFilteredCars($_POST, $data['cars']);
+        }
         $this->view('templates/header', $data);
         $this->view('car/allCars', $data);
         $this->view('templates/footer');
@@ -165,12 +169,20 @@ class Car extends Controller
         }
     }
 
-    public function search()
-    {
-        $data['title'] = 'Car List';
-        $data['cars'] = $this->model('Car_model')->getCarsByKeyword();
-        $this->view('templates/header', $data);
-        $this->view('car/index', $data);
-        $this->view('templates/footer');
-    }
+    // public function filter()
+    // {
+    //     if (!isset($_SESSION["login"])) {
+    //         header("Location: " . BASEURL . "/auth/login");
+    //         exit;
+    //     }
+    //     if (!isset($_SESSION['tanggal_sewa']) || !isset($_SESSION['tanggal_kembali_sewa']) || !isset($_SESSION['durasi_sewa'])) {
+    //         header('Location: ' . BASEURL . '/car/index');
+    //     }
+
+    //     $data['title'] = 'Car List';
+    //     $data['cars'] = $this->model('Car_model')->getCarsByKeyword($_POST);
+    //     $this->view('templates/header', $data);
+    //     $this->view('car/allCars', $data);
+    //     $this->view('templates/footer');
+    // }
 }
