@@ -98,9 +98,6 @@ class Car extends Controller
             FlashMsg::setFlash('Berhasil Membuat Mobil Baru!', 'success');
             header('Location: ' . BASEURL . '/admin/cars');
             exit;
-        } else {
-            header('Location: ' . BASEURL . '/admin/cars');
-            exit;
         }
     }
 
@@ -142,9 +139,6 @@ class Car extends Controller
         }
         if ($this->model('Car_model')->editCarById($_POST, $_FILES, $id) > 0) {
             FlashMsg::setFlash('Berhasil Mengupdate Mobil!', 'success');
-            header('Location: ' . BASEURL . '/admin/cars');
-            exit;
-        } else {
             header('Location: ' . BASEURL . '/admin/cars');
             exit;
         }

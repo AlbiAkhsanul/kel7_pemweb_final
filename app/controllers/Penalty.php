@@ -56,9 +56,6 @@ class Penalty extends Controller
             FlashMsg::setFlash('Berhasil Membuat Penalty!', 'success');
             header('Location: ' . BASEURL . '/admin/penalties');
             exit;
-        } else {
-            header('Location: ' . BASEURL . '/admin/penalties');
-            exit;
         }
     }
 
@@ -120,9 +117,6 @@ class Penalty extends Controller
         }
         if ($this->model('Penalty_model')->editPenaltyById($_POST, $_FILES, $id) > 0) {
             FlashMsg::setFlash('Berhasil Mengupdate Penalty!', 'success');
-            header('Location: ' . BASEURL . '/admin/penalties');
-            exit;
-        } else {
             header('Location: ' . BASEURL . '/admin/penalties');
             exit;
         }
