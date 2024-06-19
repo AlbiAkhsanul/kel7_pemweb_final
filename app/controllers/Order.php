@@ -102,6 +102,8 @@ class Order extends Controller
             header('Location: ' . BASEURL . '/home');
             exit;
         }
+        $car_id = $data['order']['car_id'];
+        $data['car'] = $this->model('Car_model')->getCarById($car_id);
         $data['penalties'] = $this->model('Penalty_model')->getPenaltiesyByOrderId($id);
         $this->view('templates/header', $data);
         $this->view('order/details', $data);
