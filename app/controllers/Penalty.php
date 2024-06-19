@@ -53,11 +53,11 @@ class Penalty extends Controller
             exit;
         }
         if ($this->model('Penalty_model')->createNewPenalty($_POST, $_FILES) > 0) {
-            FlashMsg::setFlash('Succesfully', 'Created', 'success');
+            FlashMsg::setFlash('Berhasil Membuat Penalty!', 'success');
             header('Location: ' . BASEURL . '/admin/penalties');
             exit;
         } else {
-            FlashMsg::setFlash('Unsuccesfully', 'Created', 'danger');
+            FlashMsg::setFlash('Gagal Membuat Penalty!', 'danger');
             header('Location: ' . BASEURL . '/admin/penalties');
             exit;
         }
@@ -120,36 +120,36 @@ class Penalty extends Controller
             exit;
         }
         if ($this->model('Penalty_model')->editPenaltyById($_POST, $_FILES, $id) > 0) {
-            FlashMsg::setFlash('Succesfully', 'Edited', 'success');
+            FlashMsg::setFlash('Berhasil Mengupdate Penalty!', 'success');
             header('Location: ' . BASEURL . '/admin/penalties');
             exit;
         } else {
-            FlashMsg::setFlash('Unsuccesfully', 'Edited', 'danger');
+            FlashMsg::setFlash('Gagal Mengupdate Penalty!', 'danger');
             header('Location: ' . BASEURL . '/admin/penalties');
             exit;
         }
     }
 
-    public function delete($id)
-    {
-        if (!isset($_SESSION["login"])) {
-            header("Location: " . BASEURL . "/auth/login");
-            exit;
-        }
-        if ($_SESSION["is_admin"] !== 1) {
-            header("Location: " . BASEURL . "/home");
-            exit;
-        }
-        if ($this->model('Penalty_model')->deletePenaltyById($id) > 0) {
-            FlashMsg::setFlash('Succesfully', 'Deleted', 'success');
-            header('Location: ' . BASEURL . '/admin/penalties');
-            exit;
-        } else {
-            FlashMsg::setFlash('Unsuccesfully', 'Deleted', 'danger');
-            header('Location: ' . BASEURL . '/admin/penalties');
-            exit;
-        }
-    }
+    // public function delete($id)
+    // {
+    //     if (!isset($_SESSION["login"])) {
+    //         header("Location: " . BASEURL . "/auth/login");
+    //         exit;
+    //     }
+    //     if ($_SESSION["is_admin"] !== 1) {
+    //         header("Location: " . BASEURL . "/home");
+    //         exit;
+    //     }
+    //     if ($this->model('Penalty_model')->deletePenaltyById($id) > 0) {
+    //         FlashMsg::setFlash('Berhasil Menghapus Penalty!', 'success');
+    //         header('Location: ' . BASEURL . '/admin/penalties');
+    //         exit;
+    //     } else {
+    //         FlashMsg::setFlash('Gagal Menghapus Penalty!', 'danger');
+    //         header('Location: ' . BASEURL . '/admin/penalties');
+    //         exit;
+    //     }
+    // }
 
     public function action($id)
     {
@@ -187,11 +187,11 @@ class Penalty extends Controller
             exit;
         }
         if ($this->model('Penalty_model')->closePenalty($id) > 0) {
-            FlashMsg::setFlash('Succesfully', 'Accept', 'success');
+            FlashMsg::setFlash('Berhasil Menutup Penalty!', 'success');
             header('Location: ' . BASEURL . '/admin/penalties');
             exit;
         } else {
-            FlashMsg::setFlash('Unsuccesfully', 'Accept', 'danger');
+            FlashMsg::setFlash('Gagal Menutup Penalty!', 'danger');
             header('Location: ' . BASEURL . '/admin/penalties');
             exit;
         }
@@ -208,11 +208,11 @@ class Penalty extends Controller
             exit;
         }
         if ($this->model('Penalty_model')->rejectPenalty($id) > 0) {
-            FlashMsg::setFlash('Succesfully', 'Reject', 'success');
+            FlashMsg::setFlash('Berhasil Mengcancel Penalty!', 'success');
             header('Location: ' . BASEURL . '/admin/penalties');
             exit;
         } else {
-            FlashMsg::setFlash('Unsuccesfully', 'Reject', 'danger');
+            FlashMsg::setFlash('Gagal Mengcancel Penalty!', 'danger');
             header('Location: ' . BASEURL . '/admin/penalties');
             exit;
         }

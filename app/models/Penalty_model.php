@@ -73,12 +73,7 @@ class Penalty_model
 
         // Cek apakah gambar ada yang diupload
         if ($fileError === 4) {
-            echo "
-            <script>
-                alert('Pilih foto Untuk Mobil');
-            </script>
-        ";
-
+            FlashMsg::setFlash('Pilih foto Untuk Mobil!', 'danger');
             exit;
         }
 
@@ -88,23 +83,13 @@ class Penalty_model
         // Mengambil bagian ekstensi gambar saja (.jpg dll)
         $imageExtension = strtolower(end($imageExtension)); //Diubah menjadi huruf kecil
         if (!in_array($imageExtension, $validImagaeExtension)) {
-            echo "
-            <script>
-                alert('Gunakan Tipe File Yang Valid (jpg,jpeg,png) ');
-            </script>
-        ";
-
+            FlashMsg::setFlash('Gunakan Tipe File Yang Valid (jpg,jpeg,png)!', 'danger');
             exit;
         }
 
         // Cek ukuran
         if ($fileSize > 1500000) {
-            echo "
-            <script>
-                alert('Ukuran foto Terlalu Besar');
-            </script>
-        ";
-
+            FlashMsg::setFlash('Ukuran foto Terlalu Besar!', 'danger');
             exit;
         }
 

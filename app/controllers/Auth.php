@@ -51,6 +51,7 @@ class Auth extends Controller
             header('Location:' . BASEURL . '/home/index');
             exit;
         } else {
+            FlashMsg::setFlash('Passwrod Atau Email Salah!', 'danger');
             header('Location:' . BASEURL . '/auth/login');
         }
     }
@@ -70,6 +71,7 @@ class Auth extends Controller
     public function store()
     {
         if ($this->model('User_model')->addUser($_POST) > 0) {
+            FlashMsg::setFlash('Berhasil Menambahkan User!', 'danger');
             header('Location: ' . BASEURL . '/auth/login');
             exit;
         }

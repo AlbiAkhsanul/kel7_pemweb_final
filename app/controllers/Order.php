@@ -75,7 +75,7 @@ class Order extends Controller
                 $rand = rand(0, $count - 1);
                 $data['driver_id'] = $drivers[$rand]['driver_id'];
             } else {
-                FlashMsg::setFlash('Unsuccesfully', 'Created', 'danger');
+                FlashMsg::setFlash('Gagal Membuat Order!', 'danger');
                 header('Location: ' . BASEURL . '/order');
                 exit;
             }
@@ -84,11 +84,11 @@ class Order extends Controller
         }
         $data['order'] = $_POST;
         if ($this->model('Order_model')->createNewOrder($data) > 0) {
-            FlashMsg::setFlash('Succesfully', 'Created', 'success');
+            FlashMsg::setFlash('Berhasil Membuat Order!', 'success');
             header('Location: ' . BASEURL . '/order');
             exit;
         } else {
-            FlashMsg::setFlash('Unsuccesfully', 'Created', 'danger');
+            FlashMsg::setFlash('Gagal Membuat Order!', 'danger');
             header('Location: ' . BASEURL . '/order');
             exit;
         }
@@ -151,11 +151,11 @@ class Order extends Controller
             exit;
         }
         if ($this->model('Order_model')->editOrderById($_POST, $id) > 0) {
-            FlashMsg::setFlash('Succesfully', 'Edited', 'success');
+            FlashMsg::setFlash('Berhasil Mengupdate Order!', 'success');
             header('Location: ' . BASEURL . '/admin/orders');
             exit;
         } else {
-            FlashMsg::setFlash('Unsuccesfully', 'Edited', 'danger');
+            FlashMsg::setFlash('Gagal Mengupdate Order!', 'danger');
             header('Location: ' . BASEURL . '/admin/orders');
             exit;
         }
@@ -200,11 +200,11 @@ class Order extends Controller
             exit;
         }
         if ($this->model('Order_model')->changeOrderStatus($id, 'Accepted') > 0) {
-            FlashMsg::setFlash('Succesfully', 'Accept', 'success');
+            FlashMsg::setFlash('Berhasil Menerima Order!', 'success');
             header('Location: ' . BASEURL . '/admin/orders');
             exit;
         } else {
-            FlashMsg::setFlash('Unsuccesfully', 'Accept', 'danger');
+            FlashMsg::setFlash('Gagal Menerima Order!', 'danger');
             header('Location: ' . BASEURL . '/admin/orders');
             exit;
         }
@@ -221,11 +221,11 @@ class Order extends Controller
             exit;
         }
         if ($this->model('Order_model')->changeOrderStatus($id, 'Cancelled') > 0) {
-            FlashMsg::setFlash('Succesfully', 'Reject', 'success');
+            FlashMsg::setFlash('Berhasil Mengcancel Order!', 'success');
             header('Location: ' . BASEURL . '/admin/orders');
             exit;
         } else {
-            FlashMsg::setFlash('Unsuccesfully', 'Reject', 'danger');
+            FlashMsg::setFlash('Gagal Mengcancel Order!', 'danger');
             header('Location: ' . BASEURL . '/admin/orders');
             exit;
         }
@@ -242,11 +242,11 @@ class Order extends Controller
             exit;
         }
         if ($this->model('Order_model')->changeOrderStatus($id, 'Closed') > 0) {
-            FlashMsg::setFlash('Succesfully', 'Reject', 'success');
+            FlashMsg::setFlash('Berhasil Menutup Order!', 'success');
             header('Location: ' . BASEURL . '/admin/orders');
             exit;
         } else {
-            FlashMsg::setFlash('Unsuccesfully', 'Reject', 'danger');
+            FlashMsg::setFlash('Gagal Menutup Order!', 'danger');
             header('Location: ' . BASEURL . '/admin/orders');
             exit;
         }

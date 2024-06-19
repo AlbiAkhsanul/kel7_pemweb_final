@@ -23,24 +23,14 @@ class User_model
         $this->db->bind('email_user', $email);
 
         if ($this->db->resultSet()) {
-            echo "
-            <script>
-                alert('Email Telah Dipakai, Coba Email Lain!');
-                
-            </script>
-        ";
-            exit;;
+            FlashMsg::setFlash('Email Telah Dipakai, Coba Email Lain!', 'danger');
+            exit;
         }
 
         // cek konfirmasi pass
         if ($password !== $passwordConfirm) {
-            echo "
-            <script>
-                alert('Konfirmasi Password Tidak Sesuai!');
-                
-            </script>
-        ";
-            exit;;
+            FlashMsg::setFlash('Konfirmasi Password Tidak Sesuai!', 'danger');
+            exit;
         }
         // Enkripsi password
         $password = password_hash($password, PASSWORD_DEFAULT);
@@ -72,18 +62,18 @@ class User_model
     {
         $userData = $this->getUserById($id);
         if (!password_verify($data['password_lama'], $userData['password'])) {
+            FlashMsg::setFlash('Password Lama tidak sesuai!', 'danger');
             echo "
             <script>
-                alert('Password Lama tidak sesuai!');
                 window.history.go(-1);
             </script>
             ";
             exit;
         }
         if (!empty($data['password_baru']) && $data['password_baru'] !== $data['konfirmasi_password_baru']) {
+            FlashMsg::setFlash('Konfirmasi Password tidak sesuai!', 'danger');
             echo "
             <script>
-                alert('Konfirmasi Password tidak sesuai!');
                 window.history.go(-1);
             </script>
             ";
@@ -91,9 +81,9 @@ class User_model
         }
         if ($userData['email_user'] !== $data['email_user']) {
             if ($this->getEmail($data['email_user'])) {
+                FlashMsg::setFlash('Email Telah Dipakai, Coba Email Lain!', 'danger');
                 echo "
                 <script>
-                    alert('Email Telah Dipakai, Coba Email Lain!');
                     window.history.go(-1);
                 </script>
                 ";

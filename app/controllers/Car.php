@@ -95,11 +95,11 @@ class Car extends Controller
             exit;
         }
         if ($this->model('Car_model')->createNewCar($_POST, $_FILES) > 0) {
-            FlashMsg::setFlash('Succesfully', 'Created', 'success');
+            FlashMsg::setFlash('Berhasil Membuat Mobil Baru!', 'success');
             header('Location: ' . BASEURL . '/admin/cars');
             exit;
         } else {
-            FlashMsg::setFlash('Unsuccesfully', 'Created', 'danger');
+            FlashMsg::setFlash('Gagal Membuat Mobil Baru!', 'danger');
             header('Location: ' . BASEURL . '/admin/cars');
             exit;
         }
@@ -142,11 +142,11 @@ class Car extends Controller
             exit;
         }
         if ($this->model('Car_model')->editCarById($_POST, $_FILES, $id) > 0) {
-            FlashMsg::setFlash('Succesfully', 'Edited', 'success');
+            FlashMsg::setFlash('Berhasil Mengupdate Mobil!', 'success');
             header('Location: ' . BASEURL . '/admin/cars');
             exit;
         } else {
-            FlashMsg::setFlash('Unsuccesfully', 'Edited', 'danger');
+            FlashMsg::setFlash('Gagal Mengupdate Mobil!', 'danger');
             header('Location: ' . BASEURL . '/admin/cars');
             exit;
         }
@@ -163,11 +163,11 @@ class Car extends Controller
             exit;
         }
         if ($this->model('Car_model')->deleteCarById($id) > 0) {
-            FlashMsg::setFlash('Succesfully', 'Deleted', 'success');
+            FlashMsg::setFlash('Berhasil Menghapus Mobil!', 'success');
             header('Location: ' . BASEURL . '/admin/cars');
             exit;
         } else {
-            FlashMsg::setFlash('Unsuccesfully', 'Deleted', 'danger');
+            FlashMsg::setFlash('Gagal Menghapus Mobil!', 'danger');
             header('Location: ' . BASEURL . '/admin/cars');
             exit;
         }

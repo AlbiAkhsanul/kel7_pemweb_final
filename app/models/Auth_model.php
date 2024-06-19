@@ -41,12 +41,8 @@ class Auth_model
                 exit;
             }
         }
+        FlashMsg::setFlash('Passwrod Atau Email Salah!', 'danger');
         header("Location:" . BASEURL . "/auth/login");
-        echo "
-                <script>
-                    alert('Password Tidak Sesuai!');
-                </script>
-            ";
         exit;
         // Nanti pasang flasher
     }
