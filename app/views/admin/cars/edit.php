@@ -8,12 +8,14 @@
         <li>
             <label for="car_brand_id">Merk Mobil: </label>
             <select id="car_brand_id" name="car_brand_id" required>
-                <option value="1" <?= $car['car_brand_id'] == '1' ? 'selected' : '' ?>>Toyota</option>
-                <option value="2" <?= $car['car_brand_id'] == '2' ? 'selected' : '' ?>>Honda</option>
-                <option value="3" <?= $car['car_brand_id'] == '3' ? 'selected' : '' ?>>Nissan</option>
-                <option value="4" <?= $car['car_brand_id'] == '4' ? 'selected' : '' ?>>Suzuki</option>
-                <option value="5" <?= $car['car_brand_id'] == '5' ? 'selected' : '' ?>>Ford</option>
-                <option value="6" <?= $car['car_brand_id'] == '6' ? 'selected' : '' ?>>Daihatsu</option>
+                <option value="Toyota" <?= $car['car_brand_id'] == 'Toyota' ? 'selected' : '' ?>>Toyota</option>
+                <option value="Honda" <?= $car['car_brand_id'] == 'Honda' ? 'selected' : '' ?>>Honda</option>
+                <option value="Nissan" <?= $car['car_brand_id'] == 'Nissan' ? 'selected' : '' ?>>Nissan</option>
+                <option value="Suzuki" <?= $car['car_brand_id'] == 'Suzuki' ? 'selected' : '' ?>>Suzuki</option>
+                <option value="Ford" <?= $car['car_brand_id'] == 'Ford' ? 'selected' : '' ?>>Ford</option>
+                <option value="Daihatsu" <?= $car['car_brand_id'] == 'Daihatsu' ? 'selected' : '' ?>>Daihatsu</option>
+                <option value="Mitsubishi" <?= $car['car_brand_id'] == 'Mitsubishi' ? 'selected' : '' ?>>Daihatsu</option>
+                <option value="Wuling" <?= $car['car_brand_id'] == 'Wuling' ? 'selected' : '' ?>>Daihatsu</option>
             </select>
         </li>
         <li>

@@ -3,14 +3,16 @@
 <form action="<?= BASEURL; ?>/car/store" method="post" enctype="multipart/form-data">
     <ul>
         <li>
-            <label for="car_brand_id">Merk Mobil: </label>
-            <select id="car_brand_id" name="car_brand_id" required>
-                <option value="1">Toyota</option>
-                <option value="2">Honda</option>
-                <option value="3">Nissan</option>
-                <option value="4">Suzuki</option>
-                <option value="5">Ford</option>
-                <option value="6">Daihatsu</option>
+            <label for="car_brand">Merk Mobil: </label>
+            <select id="car_brand" name="car_brand" required>
+                <option value="Toyota">Toyota</option>
+                <option value="Honda">Honda</option>
+                <option value="Nissan">Nissan</option>
+                <option value="Suzuki">Suzuki</option>
+                <option value="Ford">Ford</option>
+                <option value="Daihatsu">Daihatsu</option>
+                <option value="Mitsubishi">Mitsubishi</option>
+                <option value="Wuling">Wuling</option>
             </select>
         </li>
         <li>
