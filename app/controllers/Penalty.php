@@ -57,7 +57,6 @@ class Penalty extends Controller
             header('Location: ' . BASEURL . '/admin/penalties');
             exit;
         } else {
-            FlashMsg::setFlash('Gagal Membuat Penalty!', 'danger');
             header('Location: ' . BASEURL . '/admin/penalties');
             exit;
         }
@@ -124,7 +123,6 @@ class Penalty extends Controller
             header('Location: ' . BASEURL . '/admin/penalties');
             exit;
         } else {
-            FlashMsg::setFlash('Gagal Mengupdate Penalty!', 'danger');
             header('Location: ' . BASEURL . '/admin/penalties');
             exit;
         }

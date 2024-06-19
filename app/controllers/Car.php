@@ -99,7 +99,6 @@ class Car extends Controller
             header('Location: ' . BASEURL . '/admin/cars');
             exit;
         } else {
-            FlashMsg::setFlash('Gagal Membuat Mobil Baru!', 'danger');
             header('Location: ' . BASEURL . '/admin/cars');
             exit;
         }
@@ -146,7 +145,6 @@ class Car extends Controller
             header('Location: ' . BASEURL . '/admin/cars');
             exit;
         } else {
-            FlashMsg::setFlash('Gagal Mengupdate Mobil!', 'danger');
             header('Location: ' . BASEURL . '/admin/cars');
             exit;
         }

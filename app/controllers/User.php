@@ -56,7 +56,6 @@ class User extends Controller
             header('Location: ' . BASEURL . '/user');
             exit;
         } else {
-            FlashMsg::setFlash('Gagal Mengupdate Profile!', 'danger');
             header('Location: ' . BASEURL . '/user');
             exit;
         }
