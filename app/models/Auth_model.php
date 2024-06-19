@@ -44,8 +44,7 @@ class Auth_model
         header("Location:" . BASEURL . "/auth/login");
         echo "
                 <script>
-                    alert('Konfirmasi Password Tidak Sesuai!');
-
+                    alert('Password Tidak Sesuai!');
                 </script>
             ";
         exit;
