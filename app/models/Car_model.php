@@ -56,10 +56,10 @@ class Car_model
         // $currentTime = date('Y-m-d H:i');
         $currentTime = date('Y-m-d');
         $carImg = $this->uploadCarImg($dataImg, $currentTime);
-        $query = "INSERT INTO {$this->table_name} (car_brand_id,nama_mobil,jenis_mobil,tipe_transmisi,harga_sewa,foto_mobil,status_mobil) VALUES 
-                  (:car_brand_id,:nama_mobil,:jenis_mobil,:tipe_transmisi,:harga_sewa,:foto_mobil,:status_mobil)";
+        $query = "INSERT INTO {$this->table_name} (car_brand,nama_mobil,jenis_mobil,tipe_transmisi,harga_sewa,foto_mobil,status_mobil) VALUES 
+                  (:car_brand,:nama_mobil,:jenis_mobil,:tipe_transmisi,:harga_sewa,:foto_mobil,:status_mobil)";
         $this->db->query($query);
-        $this->db->bind('car_brand_id', $data['car_brand_id']);
+        $this->db->bind('car_brand', $data['car_brand']);
         $this->db->bind('nama_mobil', $data['nama_mobil']);
         $this->db->bind('jenis_mobil', $data['jenis_mobil']);
         $this->db->bind('tipe_transmisi', $data['tipe_transmisi']);
@@ -127,7 +127,7 @@ class Car_model
         }
 
         $query = "UPDATE {$this->table_name} SET 
-                  car_brand_id = :car_brand_id,
+                  car_brand = :car_brand,
                   nama_mobil = :nama_mobil, 
                   jenis_mobil = :jenis_mobil,
                   tipe_transmisi = :tipe_transmisi,
@@ -136,7 +136,7 @@ class Car_model
                   status_mobil = :status_mobil
                   WHERE car_id = :car_id ";
         $this->db->query($query);
-        $this->db->bind('car_brand_id', $data['car_brand_id']);
+        $this->db->bind('car_brand', $data['car_brand']);
         $this->db->bind('nama_mobil', $data['nama_mobil']);
         $this->db->bind('jenis_mobil', $data['jenis_mobil']);
         $this->db->bind('tipe_transmisi', $data['tipe_transmisi']);
