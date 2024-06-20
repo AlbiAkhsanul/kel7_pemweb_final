@@ -138,7 +138,7 @@ class Penalty_model
                   order_id = :order_id, 
                   jenis_penalty = :jenis_penalty,
                   biaya_penalty = :biaya_penalty, 
-                  foto_penalty = :foto_penalty,
+                  foto_penalty = :foto_penalty
                   WHERE penalty_id = :penalty_id ";
         $this->db->query($query);
         $this->db->bind('order_id', $data['order_id']);

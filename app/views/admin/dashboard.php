@@ -13,38 +13,19 @@ $penalties = $data['penalties'];
 // echo "<hr>";
 // var_dump($penalties);
 ?>
-<h1>
-    Ini Halaman Dashboard Admin
-</h1>
 
-<ul>
-    <hr>
-    <a href="<?= BASEURL ?>/admin/orders/index">
-        <h3>
-            Orders
-        </h3>
-    </a>
-    <hr>
-    <hr>
-    <a href="<?= BASEURL ?>/admin/penalties/index">
-        <h3>
-            Penalties
-        </h3>
-    </a>
-    <hr>
-    <hr>
-    <a href="<?= BASEURL ?>/admin/drivers/index">
-        <h3>
-            Drivers
-        </h3>
-    </a>
-    <hr>
-    <hr>
-    <a href="<?= BASEURL ?>/admin/cars/index">
-        <h3>
-            Cars
-        </h3>
-    </a>
-    <hr>
-    <hr>
-</ul>
+<section class="card border-light-subtle shadow-sm">
+    <div class="container col-xl-10 col-xxl-12 py-5">
+        <div class="row align-items-center g-0 py-5">
+            <h1 style="font-weight: bold;">Dashboard Admin</h1>
+            <hr>
+            <div class="d-grid gap-3">
+                <a href="<?= BASEURL ?>/admin/orders/index" class="btn btn-outline-dark btn-lg">Orders</a>
+                <a href="<?= BASEURL ?>/admin/penalties/index" class="btn btn-outline-dark btn-lg">Penalties</a>
+                <a href="<?= BASEURL ?>/admin/drivers/index" class="btn btn-outline-dark btn-lg">Drivers</a>
+                <a href="<?= BASEURL ?>/admin/cars/index" class="btn btn-outline-dark btn-lg">Cars</a>
+            </div>
+            <hr>
+        </div>
+    </div>
+</section>

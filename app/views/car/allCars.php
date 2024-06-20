@@ -54,7 +54,7 @@ $cars = $data['cars'];
                                     <div class="form-check">
                                         <input class="form-check-input" type="radio" name="brand" value="Ford">
                                         <label class="form-check-label">
-                                            Ford
+                                            Mitsubishi
                                         </label>
                                     </div>
                                     <div class="form-check">
@@ -66,7 +66,7 @@ $cars = $data['cars'];
                                     <div class="form-check">
                                         <input class="form-check-input" type="radio" name="brand" value="Mitsubishi">
                                         <label class="form-check-label">
-                                            Mitsubishi
+                                            Isuzu
                                         </label>
                                     </div>
                                     <div class="form-check">
@@ -153,6 +153,7 @@ $cars = $data['cars'];
                         </article>
                     </div>
                 </form>
+                <a href="<?= BASEURL ?>/car/allCars" class="btn btn-dark mt-3">Reset Filter</a>
             </aside>
             <main class="col-md-9">
                 <header class="mb-4 pb-3">
@@ -185,17 +186,6 @@ $cars = $data['cars'];
                         </h5>
                     <?php endif ?>
                 </div> <!-- row end.// -->
-
-
-                <nav class="mt-4" aria-label="Page navigation sample">
-                    <ul class="pagination">
-                        <li class="page-item disabled"><a class="page-link" href="#">Previous</a></li>
-                        <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                        <li class="page-item"><a class="page-link" href="#">2</a></li>
-                        <li class="page-item"><a class="page-link" href="#">3</a></li>
-                        <li class="page-item"><a class="page-link" href="#">Next</a></li>
-                    </ul>
-                </nav>
             </main>
         </div>
     </div>

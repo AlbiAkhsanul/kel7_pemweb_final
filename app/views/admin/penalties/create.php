@@ -3,75 +3,77 @@ $order = $data['order'];
 $user = $data['user'];
 $car = $data['car'];
 
-var_dump($order);
-echo "<hr>";
-var_dump($user);
-echo "<hr>";
-var_dump($car);
+//var_dump($order);
+//echo "<hr>";
+//var_dump($user);
+//echo "<hr>";
+//var_dump($car);
 ?>
-<h1>Buat Penalty</h1>
 
-<h3>
-    Data Order
-</h3>
+<section style="background-color: white; color: black;">
+    <div class="container col-xl-10 col-xxl-12 py-5">
+        <div class="row align-items-center g-0 py-5">
+            <h1 style="font-weight: bold;">Buat Penalty</h1>
+            <hr>
+            <h3>Data Order</h3>
+            <div class="table-responsive">
+                <table class="table table-striped table-bordered">
+                    <tbody>
+                        <tr>
+                            <th>Order Id</th>
+                            <td><?= $order['order_id'] ?></td>
+                        </tr>
+                        <tr>
+                            <th>Nama User</th>
+                            <td><?= $user['nama_user'] ?></td>
+                        </tr>
+                        <tr>
+                            <th>Tanggal Sewa</th>
+                            <td><?= $order['tanggal_sewa'] ?></td>
+                        </tr>
+                        <tr>
+                            <th>Durasi Sewa</th>
+                            <td><?= $order['durasi_sewa'] ?> Hari</td>
+                        </tr>
+                        <tr>
+                            <th>Jenis Sewa</th>
+                            <td><?= $order['jenis_sewa'] === 1 ? 'Dengan Supir' : 'Tanpa Supir' ?></td>
+                        </tr>
+                        <tr>
+                            <th>Nama Mobil [Id Mobil]</th>
+                            <td><?= $car['nama_mobil'] ?> [<?= $car['car_id'] ?>]</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
 
-<ul>
-    <li>
-        <h5>
-            Order Id : <?= $order['order_id'] ?>
-        </h5>
-    </li>
-    <li>
-        <h5>
-            Nama User : <?= $user['nama_user'] ?>
-        </h5>
-    </li>
-    <li>
-        <h5>
-            Tanggal Sewa : <?= $order['tanggal_sewa'] ?>
-        </h5>
-    </li>
-    <li>
-        <h5>
-            Durasi Sewa : <?= $order['durasi_sewa'] ?> Hari
-        </h5>
-    </li>
-    <li>
-        <h5>
-            Jenis Sewa : <?= $order['jenis_sewa'] === 1 ? 'Dengan Supir' : 'Tanpa Supir' ?>
-        </h5>
-    </li>
-    <li>
-        <h5>
-            Nama Mobil [Id Mobil] : <?= $car['nama_mobil'] ?> [<?= $car['car_id'] ?>]
-        </h5>
-    </li>
-</ul>
-
-<form action="<?= BASEURL; ?>/penalty/store" method="post" enctype="multipart/form-data">
-    <ul>
-        <input type="hidden" name="order_id" id="order_id" value="<?= $order['order_id']; ?>">
-        <li>
-            <label for="jenis_penalty">Jenis Penalty: </label>
-            <input type="text" name="jenis_penalty" id="jenis_penalty" autofocus required>
-        </li>
-        <li>
-            <label for="biaya_penalty">Biaya Penalty: </label>
-            <input type="number" name="biaya_penalty" id="biaya_penalty" required>
-        </li>
-        <li>
-            <label for="foto_penalty">Foto Penalty: </label>
-            <input type="file" name="foto_penalty" id="foto_penalty" required>
-        </li>
-        <li>
-            <label for="status_penalty">Status Penalty: </label>
-            <select id="status_penalty" name="status_penalty" required>
-                <option value="Pending">Pending</option>
-                <option value="Closed">Closed</option>
-            </select>
-        </li>
-        <li>
-            <button type="submit" name="store">Buat Penalty</button>
-        </li>
-    </ul>
-</form>
+            <form action="<?= BASEURL; ?>/penalty/store/" method="post" enctype="multipart/form-data" class="mt-4">
+                <input type="hidden" name="order_id" id="order_id" value="<?= $order['order_id']; ?>">
+                <div class="form-group">
+                    <label for="jenis_penalty">Jenis Penalty</label>
+                    <input type="text" class="form-control" name="jenis_penalty" id="jenis_penalty" autofocus required>
+                </div>
+                <br>
+                <div class="form-group">
+                    <label for="biaya_penalty">Biaya Penalty</label>
+                    <input type="number" class="form-control" name="biaya_penalty" id="biaya_penalty" required>
+                </div>
+                <br>
+                <div class="form-group">
+                    <label for="foto_penalty">Foto Penalty</label><br>
+                    <input type="file" class="form-control-file" name="foto_penalty" id="foto_penalty" required>
+                </div>
+                <br>
+                <div class="form-group">
+                    <label for="status_penalty">Status Penalty</label>
+                    <select id="status_penalty" name="status_penalty" class="form-control" required>
+                        <option value="Pending">Pending</option>
+                        <option value="Closed">Closed</option>
+                    </select>
+                </div>
+                <br>
+                <button type="submit" name="store" class="btn btn-primary">Buat Penalty</button>
+            </form>
+        </div>
+    </div>
+</section>

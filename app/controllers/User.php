@@ -55,6 +55,9 @@ class User extends Controller
             FlashMsg::setFlash('Berhasil Mengupdate Profile!', 'success');
             header('Location: ' . BASEURL . '/user');
             exit;
+        } else {
+            header('Location: ' . BASEURL . '/user');
+            exit;
         }
     }
 }

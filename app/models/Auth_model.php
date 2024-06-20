@@ -41,7 +41,7 @@ class Auth_model
                 exit;
             }
         }
-        FlashMsg::setFlash('Passwrod Atau Email Salah!', 'danger');
+        FlashMsg::setFlash('Password Atau Email Salah!', 'danger');
         header("Location:" . BASEURL . "/auth/login");
         exit;
         // Nanti pasang flasher

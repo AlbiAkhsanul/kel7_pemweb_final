@@ -1,72 +1,66 @@
 <?php
 $order = $data['order'];
 $car = $data['car'];
-var_dump($order);
-echo "<hr>";
-var_dump($car);
+//var_dump($order);
+//echo "<hr>";
+//var_dump($car);
 ?>
-<h1>
-    Halaman Action Order
-</h1>
 
-<ul>
-    <li>
-        <h5>
-            Order Id : <?= $order['order_id'] ?>
-        </h5>
-    </li>
-    <li>
-        <h5>
-            Nama User : <?= $data['nama_user'] ?>
-        </h5>
-    </li>
-    <li>
-        <h5>
-            Tanggal Sewa : <?= $order['tanggal_sewa'] ?>
-        </h5>
-    </li>
-    <li>
-        <h5>
-            Durasi Sewa : <?= $order['durasi_sewa'] ?> Hari
-        </h5>
-    </li>
-    <li>
-        <h5>
-            Jenis Sewa : <?= $order['jenis_sewa'] === 1 ? 'Dengan Supir' : 'Tanpa Supir' ?>
-        </h5>
-    </li>
-    <li>
-        <h5>
-            Total Harga : Rp<?= $order['total_harga'] ?>
-        </h5>
-    </li>
-    <li>
-        <h5>
-            Nama Mobil [Id Mobil] : <?= $car['nama_mobil'] ?> [<?= $car['car_id'] ?>]
-        </h5>
-    </li>
-</ul>
+<section style="background-color: white; color: black;">
+    <div class="container col-xl-10 col-xxl-12 py-5">
+        <div class="row align-items-center g-0 py-5">
+            <h1 style="font-weight: bold;">Halaman Action Order</h1>
+            <hr>
+            <h3>Data Order</h3>
+            <div class="table-responsive">
+                <table class="table table-striped table-bordered">
+                    <tbody>
+                        <tr>
+                            <th>Order Id</th>
+                            <td><?= $order['order_id'] ?></td>
+                        </tr>
+                        <tr>
+                            <th>Nama User</th>
+                            <td><?= $data['nama_user'] ?></td>
+                        </tr>
+                        <tr>
+                            <th>Tanggal Sewa</th>
+                            <td><?= $order['tanggal_sewa'] ?></td>
+                        </tr>
+                        <tr>
+                            <th>Durasi Sewa</th>
+                            <td><?= $order['durasi_sewa'] ?> Hari</td>
+                        </tr>
+                        <tr>
+                            <th>Jenis Sewa</th>
+                            <td><?= $order['jenis_sewa'] === 1 ? 'Dengan Supir' : 'Tanpa Supir' ?></td>
+                        </tr>
+                        <tr>
+                            <th>Total Harga</th>
+                            <td>Rp<?= $order['total_harga'] ?></td>
+                        </tr>
+                        <tr>
+                            <th>Nama Mobil [Id Mobil]</th>
+                            <td><?= $car['nama_mobil'] ?> [<?= $car['car_id'] ?>]</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
 
-<ul>
-    <li>
-        <a href="<?= BASEURL; ?>/order/accept/<?= $order['order_id'] ?>">
-            <button>
-                Accept Order
-            </button>
-        </a>
-    </li>
-    <li>
-        <a href="<?= BASEURL; ?>/order/cancel/<?= $order['order_id'] ?>">
-            <button>
-                Cancel Order
-            </button>
-        </a>
-    </li>
-    <li>
-        <a href="<?= BASEURL; ?>/order/close/<?= $order['order_id'] ?>">
-            <button>
-                Close Order
-            </button>
-        </a>
-    </li>
-</ul>
+            <div class="d-flex justify-content-between mt-4">
+                <a href="<?= BASEURL; ?>/order/cancel/<?= $order['order_id'] ?>" class="btn btn-danger">
+                    Cancel Order
+                </a>
+                <a href="<?= BASEURL; ?>/order/accept/<?= $order['order_id'] ?>" class="btn btn-success">
+                    Accept Order
+                </a>
+                <a href="<?= BASEURL; ?>/order/close/<?= $order['order_id'] ?>" class="btn btn-primary">
+                    Close Order
+                </a>
+            </div>
+            <br>
+            <hr>
+            <a href="<?= BASEURL ?>/admin/orders/index" class="btn btn-dark">Kembali ke List Order</a>
+        </div>
+    </div>
+</section>
