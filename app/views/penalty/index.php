@@ -24,7 +24,7 @@ $penalties = $data['penalties'];
                                         <thead class="table-dark">
                                             <tr>
                                                 <th scope="col">Penalty ID</th>
-                                                <th scope="col">Order ID</th>
+                                                <th scope="col">Jenis Penalty</th>
                                                 <th scope="col">Status Penaltyr</th>
                                                 <th scope="col">Action</th>
                                             </tr>
@@ -33,7 +33,7 @@ $penalties = $data['penalties'];
                                             <?php foreach ($penalties as $penalty) : ?>
                                                 <tr>
                                                     <td><?= $penalty['penalty_id'] ?></td>
-                                                    <td><?= $penalty['order_id'] ?></td>
+                                                    <td><?= $penalty['jenis_penalty'] ?></td>
                                                     <td><?= $penalty['status_penalty'] ?></td>
                                                     <td>
                                                         <a href="<?= BASEURL ?>/penalty/show/<?= $penalty['penalty_id'] ?>" class="btn btn-dark btn-sm">

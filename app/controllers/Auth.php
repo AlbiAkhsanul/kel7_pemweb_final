@@ -71,8 +71,11 @@ class Auth extends Controller
     public function store()
     {
         if ($this->model('User_model')->addUser($_POST) > 0) {
-            FlashMsg::setFlash('Berhasil Menambahkan User!', 'danger');
+            FlashMsg::setFlash('Berhasil Menambahkan User!', 'success');
             header('Location: ' . BASEURL . '/auth/login');
+            exit;
+        } else {
+            header('Location: ' . BASEURL . '/auth/register');
             exit;
         }
     }

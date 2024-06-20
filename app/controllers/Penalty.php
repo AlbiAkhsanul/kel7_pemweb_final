@@ -54,7 +54,7 @@ class Penalty extends Controller
         }
         if ($this->model('Penalty_model')->createNewPenalty($_POST, $_FILES) > 0) {
             FlashMsg::setFlash('Berhasil Membuat Penalty!', 'success');
-            header('Location: ' . BASEURL . '/admin/penalties');
+            header('Location: ' . BASEURL . '/admin/orders');
             exit;
         } else {
             header('Location: ' . BASEURL . '/penalty/create');
