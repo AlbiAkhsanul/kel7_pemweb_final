@@ -34,7 +34,7 @@ class User extends Controller
             header("Location: " . BASEURL . "/auth/login");
             exit;
         }
-        if ($id !== $_SESSION['user_id'] && $_SESSION['is_admin'] != 1) {
+        if ($id != $_SESSION['user_id'] && $_SESSION['is_admin'] != 1) {
             header("Location: " . BASEURL . "/user");
             exit;
         }

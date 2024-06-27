@@ -1,7 +1,6 @@
 <!-- CDN -->
 <link rel="stylesheet" href="<?= BASEURL ?>/css/main.css">
 <style>
-
     footer {
         width: 100%;
         font-family: 'Plus Jakarta Sans', sans-serif;
@@ -17,9 +16,11 @@
         color: #eaeaea;
         text-decoration: none;
     }
+
     .footer a:hover {
         color: white;
     }
+
     .footer .divider {
         border-top: 1px solid #444;
         margin: 10px 0;
@@ -52,11 +53,11 @@
                 </a>
                 <p class="text-body-secondary">© 2024</p>
             </div>
-            
+
             <div class="col mb-3">
-            
+
             </div>
-            
+
             <div class="col mb-3">
                 <!-- <h5>Kerjasama</h5>
                 <div class="divider"></div>
@@ -65,7 +66,7 @@
                     <li class="nav-item mb-2"><a href="#" class="nav-link p-0">Kantor Cabang</a></li>
                 </ul> -->
             </div>
-            
+
             <div class="col mb-3">
                 <!-- <h5>Layanan Pelanggan</h5>
                 <div class="divider"></div>
@@ -76,7 +77,7 @@
                     <li class="nav-item mb-2"><a href="#" class="nav-link p-0">Laporkan Masalah</a></li>
                 </ul> -->
             </div>
-            
+
             <div class="col mb-3">
                 <!-- <h5>Download Aplikasi</h5>
                 <div class="divider"></div>
@@ -94,7 +95,7 @@
                 </ul> -->
                 <h5 class="mt-4">About Us</h5>
                 <div class="divider"></div>
-                <p class="text-body-secondary">© 2024 Kelompok 7 Pemrograman Web E081</p>
+                <p class="text-body-primary">© 2024 Kelompok 7 Pemrograman Web E081</p>
             </div>
         </div>
     </div>

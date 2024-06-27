@@ -31,7 +31,7 @@ $car = $data['car'];
                                             <div class="col-12">
                                                 <label for="car_brand" class="form-label">Merek Mobil</label>
                                                 <div class="form mb-2">
-                                                    <select id="car_brand"  class="form-control"  name="car_brand" required disabled>
+                                                    <select id="car_brand" class="form-control" name="car_brand" required disabled>
                                                         <option value="Toyota" <?= $car['car_brand'] == 'Toyota' ? 'selected' : '' ?>>Toyota</option>
                                                         <option value="Honda" <?= $car['car_brand'] == 'Honda' ? 'selected' : '' ?>>Honda</option>
                                                         <option value="Nissan" <?= $car['car_brand'] == 'Nissan' ? 'selected' : '' ?>>Nissan</option>
@@ -63,7 +63,7 @@ $car = $data['car'];
                                             </div>
                                             <div class="col-12">
                                                 <label for="tipe_transmisi">Tipe Transmisi</label>
-                                                <div class="form mb-2 mt-2">    
+                                                <div class="form mb-2 mt-2">
                                                     <select id="tipe_transmisi" class="form-control" name="tipe_transmisi" required disabled>
                                                         <option value="Manual" <?= $car['tipe_transmisi'] === 'Manual' ? 'selected' : '' ?>>Manual</option>
                                                         <option value="Matic" <?= $car['tipe_transmisi'] === 'Matic' ? 'selected' : '' ?>>Matic</option>
@@ -81,26 +81,26 @@ $car = $data['car'];
                                             <input type="hidden" name="nama_mobil" value="<?= $car['nama_mobil']; ?>">
                                             <input type="hidden" name="jenis_mobil" value="<?= $car['jenis_mobil']; ?>">
                                             <div class="col-12">
-                                            <label for="tanggal_sewa">Tanggal Sewa</label>
+                                                <label for="tanggal_sewa">Tanggal Sewa</label>
                                                 <div class="form mb-2 mt-2">
                                                     <input type="date" class="form-control" name="tanggal_sewa" id="tanggal_sewa" value="<?= $_SESSION['tanggal_sewa'] ?>" disabled>
                                                 </div>
                                             </div>
                                             <div class="col-12">
-                                            <label for="tanggal_kembali_sewa">Tanggal Kembali</label>
+                                                <label for="tanggal_kembali_sewa">Tanggal Kembali</label>
                                                 <div class="form mb-2 mt-2">
                                                     <input type="date" class="form-control" name="tanggal_kembali_sewa" id="tanggal_kembali_sewa" value="<?= $_SESSION['tanggal_kembali_sewa'] ?>" disabled>
                                                 </div>
                                             </div>
                                             <div class="col-12">
-                                            <label for="durasi_sewa">Durasi Sewa (Harian)</label>
+                                                <label for="durasi_sewa">Durasi Sewa (Harian)</label>
                                                 <div class="form mb-2 mt-2">
                                                     <input type="number" class="form-control" name="durasi_sewa" id="durasi_sewa" value="<?= $_SESSION['durasi_sewa'] ?>" disabled>
                                                 </div>
                                             </div>
                                             <?php if ($data['is_driver'] === 0) : ?>
                                                 <div class="col-12">
-                                                <label for="jenis_sewa_dummy">Jenis Sewa : </label>
+                                                    <label for="jenis_sewa_dummy">Jenis Sewa : </label>
                                                     <div class="form mb-2 mt-2">
                                                         <input type="hidden" name="jenis_sewa" value="0">
                                                         <select id="jenis_sewa_dummy" name="jenis_sewa_dummy" class="form-control" required disabled>
@@ -111,7 +111,7 @@ $car = $data['car'];
                                                 </div>
                                             <?php else : ?>
                                                 <div class="col-12">
-                                                <label for="jenis_sewa">Jenis Sewa : </label>
+                                                    <label for="jenis_sewa">Jenis Sewa : </label>
                                                     <div class="form mb-2 mt-2">
                                                         <select id="jenis_sewa" name="jenis_sewa" class="form-control" required>
                                                             <option value="0">Sewa Mobil Tanpa Supir</option>
@@ -123,7 +123,7 @@ $car = $data['car'];
                                             <?php endif ?>
                                             <div class="col-12">
                                                 <div class="d-grid">
-                                                    <button class="btn btn-dark btn-lg" type="submit">Daftar</button>
+                                                    <button class="btn btn-dark btn-lg" type="submit">Buat Order</button>
                                                 </div>
                                             </div>
                                         </div>

@@ -49,6 +49,7 @@
                                                     <input type="date" class="form-control" name="tanggal_sewa" value="<?= isset($_SESSION['tanggal_sewa']) ? $_SESSION['tanggal_sewa'] : '' ?>" id="tanggal_sewa" required>
                                                 </div>
                                             </div>
+                                            <span id="tanggalSewaWarning" style="color: red; display: none;">Tanggal sewa harus lebih besar daripada tanggal saat ini.</span>
                                             <div class="col-12">
                                                 <label for="tanggal_kembali_sewa" class="form-label">Tanggal Selesai</label>
                                                 <div class="form-floating mb-3">

@@ -10,8 +10,10 @@
     top: 0;
     left: 0;
     width: 100%;
-    height: 100%;
-    z-index: -1; /* Places the pseudo-element behind the body content */
+    /* height: auto; */
+    z-index: -1;
+    /* Places the pseudo-element behind the body content */
+
 }
 
 .dropdown-width {
@@ -29,6 +31,7 @@
     margin: 0;
     padding-left: 0;
 }
+
 .list-menu a {
     color: #343a40;
 }
@@ -46,6 +49,7 @@
 .card-product-grid:hover .btn-overlay {
     opacity: 1;
 }
+
 .card-product-grid .btn-overlay {
     -webkit-transition: .5s;
     transition: .5s;
@@ -84,68 +88,81 @@ input .range {
 }
 
 .apply-button {
-    width: 270px; /* Set your desired width */
-    margin: 0 auto; /* Center the button */
-    display: block; /* Ensure the button takes the specified width */
-    justify-content: center; /* Center text horizontally */
-    align-items: center; /* Center text vertically */
+    width: 270px;
+    /* Set your desired width */
+    margin: 0 auto;
+    /* Center the button */
+    display: block;
+    /* Ensure the button takes the specified width */
+    justify-content: center;
+    /* Center text horizontally */
+    align-items: center;
+    /* Center text vertically */
 }
 
 .lokasi {
     margin-left: 600px;
 }
 
-.car-wrap{
+.car-wrap {
     margin-bottom: 40px;
-    -webkit-box-shadow: 0px 5px 12px -1px rgba(0,0,0,0.06);
-    -moz-box-shadow: 0px 5px 12px -1px rgba(0,0,0,0.06);
-    box-shadow: 0px 5px 12px -1px rgba(0,0,0,0.06);
+    -webkit-box-shadow: 0px 5px 12px -1px rgba(0, 0, 0, 0.06);
+    -moz-box-shadow: 0px 5px 12px -1px rgba(0, 0, 0, 0.06);
+    box-shadow: 0px 5px 12px -1px rgba(0, 0, 0, 0.06);
     background: white;
 
     transform: translateY(20px);
     transition: opacity 0.5s ease-out, transform 0.5s ease-out;
 
-    .img{
+    .img {
         width: 100%;
         height: 220px;
         object-fit: cover;
     }
-    .text{
+
+    .text {
         border-top: none;
         padding: 20px 30px 30px;
         margin: auto;
-        .price{
+
+        .price {
             color: rgb(0, 0, 0);
             margin-bottom: 0;
             font-weight: 600;
-            span{
+
+            span {
                 font-size: 12px;
                 font-weight: 400;
-                color: rgba(0,0,0,.3);
+                color: rgba(0, 0, 0, .3);
             }
         }
-        h2{
+
+        h2 {
             font-size: 20px;
             font-weight: 500;
             margin: auto;
             justify-content: center;
             align-items: center;
-            a{
+
+            a {
                 color: black;
             }
         }
-        span.cat{
+
+        span.cat {
             font-weight: 400;
-            color: rgba(0,0,0,.6);
+            color: rgba(0, 0, 0, .6);
             display: block;
             margin: auto;
             justify-content: center;
             align-items: center;
             margin-bottom: 0;
         }
-        p.d-block{
+
+        p.d-block {
             width: 100%;
-            a{
+
+            a {
                 width: 50%;
             }
         }

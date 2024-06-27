@@ -166,7 +166,7 @@
                     <div class="col-12 col-md-10 col-lg-8 col-xl-7 col-xxl-6 text-center">
                         <h4 class="mb-4 display-5 mitra mitra-bottom">Tunggu apa lagi? Yuk pesan sekarang juga!</h4>
                         <div class="sewa-mobil-button-bottom">
-                            <button class="sewa-mobil-bottom" url="#">Sewa Mobil</button>
+                            <button class="sewa-mobil-bottom" onclick="window.location.href='<?= BASEURL ?>/car/allcars'">Sewa Mobil</button>
                         </div>
                     </div>
                 </div>
